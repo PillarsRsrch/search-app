@@ -15,8 +15,9 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: '12.x'
+                  cache: 'npm'
             - name: Install Dependencies
               run: |
-                  npm install
+                  npm ci
             - name: Run Unit Tests
               run: npm run test

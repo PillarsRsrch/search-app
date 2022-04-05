@@ -12,9 +12,10 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: '12.x'
+                  cache: 'npm'
             - name: Install Dependencies
               run: |
-                  npm install
+                  npm ci
             - name: Run Unit Tests
               run: npm run test
     acceptance-tests:
@@ -24,7 +25,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
             - name: Install Dependencies
-              run: npm install
+              run: npm ci
             - name: Cypress run
               uses: cypress-io/github-action@v2
               with:
@@ -38,9 +39,10 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: '12.x'
+                  cache: 'npm'
             - name: Install Dependencies
               run: |
-                  npm install
+                  npm ci
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v1
               with:
