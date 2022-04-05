@@ -31,8 +31,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
-          start: npm start
+          build: cd acceptance-tests && npm run build
+          start: cd acceptance-tests && npm start
   deploy:
     needs: acceptance-tests
     runs-on: ubuntu-latest
