@@ -26,7 +26,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: us-west-1
       - name: Deploy Next.js app
-        uses: serverless/github-action@v3
-        with:
-          args: -c "cd web && serverless deploy"
-          entrypoint: /bin/sh
+        run: npm run deploy
