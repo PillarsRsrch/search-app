@@ -9,7 +9,7 @@
         "lint": "next lint",
         "test": "jest",
         "prepare": "cd .. && husky install",
-        "deploy": "serverless"
+        "deploy": "npx serverless"
     },
     "dependencies": {
         "next": "12.1.4",
