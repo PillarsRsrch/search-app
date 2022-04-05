@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 cd web 
-npm test
+npm test -- --silent
 npx pretty-quick --staged
