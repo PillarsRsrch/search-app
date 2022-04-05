@@ -16,7 +16,7 @@ jobs:
           node-version: "12.x"
       - name: Install Dependencies
         run: |
-          cd web && npm install && npm install -g @serverless/cli
+          cd web && npm install && curl -o- -L https://slss.io/install | bash
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -24,4 +24,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: us-west-1
       - name: Deploy Next.js app
-        run: cd web && npx serverless deploy
+        run: cd web && serverless deploy
