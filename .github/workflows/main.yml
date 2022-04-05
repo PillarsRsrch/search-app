@@ -24,4 +24,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: us-west-1
       - name: Deploy Next.js app
-        run: cd web && sls deploy
+        run: cd web && serverless deploy
