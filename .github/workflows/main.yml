@@ -14,9 +14,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Change directories to web
-        run: cd web
       - name: Install Dependencies
+        working_directory: web
         run: |
           npm install
       - name: Configure AWS Credentials
@@ -26,4 +25,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: us-west-1
       - name: Deploy Next.js app
+        working_directory: web
         run: npm run deploy
