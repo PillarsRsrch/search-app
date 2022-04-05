@@ -8,7 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest",
-        "prepare": "cd .. && husky install",
+        "prepare": "husky install",
         "deploy": "npx serverless"
     },
     "dependencies": {
