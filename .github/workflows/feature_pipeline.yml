@@ -1,9 +1,11 @@
-# .github/workflows/main.yml
+# .github/workflows/feature_pipeline.yml
 name: FeaturePipeline
 on:
     push:
         branches: [!main ]
-    pull_request: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
 jobs:
     tests:
         runs-on: ubuntu-latest
