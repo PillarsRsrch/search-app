@@ -1,5 +1,5 @@
 # .github/workflows/feature_pipeline.yml
-name: FeaturePushPipeline
+name: FeaturePipeline
 on:
     push:
         branches: ['*', '!main']
