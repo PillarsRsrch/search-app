@@ -2,6 +2,6 @@ test('should work', () => {
     expect(true).toBeTruthy();
 });
 
-test('an added test', () => {
+test('added test', () => {
     expect(true).toBeTruthy();
 });
