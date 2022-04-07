@@ -9,8 +9,7 @@
         "lint": "next lint",
         "test": "npm run test:unit",
         "test:unit": "jest",
-        "test:acceptance": "npx cypress run",
-        "prepare": "npm install husky --save-dev && husky install"
+        "test:acceptance": "npx cypress run"
     },
     "dependencies": {
         "dotenv": "^16.0.0",
