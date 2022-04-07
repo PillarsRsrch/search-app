@@ -1,4 +1,8 @@
+import { HTTPMethod } from './HTTPMethod';
+
 export interface IRequest {
     url: string;
-    method: 'GET';
+    method: HTTPMethod;
+    body?: Record<string, any>;
+    headers?: Record<string, any>;
 }

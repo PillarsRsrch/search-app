@@ -10,7 +10,7 @@
         "test": "npm run test:unit",
         "test:unit": "jest",
         "test:acceptance": "npx cypress run",
-        "prepare": "husky install"
+        "prepare": "npm install husky --save-dev && husky install"
     },
     "dependencies": {
         "dotenv": "^16.0.0",

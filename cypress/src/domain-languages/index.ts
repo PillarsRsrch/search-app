@@ -1,1 +1,1 @@
-export * from './authentication/IAuthenticationApi';
+export * from './authentication/IAuthenticationDomainLanguage';
