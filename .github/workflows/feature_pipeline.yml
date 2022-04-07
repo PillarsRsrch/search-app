@@ -1,5 +1,7 @@
 # .github/workflows/feature_pipeline.yml
 name: FeaturePipeline
+env:
+    NODE_ENV: production
 on:
     push:
         branches: ['*', '!main']

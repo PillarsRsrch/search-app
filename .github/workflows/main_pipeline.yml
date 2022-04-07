@@ -1,5 +1,7 @@
 # .github/workflows/main_pipeline.yml
 name: ProductionPipeline
+env:
+    NODE_ENV: production
 on:
     push:
         branches: [main]
