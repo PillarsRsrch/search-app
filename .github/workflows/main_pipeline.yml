@@ -1,7 +1,7 @@
 # .github/workflows/main_pipeline.yml
 name: ProductionPipeline
 env:
-    NODE_ENV: production
+    NODE_ENV: test
 on:
     push:
         branches: [main]
@@ -17,7 +17,7 @@ jobs:
                   cache: 'npm'
             - name: Install Dependencies
               run: |
-                  NODE_ENV=test npm ci
+                  npm ci
             - name: Run Unit Tests
               run: npm run test
     acceptance-tests:
