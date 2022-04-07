@@ -1,11 +1,14 @@
 import { ICookie } from './ICookie';
 import { IPath } from './IPath';
+import { IRequest } from './IRequest';
+import { IResponse } from './IResponse';
 import { ISelector } from './ISelector';
 
 export interface IWebDriver {
-    navigateToPage(path: IPath): void;
+    expectPageChangeTo(path: IPath): Promise<void>;
     findCookie(cookie: ICookie): void;
-    findElement(element: ISelector): void;
+    findElement(selector: ISelector): void;
     isViewingPage(path: IPath): void;
-    makeRequest(request: unknown): Promise<unknown>;
+    makeRequest<T = {}>(request: IRequest): Promise<IResponse<T>>;
+    navigateToPage(path: IPath): void;
 }

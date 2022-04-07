@@ -13,9 +13,10 @@ export class GoogleSocialLoginAuthenticationDriver
         private readonly authenticator: IAuthenticator
     ) {}
 
-    assertAuthenticationWasSuccessful(): void {
+    async assertAuthenticationWasSuccessful(): Promise<void> {
         this.webDriver.findElement(new IdSelector('check_mark_icon'));
         this.webDriver.findCookie(new Cookie('google_token'));
+        await this.webDriver.expectPageChangeTo(new Path('/projects'));
     }
 
     authenticate(): Promise<void> {
@@ -24,5 +25,8 @@ export class GoogleSocialLoginAuthenticationDriver
 
     selectAuthenticationProcess(): void {
         this.webDriver.navigateToPage(new Path('/'));
+        this.webDriver.findElement(
+            new IdSelector('google_authentication_button')
+        );
     }
 }
