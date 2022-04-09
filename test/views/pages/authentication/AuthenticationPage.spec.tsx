@@ -15,7 +15,7 @@ describe('Authentication Page Test Suite', () => {
     });
 
     test('Should render the authentication page with the google authenticator', () => {
-        const { container } = render(
+        const { container: page } = render(
             <AuthenticationPage>
                 <GoogleAuthenticationComponent
                     service={service}
@@ -27,10 +27,12 @@ describe('Authentication Page Test Suite', () => {
             </AuthenticationPage>
         );
 
-        const button = container.getElementsByClassName(
-            'authentication-button'
-        )[0];
+        const text = screen.getByText(
+            'Login with google to create a new project'
+        );
+        const button = page.getElementsByClassName('authentication-button')[0];
 
         expect(button).toBeInTheDocument();
+        expect(text).toBeInTheDocument();
     });
 });
