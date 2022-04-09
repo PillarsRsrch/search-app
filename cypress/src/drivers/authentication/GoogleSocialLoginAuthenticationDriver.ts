@@ -1,5 +1,5 @@
 import { Cookie } from '../web/Cookie';
-import { IdSelector } from '../web/IdSelector';
+import { ClassSelector } from '../web/ClassSelector';
 import { IWebDriver } from '../web/IWebDriver';
 import { Path } from '../web/Path';
 import { IAuthenticationDriver } from './IAuthenticationDriver';
@@ -14,7 +14,7 @@ export class GoogleSocialLoginAuthenticationDriver
     ) {}
 
     async assertAuthenticationWasSuccessful(): Promise<void> {
-        this.webDriver.findElement(new IdSelector('check_mark_icon'));
+        this.webDriver.findElement(new ClassSelector('icon'));
         this.webDriver.findCookie(new Cookie('google_token'));
         await this.webDriver.expectPageChangeTo(new Path('/projects'));
     }
@@ -25,8 +25,6 @@ export class GoogleSocialLoginAuthenticationDriver
 
     selectAuthenticationProcess(): void {
         this.webDriver.navigateToPage(new Path('/'));
-        this.webDriver.findElement(
-            new IdSelector('google_authentication_button')
-        );
+        this.webDriver.findElement(new ClassSelector('authentication-button'));
     }
 }

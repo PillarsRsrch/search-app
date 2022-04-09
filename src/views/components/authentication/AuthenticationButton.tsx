@@ -5,5 +5,7 @@ export const AuthenticationButton = ({
     children,
     onClick,
 }: IAuthenticationButtonProps) => (
-    <div onClick={(e) => onClick(e)}>{children}</div>
+    <div className="authentication-button" onClick={(e) => onClick(e)}>
+        {children}
+    </div>
 );
