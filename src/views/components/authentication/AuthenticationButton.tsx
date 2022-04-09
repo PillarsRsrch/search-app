@@ -4,4 +4,6 @@ import { IAuthenticationButtonProps } from './IAuthenticationButtonProps';
 export const AuthenticationButton = ({
     children,
     onClick,
-}: IAuthenticationButtonProps) => <div onClick={onClick}>{children}</div>;
+}: IAuthenticationButtonProps) => (
+    <div onClick={(e) => onClick(e)}>{children}</div>
+);
