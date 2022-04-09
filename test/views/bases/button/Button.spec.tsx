@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Button } from '../../../src/views/bases/Button';
+import { Button } from '../../../../src/views/bases/button/Button';
 
 describe('Button Test Suite', () => {
     test('Should render an enabled button', () => {

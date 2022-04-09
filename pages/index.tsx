@@ -1,11 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Button } from '../src/views/bases/Button';
-import styles from '../styles/Home.module.css';
+import { Button } from '../src/views/bases/button/Button';
 
 const Home: NextPage = () => {
     return (
-        <div className={styles.container}>
+        <div>
             <Head>
                 <title>Pillars</title>
                 <meta name="description" content="Pillars" />
