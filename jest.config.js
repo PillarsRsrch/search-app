@@ -3,5 +3,5 @@ module.exports = {
         '^.+\\.(t|j)sx?$': ['@swc/jest'],
     },
     testPathIgnorePatterns: ['/node_modules/', '/cypress/'],
-    runner: 'groups',
+    testEnvironment: 'jsdom',
 };
