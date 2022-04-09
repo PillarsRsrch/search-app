@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/IAuthenticatorComponentProps';
+import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IAuthenticatorComponentProps';
 
 export const FailureAuthenticator = ({
     service,
