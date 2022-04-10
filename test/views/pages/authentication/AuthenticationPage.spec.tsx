@@ -4,7 +4,7 @@ import React from 'react';
 import { anything, instance, mock, reset, when } from 'ts-mockito';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { AuthenticationPage } from '../../../../src/views/pages/authentication/AuthenticationPage';
-import { SuccessAuthenticator } from '../../components/authenticators/fakes/SuccessAuthenticator';
+import { SuccessAuthenticator } from '../../components/authentication/fakes/SuccessAuthenticator';
 
 describe('Authentication Page Test Suite', () => {
     const mockedService = mock<IAuthenticatorService>();

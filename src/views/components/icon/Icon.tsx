@@ -2,8 +2,8 @@ import React from 'react';
 import { IconSize } from './IconSize';
 import { IIconProps } from './IIconProps';
 
-export const Icon = ({ svg, size }: IIconProps) => (
-    <span className={getClassName(size)}>{svg}</span>
+export const Icon = ({ name, size, service }: IIconProps) => (
+    <span className={getClassName(size)}>{service.getIcon(name)}</span>
 );
 
 function getClassName(size: IconSize) {
