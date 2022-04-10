@@ -6,10 +6,8 @@ export const AuthenticationButton = ({
     onClick,
     onSuccess,
     onFailure,
-}: IAuthenticationButtonProps) => {
-    return (
-        <div className="authentication-button" onClick={(e) => onClick(e)}>
-            {service.createAuthenticator(onSuccess, onFailure)}
-        </div>
-    );
-};
+}: IAuthenticationButtonProps) => (
+    <div className="authentication-button" onClick={(e) => onClick(e)}>
+        {service.createAuthenticator(onSuccess, onFailure)}
+    </div>
+);
