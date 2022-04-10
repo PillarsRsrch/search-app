@@ -1,6 +1,5 @@
 pillarsWebApp:
     component: '@sls-next/serverless-component@3.7.0'
     inputs:
-        domain: 'pillars-reseach.com'
         cloudfront:
             distributionId: E19TN4ZYM4XI2F
