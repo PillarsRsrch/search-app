@@ -7,5 +7,5 @@ export const Icon = ({ name, size, service }: IIconProps) => (
 );
 
 function getClassName(size: IconSize) {
-    return `icon-${size}`;
+    return `icon icon-${size}`;
 }

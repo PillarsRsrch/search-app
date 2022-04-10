@@ -1,5 +1,7 @@
 import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
+import { IIconService } from '../../../services/foundations/icons/IIconService';
 
 export interface IAuthenticationPageProps {
-    service: IAuthenticatorService;
+    authenticatorService: IAuthenticatorService;
+    iconService: IIconService;
 }
