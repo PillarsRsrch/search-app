@@ -9,8 +9,12 @@ export const AuthenticationPage = ({ service }: IAuthenticationPageProps) => (
         <AuthenticationButton
             service={service}
             onClick={() => {}}
-            onSuccess={() => {}}
-            onFailure={() => {}}
+            onSuccess={() => {
+                console.log('success');
+            }}
+            onFailure={() => {
+                console.log('failure');
+            }}
         />
     </>
 );
