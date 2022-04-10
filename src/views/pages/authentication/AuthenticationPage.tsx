@@ -3,11 +3,14 @@ import { Text } from '../../bases/text/Text';
 import { AuthenticationButton } from '../../components/authentication/AuthenticationButton';
 import { IAuthenticationPageProps } from './IAuthenticationPageProps';
 
-export const AuthenticationPage = ({ children }: IAuthenticationPageProps) => (
+export const AuthenticationPage = ({ service }: IAuthenticationPageProps) => (
     <>
         <Text>Login with google to create a new project</Text>
-        <AuthenticationButton onClick={() => null}>
-            {children}
-        </AuthenticationButton>
+        <AuthenticationButton
+            service={service}
+            onClick={() => {}}
+            onSuccess={() => {}}
+            onFailure={() => {}}
+        />
     </>
 );

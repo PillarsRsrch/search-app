@@ -1,6 +1,5 @@
-import { ReactElement } from 'react';
-import { IAuthenticatorComponentProps } from '../../components/authentication/authenticators/IAuthenticatorComponentProps';
+import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 
 export interface IAuthenticationPageProps {
-    children: ReactElement<IAuthenticatorComponentProps>;
+    service: IAuthenticatorService;
 }

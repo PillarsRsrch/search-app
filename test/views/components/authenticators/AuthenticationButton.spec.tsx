@@ -1,6 +1,6 @@
-import React from 'react';
-import { instance, mock, reset, verify, when } from 'ts-mockito';
 import '@testing-library/jest-dom';
+import React from 'react';
+import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { screen, fireEvent, render } from '@testing-library/react';
 import { AuthenticationButton } from '../../../../src/views/components/authentication/AuthenticationButton';
 import { FakeAuthenticatorService } from './fakes/FakeAuthenticationService';
@@ -16,45 +16,58 @@ describe('Authentication Button Test Suite', () => {
     });
 
     test('When the button is clicked and the authentication succeeds', () => {
-        render(
-            <AuthenticationButton onClick={() => null}>
-                <SuccessAuthenticator service={service} />
-            </AuthenticationButton>
+        const onSuccess = jest.fn();
+        const onFailure = jest.fn();
+        const onClick = jest.fn();
+        when(
+            mockedService.createAuthenticator(anything(), anything())
+        ).thenReturn(
+            <SuccessAuthenticator onFailure={onFailure} onSuccess={onSuccess} />
         );
-        when(mockedService.handleSuccess()).thenReturn();
 
+        render(
+            <AuthenticationButton
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                service={service}
+                onClick={onClick}
+            />
+        );
         fireEvent.click(screen.getByText('Success'));
 
-        verify(mockedService.handleSuccess()).once();
-        verify(mockedService.handleFailure()).never();
+        expect(onSuccess).toBeCalled();
+        expect(onFailure).not.toBeCalled();
+        expect(onClick).toBeCalled();
+        verify(
+            mockedService.createAuthenticator(anything(), anything())
+        ).once();
     });
 
     test('When the button is clicked and the authentication failed', () => {
-        render(
-            <AuthenticationButton onClick={() => null}>
-                <FailureAuthenticator service={service} />
-            </AuthenticationButton>
+        const onSuccess = jest.fn();
+        const onFailure = jest.fn();
+        const onClick = jest.fn();
+        when(
+            mockedService.createAuthenticator(anything(), anything())
+        ).thenReturn(
+            <FailureAuthenticator onFailure={onFailure} onSuccess={onSuccess} />
         );
-        when(mockedService.handleSuccess()).thenReturn();
 
+        render(
+            <AuthenticationButton
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                service={service}
+                onClick={onClick}
+            />
+        );
         fireEvent.click(screen.getByText('Failure'));
 
-        verify(mockedService.handleSuccess()).never();
-        verify(mockedService.handleFailure()).once();
-    });
-
-    test('When the button is clicked the on click event should be clicked', () => {
-        const spy = jest.fn();
-        render(
-            <AuthenticationButton onClick={spy}>
-                <SuccessAuthenticator service={service} />
-            </AuthenticationButton>
-        );
-
-        fireEvent.click(screen.getByText('Success'));
-
-        expect(spy).toHaveBeenCalled();
-        verify(mockedService.handleSuccess()).once();
-        verify(mockedService.handleFailure()).never();
+        expect(onSuccess).not.toBeCalled();
+        expect(onFailure).toBeCalled();
+        expect(onClick).toBeCalled();
+        verify(
+            mockedService.createAuthenticator(anything(), anything())
+        ).once();
     });
 });

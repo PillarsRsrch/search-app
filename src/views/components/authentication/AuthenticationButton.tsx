@@ -2,10 +2,14 @@ import React from 'react';
 import { IAuthenticationButtonProps } from './IAuthenticationButtonProps';
 
 export const AuthenticationButton = ({
-    children,
+    service,
     onClick,
-}: IAuthenticationButtonProps) => (
-    <div className="authentication-button" onClick={(e) => onClick(e)}>
-        {children}
-    </div>
-);
+    onSuccess,
+    onFailure,
+}: IAuthenticationButtonProps) => {
+    return (
+        <div className="authentication-button" onClick={(e) => onClick(e)}>
+            {service.createAuthenticator(onSuccess, onFailure)}
+        </div>
+    );
+};

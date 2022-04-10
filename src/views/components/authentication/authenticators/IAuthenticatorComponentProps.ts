@@ -1,5 +1,6 @@
-import { IAuthenticatorService } from '../../../../services/foundations/authenticators/IAuthenticatorService';
+import { AuthenticationCallback } from '../../../../services/foundations/authenticators/AuthenticationCallback';
 
 export interface IAuthenticatorComponentProps {
-    service: IAuthenticatorService;
+    onSuccess: AuthenticationCallback;
+    onFailure: AuthenticationCallback;
 }

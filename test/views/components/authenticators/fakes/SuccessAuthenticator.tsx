@@ -2,7 +2,7 @@ import React from 'react';
 import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IAuthenticatorComponentProps';
 
 export const SuccessAuthenticator = ({
-    service,
+    onSuccess,
 }: IAuthenticatorComponentProps) => {
-    return <button onClick={() => service.handleSuccess()}>Success</button>;
+    return <button onClick={() => onSuccess()}>Success</button>;
 };

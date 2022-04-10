@@ -1,7 +1,10 @@
-import React, { ReactElement, MouseEvent } from 'react';
-import { IAuthenticatorComponentProps } from './authenticators/IAuthenticatorComponentProps';
+import { MouseEvent } from 'react';
+import { AuthenticationCallback } from '../../../services/foundations/authenticators/AuthenticationCallback';
+import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 
 export interface IAuthenticationButtonProps {
+    service: IAuthenticatorService;
     onClick: (e: MouseEvent) => void;
-    children: ReactElement<IAuthenticatorComponentProps>;
+    onSuccess: AuthenticationCallback;
+    onFailure: AuthenticationCallback;
 }
