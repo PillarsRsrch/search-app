@@ -13,7 +13,11 @@ export const GoogleAuthenticationComponent = ({
         cookiePolicy={cookiePolicy}
         clientId={clientId}
         buttonText={children}
-        onSuccess={onSuccess}
+        scope="https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.readonly"
+        onSuccess={(x) => {
+            console.log(x);
+            onSuccess();
+        }}
         onFailure={onFailure}
     />
 );
