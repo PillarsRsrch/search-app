@@ -20,28 +20,36 @@ export const AuthenticationPage = ({
         AuthenticationState.Waiting
     );
 
-    if (authenticationState === AuthenticationState.Successful) {
-        return renderSuccesState();
-    } else if (authenticationState === AuthenticationState.Failed) {
-        return renderFailureState(iconService);
-    } else {
-        return renderAuthenticationPage();
+    return (
+        <Center>
+            <Card width="300px" height="375px">
+                {getAuthenticationComponent()}
+            </Card>
+        </Center>
+    );
+
+    function getAuthenticationComponent() {
+        if (authenticationState === AuthenticationState.Successful) {
+            return renderSuccesState();
+        } else if (authenticationState === AuthenticationState.Failed) {
+            return renderFailureState(iconService);
+        } else {
+            return renderAuthenticationPage();
+        }
     }
 
     function renderAuthenticationPage() {
         return (
-            <Center>
-                <Card width="300px" height="375px">
-                    <Heading level={1}>Get Started</Heading>
-                    <Text>Sign up to start modernizing your research</Text>
-                    <AuthenticationButton
-                        service={authenticatorService}
-                        onClick={() => {}}
-                        onSuccess={onSuccess}
-                        onFailure={onFailure}
-                    />
-                </Card>
-            </Center>
+            <>
+                <Heading level={1}>Get Started</Heading>
+                <Text>Sign up to start modernizing your research</Text>
+                <AuthenticationButton
+                    service={authenticatorService}
+                    onClick={() => {}}
+                    onSuccess={onSuccess}
+                    onFailure={onFailure}
+                />
+            </>
         );
     }
 
