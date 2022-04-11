@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 import { IIconService } from '../../../services/foundations/icons/IIconService';
 import { Text } from '../../bases/text/Text';
 import { AuthenticationButton } from '../../components/authentication/AuthenticationButton';
@@ -17,58 +16,54 @@ export const AuthenticationPage = ({
     );
 
     if (authenticationState === AuthenticationState.Successful) {
-        return renderSuccesState(iconService);
+        return renderSuccesState();
     } else if (authenticationState === AuthenticationState.Failed) {
         return renderFailureState(iconService);
     } else {
-        return renderAuthenticationPage(
-            authenticatorService,
-            setAuthenticationState
+        return renderAuthenticationPage();
+    }
+
+    function renderAuthenticationPage() {
+        return (
+            <>
+                <Text>Login with google to create a new project</Text>
+                <AuthenticationButton
+                    service={authenticatorService}
+                    onClick={() => {}}
+                    onSuccess={() =>
+                        setAuthenticationState(AuthenticationState.Successful)
+                    }
+                    onFailure={() =>
+                        setAuthenticationState(AuthenticationState.Failed)
+                    }
+                />
+            </>
+        );
+    }
+
+    function renderSuccesState() {
+        return (
+            <>
+                <Text>Successfully authenticated</Text>
+                <Icon
+                    name="checkmark"
+                    size={IconSize.Small}
+                    service={iconService}
+                />
+            </>
+        );
+    }
+
+    function renderFailureState(iconService: IIconService) {
+        return (
+            <>
+                <Text>Failed to authenticate</Text>
+                <Icon
+                    name="times"
+                    size={IconSize.Small}
+                    service={iconService}
+                />
+            </>
         );
     }
 };
-
-function renderAuthenticationPage(
-    authenticatorService: IAuthenticatorService,
-    setAuthenticationState: React.Dispatch<
-        React.SetStateAction<AuthenticationState>
-    >
-) {
-    return (
-        <>
-            <Text>Login with google to create a new project</Text>
-            <AuthenticationButton
-                service={authenticatorService}
-                onClick={() => {}}
-                onSuccess={() =>
-                    setAuthenticationState(AuthenticationState.Successful)
-                }
-                onFailure={() =>
-                    setAuthenticationState(AuthenticationState.Failed)
-                }
-            />
-        </>
-    );
-}
-
-function renderFailureState(iconService: IIconService) {
-    return (
-        <>
-            <Text>Failed to authenticate</Text>
-            <Icon name="times" size={IconSize.Small} service={iconService} />
-        </>
-    );
-}
-
-function renderSuccesState(iconService: IIconService) {
-    return (
-        <>
-            <Text>Successfully authenticated</Text>
-            <Icon
-                name="checkmark"
-                size={IconSize.Small}
-                service={iconService}
-            />
-        </>
-    );
-}

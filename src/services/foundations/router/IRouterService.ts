@@ -1,3 +1,5 @@
+import { PageTransition } from '../../../models/router/PageTransition';
+
 export interface IRouterService {
-    navigate(path: string): void;
+    navigate(transition: PageTransition): Promise<void>;
 }

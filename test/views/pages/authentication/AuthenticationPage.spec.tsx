@@ -35,7 +35,7 @@ describe('Authentication Page Test Suite', () => {
         expect(text).toBeInTheDocument();
     });
 
-    test('Should render the successful authentication message when the authenticator succeeds', () => {
+    test('Should render the successful authentication message when the authenticator succeeds and transition pages', async () => {
         when(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),

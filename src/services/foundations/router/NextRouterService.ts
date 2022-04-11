@@ -1,10 +1,16 @@
 import { NextRouter } from 'next/router';
+import { PageTransition } from '../../../models/router/PageTransition';
 import { IRouterService } from './IRouterService';
 
 export class NextRouterService implements IRouterService {
     constructor(private readonly router: NextRouter) {}
 
-    navigate(path: string): void {
-        this.router.push(path);
+    async navigate(transition: PageTransition): Promise<void> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                this.router.push(transition.path);
+                resolve();
+            }, transition.delay);
+        });
     }
 }
