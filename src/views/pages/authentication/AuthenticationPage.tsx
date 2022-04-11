@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageTransition } from '../../../models/router/PageTransition';
 import { IIconService } from '../../../services/foundations/icons/IIconService';
 import { Card } from '../../bases/card/Card';
+import { Center } from '../../bases/center/Center';
 import { Heading } from '../../bases/header/Heading';
 import { Text } from '../../bases/text/Text';
 import { AuthenticationButton } from '../../components/authentication/AuthenticationButton';
@@ -29,16 +30,18 @@ export const AuthenticationPage = ({
 
     function renderAuthenticationPage() {
         return (
-            <Card>
-                <Heading level={1}>Get Started</Heading>
-                <Text>Sign up to start modernizing your research</Text>
-                <AuthenticationButton
-                    service={authenticatorService}
-                    onClick={() => {}}
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                />
-            </Card>
+            <Center>
+                <Card width="300px" height="375px">
+                    <Heading level={1}>Get Started</Heading>
+                    <Text>Sign up to start modernizing your research</Text>
+                    <AuthenticationButton
+                        service={authenticatorService}
+                        onClick={() => {}}
+                        onSuccess={onSuccess}
+                        onFailure={onFailure}
+                    />
+                </Card>
+            </Center>
         );
     }
 
