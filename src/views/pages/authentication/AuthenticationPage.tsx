@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PageTransition } from '../../../models/router/PageTransition';
 import { IIconService } from '../../../services/foundations/icons/IIconService';
+import { Card } from '../../bases/card/Card';
+import { Heading } from '../../bases/header/Heading';
 import { Text } from '../../bases/text/Text';
 import { AuthenticationButton } from '../../components/authentication/AuthenticationButton';
 import { Icon } from '../../components/icon/Icon';
@@ -27,15 +29,16 @@ export const AuthenticationPage = ({
 
     function renderAuthenticationPage() {
         return (
-            <>
-                <Text>Login with google to create a new project</Text>
+            <Card>
+                <Heading level={1}>Get Started</Heading>
+                <Text>Sign up to start modernizing your research</Text>
                 <AuthenticationButton
                     service={authenticatorService}
                     onClick={() => {}}
                     onSuccess={onSuccess}
                     onFailure={onFailure}
                 />
-            </>
+            </Card>
         );
     }
 

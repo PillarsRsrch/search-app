@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import { ILayoutProps } from './ILayoutProps';
 
-export const Layout = ({ children }: ILayoutProps) => <Box>{children}</Box>;
+export const Layout = ({ children }: ILayoutProps) => (
+    <VStack>{children}</VStack>
+);

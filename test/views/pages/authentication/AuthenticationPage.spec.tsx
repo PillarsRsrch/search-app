@@ -43,7 +43,7 @@ describe('Authentication Page Test Suite', () => {
         );
 
         const text = screen.getByText(
-            'Login with google to create a new project'
+            'Sign up to start modernizing your research'
         );
         const button = page.getElementsByClassName('authentication-button')[0];
 
