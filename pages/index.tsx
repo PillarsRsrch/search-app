@@ -6,14 +6,18 @@ import { IconService } from '../src/services/foundations/icons/IconService';
 import { GoogleAuthenticationComponent } from '../src/views/components/authentication/authenticators/GoogleAuthenticatorComponent';
 import { AuthenticationPage } from '../src/views/pages/authentication/AuthenticationPage';
 import { InMemoryIconStore } from '../src/store/icons/InMemoryIconStore';
+import { NextRouterService } from '../src/services/foundations/router/NextRouterService';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
-    const service = new GoogleAuthenticatorService(
+    const router = useRouter();
+    const authenticatorService = new GoogleAuthenticatorService(
         '687779576352-9r79e7127rqfsb6tvf6k9887bbst7g1n.apps.googleusercontent.com',
         'single_host_origin',
         GoogleAuthenticationComponent
     );
     const iconService = new IconService(new IconRepository(InMemoryIconStore));
+    const routerService = new NextRouterService(router);
     return (
         <div>
             <Head>
@@ -22,8 +26,9 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <AuthenticationPage
-                authenticatorService={service}
+                authenticatorService={authenticatorService}
                 iconService={iconService}
+                routerService={routerService}
             />
         </div>
     );

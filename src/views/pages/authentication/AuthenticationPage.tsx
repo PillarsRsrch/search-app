@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PageTransition } from '../../../models/router/PageTransition';
 import { IIconService } from '../../../services/foundations/icons/IIconService';
 import { Text } from '../../bases/text/Text';
 import { AuthenticationButton } from '../../components/authentication/AuthenticationButton';
@@ -10,6 +11,7 @@ import { IAuthenticationPageProps } from './IAuthenticationPageProps';
 export const AuthenticationPage = ({
     authenticatorService,
     iconService,
+    routerService,
 }: IAuthenticationPageProps) => {
     const [authenticationState, setAuthenticationState] = useState(
         AuthenticationState.Waiting
@@ -30,15 +32,20 @@ export const AuthenticationPage = ({
                 <AuthenticationButton
                     service={authenticatorService}
                     onClick={() => {}}
-                    onSuccess={() =>
-                        setAuthenticationState(AuthenticationState.Successful)
-                    }
-                    onFailure={() =>
-                        setAuthenticationState(AuthenticationState.Failed)
-                    }
+                    onSuccess={onSuccess}
+                    onFailure={onFailure}
                 />
             </>
         );
+    }
+
+    function onSuccess() {
+        setAuthenticationState(AuthenticationState.Successful);
+        routerService.navigate(new PageTransition('/projects', 500));
+    }
+
+    function onFailure() {
+        setAuthenticationState(AuthenticationState.Failed);
     }
 
     function renderSuccesState() {
