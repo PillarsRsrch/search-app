@@ -5,6 +5,7 @@ import { anything, instance, mock, reset, when } from 'ts-mockito';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
 import { AuthenticationPage } from '../../../../src/views/pages/authentication/AuthenticationPage';
+import { FailureAuthenticator } from '../../components/authentication/fakes/FailureAuthenticator';
 import { SuccessAuthenticator } from '../../components/authentication/fakes/SuccessAuthenticator';
 
 describe('Authentication Page Test Suite', () => {
@@ -57,5 +58,30 @@ describe('Authentication Page Test Suite', () => {
 
         expect(successText).toBeInTheDocument();
         expect(successIcon).toBeInTheDocument();
+    });
+
+    test('Should render the failure authentication message when the authenticator fails', () => {
+        when(
+            mockedAuthenticatorService.createAuthenticator(
+                anything(),
+                anything()
+            )
+        ).thenCall((onSuccess, onFailure) => (
+            <FailureAuthenticator onSuccess={onSuccess} onFailure={onFailure} />
+        ));
+        const { container } = render(
+            <AuthenticationPage
+                authenticatorService={authenticatorService}
+                iconService={iconService}
+            />
+        );
+        const button = screen.getByText('Failure');
+        fireEvent.click(button);
+
+        const failureText = screen.getByText('Failed to authenticate');
+        const failureIcon = container.getElementsByClassName('icon')[0];
+
+        expect(failureText).toBeInTheDocument();
+        expect(failureIcon).toBeInTheDocument();
     });
 });
