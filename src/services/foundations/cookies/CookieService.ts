@@ -15,6 +15,10 @@ export class CookieService implements ICookieService {
         return new Cookie(persistedModel.key, persistedModel.value);
     }
 
+    getAllCookies(): Cookie[] {
+        throw new Error('Not implemented yet');
+    }
+
     getCookie(key: string): Cookie {
         const model = this.repository.getById(key);
         return new Cookie(model.key, model.value);

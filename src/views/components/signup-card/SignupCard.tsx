@@ -10,6 +10,7 @@ import { AccessToken } from '../../../models/authenticators/AccessToken';
 export const SignupCard = ({
     authenticatorService,
     iconService,
+    cookieService,
     onSignup,
 }: ISignupCardProps) => {
     const authenticationFragmentMap = new Map([
@@ -25,6 +26,7 @@ export const SignupCard = ({
             AuthenticationState.Waiting,
             <SignupFragment
                 authenticatorService={authenticatorService}
+                onClick={onClick}
                 onFailure={onFailure}
                 onSuccess={onSuccess}
             />,
@@ -33,6 +35,15 @@ export const SignupCard = ({
     const [authenticationState, setAuthenticationState] = useState(
         AuthenticationState.Waiting
     );
+
+    function onClick() {
+        const cookies = cookieService.getAllCookies();
+        const cookie = cookies.find((cookie) => cookie.key === 'access-token');
+        if (cookie) {
+            setAuthenticationState(AuthenticationState.Successful);
+            onSignup(new AccessToken(cookie.value, 0));
+        }
+    }
 
     function onSuccess(accessToken: AccessToken) {
         setAuthenticationState(AuthenticationState.Successful);

@@ -25,7 +25,7 @@ describe('Authentication Page Test Suite', () => {
     const mockedAuthenticatorService = mock<IAuthenticatorService>();
     const mockedIconService = mock<IIconService>();
     const mockedRouterService = mock<IRouterService>();
-    const mockedCookieService = mock<ICookieService>();
+    const mockedCookieService: ICookieService = mock<ICookieService>();
     const authenticatorService = instance(mockedAuthenticatorService);
     const iconService = instance(mockedIconService);
     const routerService = instance(mockedRouterService);
@@ -69,6 +69,7 @@ describe('Authentication Page Test Suite', () => {
     });
 
     test('Should render the successful authentication message when the authenticator succeeds and transition pages', async () => {
+        when(mockedCookieService.getAllCookies()).thenReturn([]);
         when(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),
@@ -105,6 +106,7 @@ describe('Authentication Page Test Suite', () => {
     });
 
     test('Should render the failure authentication message when the authenticator fails', () => {
+        when(mockedCookieService.getAllCookies()).thenReturn([]);
         when(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),

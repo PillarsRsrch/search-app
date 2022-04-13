@@ -11,7 +11,9 @@ import {
     when,
 } from 'ts-mockito';
 import { AccessToken } from '../../../../src/models/authenticators/AccessToken';
+import { Cookie } from '../../../../src/models/storage/Cookie';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
+import { ICookieService } from '../../../../src/services/foundations/cookies/ICookieService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
 import { SignupCard } from '../../../../src/views/components/signup-card/SignupCard';
 import { FailureAuthenticator } from '../authentication/fakes/FailureAuthenticator';
@@ -20,13 +22,16 @@ import { SuccessAuthenticator } from '../authentication/fakes/SuccessAuthenticat
 describe('Sign Up Card Test Suite', () => {
     const mockedAuthenticatorService = mock<IAuthenticatorService>();
     const mockedIconService = mock<IIconService>();
+    const mockedCookieService = mock<ICookieService>();
     const signupListener = jest.fn();
     const authenticatorService = instance(mockedAuthenticatorService);
     const iconService = instance(mockedIconService);
+    const cookieService = instance(mockedCookieService);
 
     beforeEach(() => {
         reset(mockedAuthenticatorService);
         reset(mockedIconService);
+        reset(mockedCookieService);
         signupListener.mockClear();
     });
 
@@ -34,6 +39,7 @@ describe('Sign Up Card Test Suite', () => {
         const { container: page } = render(
             <SignupCard
                 onSignup={signupListener}
+                cookieService={cookieService}
                 iconService={iconService}
                 authenticatorService={authenticatorService}
             />
@@ -53,10 +59,47 @@ describe('Sign Up Card Test Suite', () => {
                 anything()
             )
         ).once();
+        verify(mockedCookieService.getAllCookies()).never();
         verify(mockedIconService.getIcon(anyString())).never();
     });
 
+    test('Should redirect to projects page if the access token is already set and valid', () => {
+        when(
+            mockedAuthenticatorService.createAuthenticator(
+                anything(),
+                anything()
+            )
+        ).thenCall((onSuccess, onFailure) => (
+            <FailureAuthenticator onSuccess={onSuccess} onFailure={onFailure} />
+        ));
+        when(mockedCookieService.getAllCookies()).thenReturn([
+            new Cookie('access-token', ''),
+        ]);
+        render(
+            <SignupCard
+                onSignup={signupListener}
+                cookieService={cookieService}
+                iconService={iconService}
+                authenticatorService={authenticatorService}
+            />
+        );
+
+        const button = screen.getByText('Failure');
+        fireEvent.click(button);
+
+        expect(signupListener).toBeCalled();
+        verify(
+            mockedAuthenticatorService.createAuthenticator(
+                anything(),
+                anything()
+            )
+        ).once();
+        verify(mockedCookieService.getAllCookies()).once();
+        verify(mockedIconService.getIcon(anyString())).once();
+    });
+
     test('Should render the successful authentication message when the authenticator succeeds and transition pages', async () => {
+        when(mockedCookieService.getAllCookies()).thenReturn([]);
         when(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),
@@ -69,6 +112,7 @@ describe('Sign Up Card Test Suite', () => {
             <SignupCard
                 onSignup={signupListener}
                 authenticatorService={authenticatorService}
+                cookieService={cookieService}
                 iconService={iconService}
             />
         );
@@ -88,10 +132,12 @@ describe('Sign Up Card Test Suite', () => {
                 anything()
             )
         ).once();
+        verify(mockedCookieService.getAllCookies()).once();
         verify(mockedIconService.getIcon(anyString())).once();
     });
 
     test('Should render the failure authentication message when the authenticator fails', () => {
+        when(mockedCookieService.getAllCookies()).thenReturn([]);
         when(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),
@@ -102,6 +148,7 @@ describe('Sign Up Card Test Suite', () => {
         ));
         const { container } = render(
             <SignupCard
+                cookieService={cookieService}
                 onSignup={signupListener}
                 authenticatorService={authenticatorService}
                 iconService={iconService}
@@ -122,6 +169,7 @@ describe('Sign Up Card Test Suite', () => {
                 anything()
             )
         ).once();
+        verify(mockedCookieService.getAllCookies()).once();
         verify(mockedIconService.getIcon(anyString())).once();
     });
 });

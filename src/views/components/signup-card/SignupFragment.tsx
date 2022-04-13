@@ -7,6 +7,7 @@ import { ISignupFragmentProps } from './ISignupFragmentProps';
 
 export const SignupFragment = ({
     authenticatorService,
+    onClick,
     onSuccess,
     onFailure,
 }: ISignupFragmentProps) => (
@@ -18,7 +19,7 @@ export const SignupFragment = ({
         <Spacer />
         <AuthenticationButton
             service={authenticatorService}
-            onClick={() => {}}
+            onClick={onClick}
             onSuccess={onSuccess}
             onFailure={onFailure}
         />

@@ -24,6 +24,7 @@ export const AuthenticationPage = ({
                 <Spacer />
                 <SignupCard
                     authenticatorService={authenticatorService}
+                    cookieService={cookieService}
                     iconService={iconService}
                     onSignup={(token) => {
                         cookieService.createCookie(
