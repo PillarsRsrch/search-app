@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
+import { AccessToken } from '../../../models/authenticator/AccessToken';
 import { IAuthenticatorComponentProps } from '../../../views/components/authentication/authenticators/IAuthenticatorComponentProps';
-import { AuthenticationCallback } from './AuthenticationCallback';
 
 export interface IAuthenticatorService {
     createAuthenticator(
-        handleSuccess: AuthenticationCallback,
-        handleFailure: AuthenticationCallback
+        handleSuccess: (accessToken: AccessToken) => void,
+        handleFailure: (error: Error) => void
     ): ReactElement<IAuthenticatorComponentProps>;
 }

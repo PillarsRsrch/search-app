@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { AccessToken } from '../../../../src/models/authenticator/AccessToken';
 import { GoogleAuthenticatorService } from '../../../../src/services/foundations/authenticators/GoogleAuthenticatorService';
 import { FakeFailedGoogleAuthenticationComponent } from './fakes/FakeFailedGoogleAuthenticationComponent';
 import { FakeSuccessfulGoogleAuthenticationComponent } from './fakes/FakeSucessfulGoogleAuthenticationComponent';
@@ -7,6 +8,7 @@ import { FakeSuccessfulGoogleAuthenticationComponent } from './fakes/FakeSucessf
 describe('Google Authentication Service Test Suite', () => {
     test('Should create a google authenticator that succeeds on click', () => {
         const service = new GoogleAuthenticatorService(
+            '',
             '',
             '',
             FakeSuccessfulGoogleAuthenticationComponent
@@ -20,11 +22,13 @@ describe('Google Authentication Service Test Suite', () => {
 
         expect(text).toBeInTheDocument();
         expect(onSuccess).toBeCalled();
+        expect(onSuccess).toBeCalledWith(expect.any(AccessToken));
         expect(onFailure).not.toBeCalled();
     });
 
     test('Should create a google authenticator that fails on click', () => {
         const service = new GoogleAuthenticatorService(
+            '',
             '',
             '',
             FakeFailedGoogleAuthenticationComponent
@@ -38,6 +42,7 @@ describe('Google Authentication Service Test Suite', () => {
 
         expect(text).toBeInTheDocument();
         expect(onSuccess).not.toBeCalled();
+        expect(onFailure).toBeCalledWith(expect.any(Error));
         expect(onFailure).toBeCalled();
     });
 });

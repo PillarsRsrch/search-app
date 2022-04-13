@@ -5,4 +5,5 @@ export interface IGoogleAuthenticatorComponentProps
     clientId: string;
     children: string;
     cookiePolicy: string;
+    scope: string;
 }

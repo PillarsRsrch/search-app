@@ -23,11 +23,11 @@ export const AuthenticationPage = ({
                 <SignupCard
                     authenticatorService={authenticatorService}
                     iconService={iconService}
-                    onSignup={() =>
+                    onSignup={(token) => {
                         routerService.navigate(
                             new PageTransition('/projects', 500)
-                        )
-                    }
+                        );
+                    }}
                 />
                 <Spacer />
             </FlexLayout>

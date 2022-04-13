@@ -8,6 +8,7 @@ describe('Google Authentication Component Test Suite', () => {
         render(
             <GoogleAuthenticationComponent
                 clientId=""
+                scope=""
                 cookiePolicy=""
                 onSuccess={() => {}}
                 onFailure={() => {}}

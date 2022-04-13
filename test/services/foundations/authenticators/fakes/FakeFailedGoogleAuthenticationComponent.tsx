@@ -4,5 +4,5 @@ import { IGoogleAuthenticatorComponentProps } from '../../../../../src/views/com
 export const FakeFailedGoogleAuthenticationComponent = ({
     onFailure,
 }: IGoogleAuthenticatorComponentProps) => (
-    <div onClick={() => onFailure()}>Login With Google</div>
+    <div onClick={() => onFailure(new Error())}>Login With Google</div>
 );

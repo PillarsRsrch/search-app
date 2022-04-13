@@ -4,5 +4,5 @@ import { IAuthenticatorComponentProps } from '../../../../../src/views/component
 export const FailureAuthenticator = ({
     onFailure,
 }: IAuthenticatorComponentProps) => {
-    return <button onClick={() => onFailure()}>Failure</button>;
+    return <button onClick={() => onFailure(new Error())}>Failure</button>;
 };

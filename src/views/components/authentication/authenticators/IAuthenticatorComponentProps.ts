@@ -1,6 +1,6 @@
-import { AuthenticationCallback } from '../../../../services/foundations/authenticators/AuthenticationCallback';
+import { AccessToken } from '../../../../models/authenticator/AccessToken';
 
 export interface IAuthenticatorComponentProps {
-    onSuccess: AuthenticationCallback;
-    onFailure: AuthenticationCallback;
+    onSuccess: (token: AccessToken) => void;
+    onFailure: (error: Error) => void;
 }

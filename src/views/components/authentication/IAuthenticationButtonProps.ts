@@ -1,10 +1,10 @@
 import { MouseEvent } from 'react';
-import { AuthenticationCallback } from '../../../services/foundations/authenticators/AuthenticationCallback';
+import { AccessToken } from '../../../models/authenticator/AccessToken';
 import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 
 export interface IAuthenticationButtonProps {
     service: IAuthenticatorService;
     onClick: (e: MouseEvent) => void;
-    onSuccess: AuthenticationCallback;
-    onFailure: AuthenticationCallback;
+    onSuccess: (accessToken: AccessToken) => void;
+    onFailure: (error: Error) => void;
 }

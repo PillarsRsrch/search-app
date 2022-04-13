@@ -14,6 +14,7 @@ const Home: NextPage = () => {
     const authenticatorService = new GoogleAuthenticatorService(
         '687779576352-9r79e7127rqfsb6tvf6k9887bbst7g1n.apps.googleusercontent.com',
         'single_host_origin',
+        'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.readonly',
         GoogleAuthenticationComponent
     );
     const iconService = new IconService(new IconRepository(InMemoryIconStore));

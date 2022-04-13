@@ -5,6 +5,7 @@ import { ISignupCardProps } from './ISignupCardProps';
 import { SignupSuccessFragment } from './SignupSuccessFragment';
 import { SignupFailureFragment } from './SignupFailureFragment';
 import { SignupFragment } from './SignupFragment';
+import { AccessToken } from '../../../models/authenticator/AccessToken';
 
 export const SignupCard = ({
     authenticatorService,
@@ -33,9 +34,9 @@ export const SignupCard = ({
         AuthenticationState.Waiting
     );
 
-    function onSuccess() {
+    function onSuccess(accessToken: AccessToken) {
         setAuthenticationState(AuthenticationState.Successful);
-        onSignup();
+        onSignup(accessToken);
     }
 
     function onFailure() {
