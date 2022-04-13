@@ -12,7 +12,9 @@ import {
     when,
 } from 'ts-mockito';
 import { PageTransition } from '../../../../src/models/routers/PageTransition';
+import { Cookie } from '../../../../src/models/storage/Cookie';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
+import { ICookieService } from '../../../../src/services/foundations/cookies/ICookieService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
 import { IRouterService } from '../../../../src/services/foundations/router/IRouterService';
 import { AuthenticationPage } from '../../../../src/views/pages/authentication/AuthenticationPage';
@@ -23,14 +25,17 @@ describe('Authentication Page Test Suite', () => {
     const mockedAuthenticatorService = mock<IAuthenticatorService>();
     const mockedIconService = mock<IIconService>();
     const mockedRouterService = mock<IRouterService>();
+    const mockedCookieService = mock<ICookieService>();
     const authenticatorService = instance(mockedAuthenticatorService);
     const iconService = instance(mockedIconService);
     const routerService = instance(mockedRouterService);
+    const cookieService = instance(mockedCookieService);
 
     beforeEach(() => {
         reset(mockedAuthenticatorService);
         reset(mockedIconService);
         reset(mockedRouterService);
+        reset(mockedCookieService);
     });
 
     test('Should render the authentication page with an authenticator', () => {
@@ -39,6 +44,7 @@ describe('Authentication Page Test Suite', () => {
                 authenticatorService={authenticatorService}
                 iconService={iconService}
                 routerService={routerService}
+                cookieService={cookieService}
             />
         );
 
@@ -58,6 +64,7 @@ describe('Authentication Page Test Suite', () => {
         verify(
             mockedRouterService.navigate(anyOfClass(PageTransition))
         ).never();
+        verify(mockedCookieService.createCookie(anyOfClass(Cookie))).never();
         verify(mockedIconService.getIcon(anyString())).never();
     });
 
@@ -75,6 +82,7 @@ describe('Authentication Page Test Suite', () => {
                 authenticatorService={authenticatorService}
                 iconService={iconService}
                 routerService={routerService}
+                cookieService={cookieService}
             />
         );
         const button = screen.getByText('Success');
@@ -86,6 +94,7 @@ describe('Authentication Page Test Suite', () => {
         expect(successText).toBeInTheDocument();
         expect(successIcon).toBeInTheDocument();
         verify(mockedRouterService.navigate(anyOfClass(PageTransition))).once();
+        verify(mockedCookieService.createCookie(anyOfClass(Cookie))).once();
         verify(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),
@@ -109,6 +118,7 @@ describe('Authentication Page Test Suite', () => {
                 authenticatorService={authenticatorService}
                 iconService={iconService}
                 routerService={routerService}
+                cookieService={cookieService}
             />
         );
         const button = screen.getByText('Failure');
@@ -122,6 +132,7 @@ describe('Authentication Page Test Suite', () => {
         verify(
             mockedRouterService.navigate(anyOfClass(PageTransition))
         ).never();
+        verify(mockedCookieService.createCookie(anyOfClass(Cookie))).never();
         verify(
             mockedAuthenticatorService.createAuthenticator(
                 anything(),

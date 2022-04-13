@@ -8,6 +8,8 @@ import { AuthenticationPage } from '../src/views/pages/authentication/Authentica
 import { InMemoryIconStore } from '../src/store/icons/InMemoryIconStore';
 import { NextRouterService } from '../src/services/foundations/router/NextRouterService';
 import { useRouter } from 'next/router';
+import { CookieService } from '../src/services/foundations/cookies/CookieService';
+import { CookieRepository } from '../src/repositories/cookies/CookieRepository';
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -17,6 +19,7 @@ const Home: NextPage = () => {
         'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.readonly',
         GoogleAuthenticationComponent
     );
+    const cookieServce = new CookieService(new CookieRepository());
     const iconService = new IconService(new IconRepository(InMemoryIconStore));
     const routerService = new NextRouterService(router);
 
@@ -29,6 +32,7 @@ const Home: NextPage = () => {
             </Head>
             <AuthenticationPage
                 authenticatorService={authenticatorService}
+                cookieService={cookieServce}
                 iconService={iconService}
                 routerService={routerService}
             />

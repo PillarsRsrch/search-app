@@ -5,11 +5,13 @@ import { IAuthenticationPageProps } from './IAuthenticationPageProps';
 import { SignupCard } from '../../components/signup-card/SignupCard';
 import { Spacer } from '../../bases/spacer/Spacer';
 import { FlexLayout } from '../../bases/layout/FlexLayout';
+import { Cookie } from '../../../models/storage/Cookie';
 
 export const AuthenticationPage = ({
     authenticatorService,
     iconService,
     routerService,
+    cookieService,
 }: IAuthenticationPageProps) => {
     return (
         <Center>
@@ -24,6 +26,9 @@ export const AuthenticationPage = ({
                     authenticatorService={authenticatorService}
                     iconService={iconService}
                     onSignup={(token) => {
+                        cookieService.createCookie(
+                            new Cookie('access-token', token.value)
+                        );
                         routerService.navigate(
                             new PageTransition('/projects', 500)
                         );
