@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccessToken } from '../../../../../src/models/authenticator/AccessToken';
+import { AccessToken } from '../../../../../src/models/authenticators/AccessToken';
 import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IAuthenticatorComponentProps';
 
 export const SuccessAuthenticator = ({

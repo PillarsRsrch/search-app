@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleLogin, GoogleLoginResponse } from 'react-google-login';
-import { AccessToken } from '../../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../../models/authenticators/AccessToken';
 import { IGoogleAuthenticatorComponentProps } from './IGoogleAuthenticatorComponentProps';
 
 export const GoogleAuthenticationComponent = ({

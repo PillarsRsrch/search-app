@@ -1,4 +1,4 @@
-import { AccessToken } from '../../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../../models/authenticators/AccessToken';
 
 export interface IAuthenticatorComponentProps {
     onSuccess: (token: AccessToken) => void;

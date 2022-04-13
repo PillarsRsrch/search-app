@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccessToken } from '../../../../../src/models/authenticator/AccessToken';
+import { AccessToken } from '../../../../../src/models/authenticators/AccessToken';
 import { IGoogleAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IGoogleAuthenticatorComponentProps';
 
 export const FakeSuccessfulGoogleAuthenticationComponent = ({

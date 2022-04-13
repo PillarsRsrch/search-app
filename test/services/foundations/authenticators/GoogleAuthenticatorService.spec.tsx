@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { AccessToken } from '../../../../src/models/authenticator/AccessToken';
+import { AccessToken } from '../../../../src/models/authenticators/AccessToken';
 import { GoogleAuthenticatorService } from '../../../../src/services/foundations/authenticators/GoogleAuthenticatorService';
 import { FakeFailedGoogleAuthenticationComponent } from './fakes/FakeFailedGoogleAuthenticationComponent';
 import { FakeSuccessfulGoogleAuthenticationComponent } from './fakes/FakeSucessfulGoogleAuthenticationComponent';

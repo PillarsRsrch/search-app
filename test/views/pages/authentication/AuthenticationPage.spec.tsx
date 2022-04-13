@@ -11,7 +11,7 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { PageTransition } from '../../../../src/models/router/PageTransition';
+import { PageTransition } from '../../../../src/models/routers/PageTransition';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
 import { IRouterService } from '../../../../src/services/foundations/router/IRouterService';

@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router';
 import { instance, mock, verify, when } from 'ts-mockito';
-import { PageTransition } from '../../../../src/models/router/PageTransition';
+import { PageTransition } from '../../../../src/models/routers/PageTransition';
 import { NextRouterService } from '../../../../src/services/foundations/router/NextRouterService';
 
 describe('Next Router Test Suite', () => {

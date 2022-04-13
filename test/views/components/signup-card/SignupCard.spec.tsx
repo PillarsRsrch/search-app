@@ -10,7 +10,7 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { AccessToken } from '../../../../src/models/authenticator/AccessToken';
+import { AccessToken } from '../../../../src/models/authenticators/AccessToken';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
 import { SignupCard } from '../../../../src/views/components/signup-card/SignupCard';

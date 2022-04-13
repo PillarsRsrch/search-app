@@ -5,7 +5,7 @@ import { ISignupCardProps } from './ISignupCardProps';
 import { SignupSuccessFragment } from './SignupSuccessFragment';
 import { SignupFailureFragment } from './SignupFailureFragment';
 import { SignupFragment } from './SignupFragment';
-import { AccessToken } from '../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../models/authenticators/AccessToken';
 
 export const SignupCard = ({
     authenticatorService,

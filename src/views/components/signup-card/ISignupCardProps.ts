@@ -1,4 +1,4 @@
-import { AccessToken } from '../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../models/authenticators/AccessToken';
 import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 import { IIconService } from '../../../services/foundations/icons/IIconService';
 

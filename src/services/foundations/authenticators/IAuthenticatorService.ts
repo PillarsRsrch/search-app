@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { AccessToken } from '../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../models/authenticators/AccessToken';
 import { IAuthenticatorComponentProps } from '../../../views/components/authentication/authenticators/IAuthenticatorComponentProps';
 
 export interface IAuthenticatorService {

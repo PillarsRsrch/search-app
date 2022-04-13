@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router';
-import { PageTransition } from '../../../models/router/PageTransition';
+import { PageTransition } from '../../../models/routers/PageTransition';
 import { IRouterService } from './IRouterService';
 
 export class NextRouterService implements IRouterService {

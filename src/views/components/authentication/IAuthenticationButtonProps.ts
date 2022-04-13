@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { AccessToken } from '../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../models/authenticators/AccessToken';
 import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
 
 export interface IAuthenticationButtonProps {

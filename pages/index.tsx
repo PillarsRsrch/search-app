@@ -19,6 +19,7 @@ const Home: NextPage = () => {
     );
     const iconService = new IconService(new IconRepository(InMemoryIconStore));
     const routerService = new NextRouterService(router);
+
     return (
         <div>
             <Head>

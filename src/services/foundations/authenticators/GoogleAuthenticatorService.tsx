@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { AccessToken } from '../../../models/authenticator/AccessToken';
+import { AccessToken } from '../../../models/authenticators/AccessToken';
 import { GoogleAuthenticationComponent } from '../../../views/components/authentication/authenticators/GoogleAuthenticatorComponent';
 import { IAuthenticatorComponentProps } from '../../../views/components/authentication/authenticators/IAuthenticatorComponentProps';
 import { IAuthenticatorService } from './IAuthenticatorService';
