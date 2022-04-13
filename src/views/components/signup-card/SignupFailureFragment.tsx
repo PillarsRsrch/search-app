@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spacer } from '../../bases/spacer/Spacer';
 import { Text } from '../../bases/text/Text';
 import { Icon } from '../icon/Icon';
 import { IconSize } from '../icon/IconSize';
@@ -8,7 +9,9 @@ export const SignupFailureFragment = ({
     iconService,
 }: ISignupFailureFragmentProps) => (
     <>
+        <Spacer />
         <Text>Failed to authenticate</Text>
         <Icon name="times" size={IconSize.Small} service={iconService} />
+        <Spacer />
     </>
 );

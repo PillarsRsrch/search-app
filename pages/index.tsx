@@ -21,8 +21,8 @@ const Home: NextPage = () => {
     return (
         <div>
             <Head>
-                <title>Pillars</title>
-                <meta name="description" content="Pillars" />
+                <title>Pillars Research Services</title>
+                <meta name="description" content="Pillars Research Services" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <AuthenticationPage

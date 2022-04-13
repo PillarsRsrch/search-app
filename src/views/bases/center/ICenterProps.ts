@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 export interface ICenterProps {
-    children: ReactElement;
+    children: ReactNode;
 }

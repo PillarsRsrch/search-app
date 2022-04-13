@@ -11,31 +11,27 @@ export const SignupCard = ({
     iconService,
     onSignup,
 }: ISignupCardProps) => {
+    const authenticationFragmentMap = new Map([
+        [
+            AuthenticationState.Successful,
+            <SignupSuccessFragment iconService={iconService} />,
+        ],
+        [
+            AuthenticationState.Failed,
+            <SignupFailureFragment iconService={iconService} />,
+        ],
+        [
+            AuthenticationState.Waiting,
+            <SignupFragment
+                authenticatorService={authenticatorService}
+                onFailure={onFailure}
+                onSuccess={onSuccess}
+            />,
+        ],
+    ]);
     const [authenticationState, setAuthenticationState] = useState(
         AuthenticationState.Waiting
     );
-    return (
-        <Card width="300px" height="375px">
-            {getSignupFragment()}
-        </Card>
-    );
-
-    function getSignupFragment() {
-        switch (authenticationState) {
-            case AuthenticationState.Successful:
-                return <SignupSuccessFragment iconService={iconService} />;
-            case AuthenticationState.Failed:
-                return <SignupFailureFragment iconService={iconService} />;
-            default:
-                return (
-                    <SignupFragment
-                        authenticatorService={authenticatorService}
-                        onFailure={onFailure}
-                        onSuccess={onSuccess}
-                    />
-                );
-        }
-    }
 
     function onSuccess() {
         setAuthenticationState(AuthenticationState.Successful);
@@ -45,4 +41,10 @@ export const SignupCard = ({
     function onFailure() {
         setAuthenticationState(AuthenticationState.Failed);
     }
+
+    return (
+        <Card width="300px" height="375px">
+            {authenticationFragmentMap.get(authenticationState)}
+        </Card>
+    );
 };
