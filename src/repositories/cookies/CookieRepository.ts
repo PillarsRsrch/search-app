@@ -18,6 +18,17 @@ export class CookieRepository implements IRepository<ICookieModel> {
         };
     }
 
+    getAll(): ICookieModel[] {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieParts = decodedCookie.split(';');
+        const cookieModels = cookieParts
+            .map((part) => part.trimStart().split('='))
+            .map((cookie) => {
+                return { key: cookie[0], value: cookie[1] };
+            });
+        return cookieModels;
+    }
+
     create(model: ICookieModel): ICookieModel {
         const cookie = `${model.key}=${model.value};path=/`;
         document.cookie = cookie;

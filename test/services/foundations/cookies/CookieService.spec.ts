@@ -12,6 +12,34 @@ describe('Cookie Service Test Suite', () => {
         reset(mockedCookieRepository);
     });
 
+    describe('createCookie', () => {
+        test('Should create a cookie', () => {
+            const inputCookie = new Cookie('id', 'value');
+            const expectedCookie = inputCookie;
+            when(mockedCookieRepository.create(anything())).thenCall((x) => x);
+
+            const actualCookie = service.createCookie(inputCookie);
+
+            expect(actualCookie).toEqual(expectedCookie);
+        });
+    });
+
+    describe('getAllCookies', () => {
+        test('Should get all cookies', () => {
+            const expectedCookies = [new Cookie('id', 'value')];
+            when(mockedCookieRepository.getAll()).thenReturn([
+                {
+                    key: 'id',
+                    value: 'value',
+                },
+            ]);
+
+            const actualCookies = service.getAllCookies();
+
+            expect(actualCookies).toEqual(expectedCookies);
+        });
+    });
+
     describe('getCookie', () => {
         test('Should get a cookie by id', () => {
             const expectedCookie = new Cookie('id', 'value');
@@ -21,18 +49,6 @@ describe('Cookie Service Test Suite', () => {
             });
 
             const actualCookie = service.getCookie('id');
-
-            expect(actualCookie).toEqual(expectedCookie);
-        });
-    });
-
-    describe('createCookie', () => {
-        test('Should create a cookie', () => {
-            const inputCookie = new Cookie('id', 'value');
-            const expectedCookie = inputCookie;
-            when(mockedCookieRepository.create(anything())).thenCall((x) => x);
-
-            const actualCookie = service.createCookie(inputCookie);
 
             expect(actualCookie).toEqual(expectedCookie);
         });
