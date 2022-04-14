@@ -18,6 +18,6 @@ export class GoogleAuthenticator implements IAuthenticator {
                 body: this.credentials.body(),
             });
         cy.log(JSON.stringify(tokenResponse));
-        cy.setCookie('google-token', tokenResponse.data.access_token);
+        cy.setCookie('access-token', tokenResponse.data.access_token);
     }
 }

@@ -11,4 +11,5 @@ export interface IWebDriver {
     isViewingPage(path: IPath): void;
     makeRequest<T = {}>(request: IRequest): Promise<IResponse<T>>;
     navigateToPage(path: IPath): void;
+    click(selector: ISelector): void;
 }

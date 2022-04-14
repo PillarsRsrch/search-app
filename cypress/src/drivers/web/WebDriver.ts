@@ -45,4 +45,8 @@ export class WebDriver implements IWebDriver {
     navigateToPage(path: IPath): void {
         cy.visit(`${this.host}${path.value}`);
     }
+
+    click(selector: ISelector): void {
+        cy.get(selector.toString()).click();
+    }
 }

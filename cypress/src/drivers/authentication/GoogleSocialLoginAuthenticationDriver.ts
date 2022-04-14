@@ -15,16 +15,19 @@ export class GoogleSocialLoginAuthenticationDriver
 
     async assertAuthenticationWasSuccessful(): Promise<void> {
         this.webDriver.findElement(new ClassSelector('icon'));
-        this.webDriver.findCookie(new Cookie('google_token'));
+        this.webDriver.findCookie(new Cookie('access-token'));
         await this.webDriver.expectPageChangeTo(new Path('/projects'));
     }
 
-    authenticate(): Promise<void> {
-        return this.authenticator.authenticate();
+    async authenticate(): Promise<void> {
+        const buttonSelector = new ClassSelector('authentication-button');
+        await this.authenticator.authenticate();
+        this.webDriver.click(buttonSelector);
     }
 
     selectAuthenticationProcess(): void {
+        const buttonSelector = new ClassSelector('authentication-button');
         this.webDriver.navigateToPage(new Path('/'));
-        this.webDriver.findElement(new ClassSelector('authentication-button'));
+        this.webDriver.findElement(buttonSelector);
     }
 }
