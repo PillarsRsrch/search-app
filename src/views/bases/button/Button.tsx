@@ -7,7 +7,11 @@ export const Button = ({
     onClick,
     disabled,
 }: IButtonProps): JSX.Element => (
-    <ChakraButton onClick={onClick} disabled={disabled}>
+    <ChakraButton
+        className="button-component"
+        onClick={onClick}
+        disabled={disabled}
+    >
         {children}
     </ChakraButton>
 );
