@@ -1,14 +1,13 @@
-import { GoogleAuthenticator } from '../../drivers/authentication/GoogleAuthenticator';
-import { GoogleAuthenticatorCredentials } from '../../drivers/authentication/GoogleAuthenticatorCredentials';
+import { GoogleAuthenticatorDriver } from '../../drivers/authenticator/GoogleAuthenticatorDriver';
 import { GoogleSocialLoginAuthenticationDriver } from '../../drivers/authentication/GoogleSocialLoginAuthenticationDriver';
-import { IAuthenticatorCredentials } from '../../drivers/authentication/IAuthenticatorCredentials';
+import { IAuthenticatorCredentials } from '../../drivers/authenticator/IAuthenticatorCredentials';
 import { WebDriver } from '../../drivers/web/WebDriver';
+import { IDomainLanguageFactory } from '../IDomainLanguageFactory';
 import { AuthenticationDomainLanguage } from './AuthenticationDomainLanguage';
 import { IAuthenticationDomainLanguage } from './IAuthenticationDomainLanguage';
-import { IAuthenticationDomainLanguageFactory } from './IAuthenticationDomainLanguageFactory';
 
 export class AuthenticationDomainLanguageFactory
-    implements IAuthenticationDomainLanguageFactory
+    implements IDomainLanguageFactory<IAuthenticationDomainLanguage>
 {
     constructor(
         private readonly host: string,
@@ -17,7 +16,7 @@ export class AuthenticationDomainLanguageFactory
 
     buildDomainLanguage(): IAuthenticationDomainLanguage {
         const webDriver = new WebDriver(this.host);
-        const googleAuthenticator = new GoogleAuthenticator(
+        const googleAuthenticator = new GoogleAuthenticatorDriver(
             webDriver,
             this.credentials
         );

@@ -3,14 +3,14 @@ import { ClassSelector } from '../web/ClassSelector';
 import { IWebDriver } from '../web/IWebDriver';
 import { Path } from '../web/Path';
 import { IAuthenticationDriver } from './IAuthenticationDriver';
-import { IAuthenticator } from './IAuthenticator';
+import { IAuthenticatorDriver } from '../authenticator/IAuthenticatorDriver';
 
 export class GoogleSocialLoginAuthenticationDriver
     implements IAuthenticationDriver
 {
     constructor(
         private readonly webDriver: IWebDriver,
-        private readonly authenticator: IAuthenticator
+        private readonly authenticator: IAuthenticatorDriver
     ) {}
 
     async assertAuthenticationWasSuccessful(): Promise<void> {

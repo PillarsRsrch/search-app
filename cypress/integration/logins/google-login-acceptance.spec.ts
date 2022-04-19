@@ -1,6 +1,6 @@
-import { AuthenticationDomainLanguageFactory } from '../src/domain-languages/authentication/AuthenticationDomainFactory';
-import { IAuthenticationDomainLanguage } from '../src/domain-languages/authentication/IAuthenticationDomainLanguage';
-import { GoogleAuthenticatorCredentials } from '../src/drivers/authentication/GoogleAuthenticatorCredentials';
+import { AuthenticationDomainLanguageFactory } from '../../src/domain-languages/authentication/AuthenticationDomainFactory';
+import { IAuthenticationDomainLanguage } from '../../src/domain-languages/authentication/IAuthenticationDomainLanguage';
+import { GoogleAuthenticatorCredentials } from '../../src/drivers/authenticator/GoogleAuthenticatorCredentials';
 
 describe('Google Login Acceptance Test Suite', () => {
     const host = Cypress.env('HOST');
@@ -16,7 +16,6 @@ describe('Google Login Acceptance Test Suite', () => {
         authenticationDomainLanguageFactory.buildDomainLanguage();
 
     it('When user clicks login button it should get token, display success, and redirect', async () => {
-        cy.log(JSON.stringify(credentials.body()));
         authentication.selectAuthenticationProcess();
 
         await authentication.authenticate();

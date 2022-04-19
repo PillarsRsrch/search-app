@@ -1,9 +1,6 @@
 {
     "env": {
         "NODE_ENV": "production",
-        "HOST": "http://localhost:3000",
-        "GOOGLE_CLIENT_ID": "687779576352-9r79e7127rqfsb6tvf6k9887bbst7g1n.apps.googleusercontent.com",
-        "GOOGLE_CLIENT_SECRET": "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",
-        "GOOGLE_REFRESH_TOKEN": "1//04N9AwtJlLCO1CgYIARAAGAQSNwF-L9IrjmWo8mvXI3gdCaT6Yjb3_qoqCyvelOsUPJoxpQ4kjkMlvzwx5ad6nuWOzWXlp6olu_U"
+        "HOST": "http://localhost:3000"
     }
 }

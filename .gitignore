@@ -38,4 +38,5 @@ yarn-error.log*
 /.serverless_nextjs
 
 cypress/videos
-cypress/screenshots
+cypress/screenshots 
+cypress.env.json
