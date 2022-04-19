@@ -16,6 +16,7 @@ export const AuthenticationPage = ({
     return (
         <Center>
             <FlexLayout
+                className="authentication-page"
                 styles={{
                     height: '100vh',
                     alignItems: 'center',

@@ -4,6 +4,7 @@ import { ICardProps } from './ICardProps';
 
 export const Card = ({ width, height, children }: ICardProps) => (
     <FlexLayout
+        className="card-component"
         styles={{
             width: width,
             height: height,

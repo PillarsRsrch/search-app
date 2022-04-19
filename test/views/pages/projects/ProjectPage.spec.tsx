@@ -19,13 +19,10 @@ describe('Project Page Test Stuite', () => {
             <ProjectPage projectService={projectService} />
         );
 
-        const noProjectsText = screen.getByText(
-            'Create a project to get started'
-        );
-        const createProjectButton =
-            container.getElementsByClassName('button-component')[0];
+        const projectComponent = container.getElementsByClassName(
+            'project-display-component'
+        )[0];
 
-        expect(noProjectsText).toBeInTheDocument();
-        expect(createProjectButton).toBeInTheDocument();
+        expect(projectComponent).toBeInTheDocument();
     });
 });

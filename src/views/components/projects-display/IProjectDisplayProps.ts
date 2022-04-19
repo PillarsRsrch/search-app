@@ -1,3 +1,5 @@
+import { IProjectsService } from '../../../services/foundations/projects/IProjectsService';
+
 export interface IProjectDisplayProps {
-    projectsService: IProjectDisplayProps;
+    projectsService: IProjectsService;
 }
