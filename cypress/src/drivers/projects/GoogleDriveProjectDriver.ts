@@ -19,8 +19,9 @@ export class GoogleDriveProjectDriver implements IProjectDriver {
         this.web.navigateToPage(new Path('/projects'));
     }
 
-    createProjectWithImportedData(file: IFile): void {
+    async createProjectWithImportedData(file: IFile): Promise<void> {
         this.web.click(new IdSelector('create-project'));
+        await this.web.expectPageChangeTo(new Path('/projects/new'));
         this.web.click(new IdSelector('google-import-project-data'));
         this.filePicker.selectFile(file);
     }

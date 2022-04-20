@@ -19,7 +19,7 @@ if (isDevelopment()) {
 
         it('When user clicks login button it should get token, display success, and redirect', async () => {
             const file = {};
-            projects.navigateToProjects();
+            await projects.navigateToProjects();
 
             await projects.createProjectWithImportedData(file);
 

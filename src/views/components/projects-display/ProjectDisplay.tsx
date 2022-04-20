@@ -1,49 +1,31 @@
+import React from 'react';
 import { IProjectDisplayProps } from './IProjectDisplayProps';
-import React, { useEffect, useState } from 'react';
 import { ProjectDisplayState } from './ProjectDisplayState';
 import { ProjectDisplayLayout } from './ProjectDisplayLayout';
 import { ProjectDisplayLoadingFragment } from './ProjectDisplayLoadingFragment';
 import { ProjectDisplayEmptyFragment } from './ProjectDisplayEmptyFragment';
 import { ProjectDisplayAllProjectsFragment } from './ProjectDisplayAllProjectsFragment';
+import { useProjects } from './useProjects';
 
-export const ProjectDisplay = ({ projectsService }: IProjectDisplayProps) => {
-    const [projects, setProjects] = useState<any[]>([]);
-    const [displayState, setDisplayState] = useState(
-        ProjectDisplayState.Loading
-    );
+export const ProjectDisplay = ({
+    projectsService,
+    onCreateProject,
+}: IProjectDisplayProps) => {
+    const [projects, displayState] = useProjects(projectsService);
     const projectDisplayFragmentLookup = new Map([
         [ProjectDisplayState.Loading, <ProjectDisplayLoadingFragment />],
         [
             ProjectDisplayState.FoundNoProjects,
-            <ProjectDisplayEmptyFragment onClick={createProject} />,
+            <ProjectDisplayEmptyFragment onClick={onCreateProject} />,
         ],
         [
             ProjectDisplayState.FoundProjects,
             <ProjectDisplayAllProjectsFragment
                 projects={projects}
-                createProject={createProject}
+                createProject={onCreateProject}
             />,
         ],
     ]);
-
-    function createProject() {}
-
-    function getStateFromProjects(projects: any[]) {
-        return projects.length === 0
-            ? ProjectDisplayState.FoundNoProjects
-            : ProjectDisplayState.FoundProjects;
-    }
-
-    useEffect(() => {
-        const fetchProjects = async () => {
-            setDisplayState(ProjectDisplayState.Loading);
-            const projects = await projectsService.getAllServicesAsync();
-            setProjects(projects);
-            setDisplayState(getStateFromProjects(projects));
-        };
-
-        fetchProjects();
-    }, []);
 
     return (
         <ProjectDisplayLayout>

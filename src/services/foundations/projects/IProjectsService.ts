@@ -1,3 +1,5 @@
+import { IProject } from '../../../models/projects/IProject';
+
 export interface IProjectsService {
-    getAllServicesAsync(): Promise<any[]>;
+    getAllServicesAsync(): Promise<IProject[]>;
 }

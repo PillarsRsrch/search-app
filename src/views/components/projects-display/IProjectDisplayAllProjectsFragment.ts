@@ -1,4 +1,6 @@
+import { IProject } from '../../../models/projects/IProject';
+
 export interface IProjectDisplayAllProjectsFragment {
-    projects: any[];
+    projects: IProject[];
     createProject: () => void;
 }

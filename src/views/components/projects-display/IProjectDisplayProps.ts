@@ -2,4 +2,5 @@ import { IProjectsService } from '../../../services/foundations/projects/IProjec
 
 export interface IProjectDisplayProps {
     projectsService: IProjectsService;
+    onCreateProject: () => void;
 }

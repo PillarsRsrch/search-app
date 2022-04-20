@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import {
+    fireEvent,
     render,
     screen,
     waitForElementToBeRemoved,
@@ -19,19 +20,28 @@ describe('Project Display Test Suite', () => {
 
     test('Should render a loading message while fetching projects', async () => {
         when(mockProjectService.getAllServicesAsync()).thenResolve([]);
-        const { container } = render(
-            <ProjectDisplay projectsService={projectService} />
+        const onCreateProject = jest.fn();
+        render(
+            <ProjectDisplay
+                onCreateProject={onCreateProject}
+                projectsService={projectService}
+            />
         );
 
         const loadingText = screen.getByText('Loading...');
 
+        expect(onCreateProject).not.toBeCalled();
         expect(loadingText).toBeInTheDocument();
     });
 
     test('Should render an empty project display', async () => {
         when(mockProjectService.getAllServicesAsync()).thenResolve([]);
+        const onCreateProject = jest.fn();
         const { container } = render(
-            <ProjectDisplay projectsService={projectService} />
+            <ProjectDisplay
+                onCreateProject={onCreateProject}
+                projectsService={projectService}
+            />
         );
 
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
@@ -41,14 +51,37 @@ describe('Project Display Test Suite', () => {
         const createButton =
             container.getElementsByClassName('button-component')[0];
 
+        expect(onCreateProject).not.toBeCalled();
         expect(emptyText).toBeInTheDocument();
         expect(createButton).toBeInTheDocument();
     });
 
+    test('Should call the create project prop', async () => {
+        when(mockProjectService.getAllServicesAsync()).thenResolve([]);
+        const onCreateProject = jest.fn();
+        const { container } = render(
+            <ProjectDisplay
+                onCreateProject={onCreateProject}
+                projectsService={projectService}
+            />
+        );
+
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+        const createButton =
+            container.getElementsByClassName('button-component')[0];
+        fireEvent.click(createButton);
+
+        expect(onCreateProject).toBeCalled();
+    });
+
     test('Should render an empty project display', async () => {
         when(mockProjectService.getAllServicesAsync()).thenResolve([0, 1]);
+        const onCreateProject = jest.fn();
         const { container } = render(
-            <ProjectDisplay projectsService={projectService} />
+            <ProjectDisplay
+                onCreateProject={onCreateProject}
+                projectsService={projectService}
+            />
         );
 
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
@@ -56,6 +89,7 @@ describe('Project Display Test Suite', () => {
         const createButton =
             container.getElementsByClassName('button-component')[0];
 
+        expect(onCreateProject).not.toBeCalled();
         expect(createButton).toBeInTheDocument();
         verify(mockProjectService.getAllServicesAsync()).once();
         expect(projects.length).toEqual(2);
