@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json ./ 
-RUN npm set-script prepare "" && npm ci --production
+RUN npm ci
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
