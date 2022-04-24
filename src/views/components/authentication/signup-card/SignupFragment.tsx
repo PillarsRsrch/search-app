@@ -1,8 +1,8 @@
 import React from 'react';
-import { Heading } from '../../bases/header/Heading';
-import { Spacer } from '../../bases/spacer/Spacer';
-import { Text } from '../../bases/text/Text';
-import { AuthenticationButton } from '../authentication/AuthenticationButton';
+import { Heading } from '../../../bases/header/Heading';
+import { Spacer } from '../../../bases/spacer/Spacer';
+import { Text } from '../../../bases/text/Text';
+import { AuthenticationButton } from '../AuthenticationButton';
 import { ISignupFragmentProps } from './ISignupFragmentProps';
 
 export const SignupFragment = ({

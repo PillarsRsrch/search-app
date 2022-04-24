@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { IProject } from '../../../models/projects/IProject';
-import { IProjectsService } from '../../../services/foundations/projects/IProjectsService';
+import { IProject } from '../../../../models/projects/IProject';
+import { IProjectsService } from '../../../../services/foundations/projects/IProjectsService';
 import { ProjectDisplayState } from './ProjectDisplayState';
 
 export function useProjects(

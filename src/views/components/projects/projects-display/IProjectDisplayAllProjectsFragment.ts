@@ -1,4 +1,4 @@
-import { IProject } from '../../../models/projects/IProject';
+import { IProject } from '../../../../models/projects/IProject';
 
 export interface IProjectDisplayAllProjectsFragment {
     projects: IProject[];

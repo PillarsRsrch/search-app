@@ -1,4 +1,4 @@
 import React from 'react';
-import { Text } from '../../bases/text/Text';
+import { Text } from '../../../bases/text/Text';
 
 export const ProjectDisplayLoadingFragment = () => <Text>Loading...</Text>;

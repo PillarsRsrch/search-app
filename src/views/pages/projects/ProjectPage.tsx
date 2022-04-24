@@ -1,6 +1,6 @@
 import { IProjectPageProps } from './IProjectPageProps';
 import React from 'react';
-import { ProjectDisplay } from '../../components/projects-display/ProjectDisplay';
+import { ProjectDisplay } from '../../components/projects/projects-display/ProjectDisplay';
 import { PageTransition } from '../../../models/routers/PageTransition';
 
 export const ProjectPage = ({

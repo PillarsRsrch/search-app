@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../bases/button/Button';
+import { Button } from '../../../bases/button/Button';
 import { IProjectDisplayAllProjectsFragment } from './IProjectDisplayAllProjectsFragment';
 
 export const ProjectDisplayAllProjectsFragment = ({

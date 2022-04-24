@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../../bases/button/Button';
-import { Text } from '../../bases/text/Text';
+import { Button } from '../../../bases/button/Button';
+import { Text } from '../../../bases/text/Text';
 import { IProjectDisplayEmptyFragmentProps } from './IProjectDisplayEmptyFragmentProps';
 
 export const ProjectDisplayEmptyFragment = ({

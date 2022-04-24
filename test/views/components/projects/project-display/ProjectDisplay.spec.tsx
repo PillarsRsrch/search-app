@@ -7,8 +7,8 @@ import {
 } from '@testing-library/react';
 import React from 'react';
 import { verify, instance, mock, reset, when } from 'ts-mockito';
-import { IProjectsService } from '../../../../src/services/foundations/projects/IProjectsService';
-import { ProjectDisplay } from '../../../../src/views/components/projects-display/ProjectDisplay';
+import { IProjectsService } from '../../../../../src/services/foundations/projects/IProjectsService';
+import { ProjectDisplay } from '../../../../../src/views/components/projects/projects-display/ProjectDisplay';
 
 describe('Project Display Test Suite', () => {
     const mockProjectService = mock<IProjectsService>();

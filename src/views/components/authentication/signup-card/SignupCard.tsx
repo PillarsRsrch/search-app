@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Card } from '../../bases/card/Card';
+import { Card } from '../../../bases/card/Card';
 import { AuthenticationState } from './AuthenticationState';
 import { ISignupCardProps } from './ISignupCardProps';
 import { SignupSuccessFragment } from './SignupSuccessFragment';
 import { SignupFailureFragment } from './SignupFailureFragment';
 import { SignupFragment } from './SignupFragment';
-import { AccessToken } from '../../../models/authenticators/AccessToken';
+import { AccessToken } from '../../../../models/authenticators/AccessToken';
 
 export const SignupCard = ({
     authenticatorService,

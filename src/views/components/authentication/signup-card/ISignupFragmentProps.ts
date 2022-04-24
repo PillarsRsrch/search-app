@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
-import { AccessToken } from '../../../models/authenticators/AccessToken';
-import { IAuthenticatorService } from '../../../services/foundations/authenticators/IAuthenticatorService';
+import { AccessToken } from '../../../../models/authenticators/AccessToken';
+import { IAuthenticatorService } from '../../../../services/foundations/authenticators/IAuthenticatorService';
 
 export interface ISignupFragmentProps {
     authenticatorService: IAuthenticatorService;

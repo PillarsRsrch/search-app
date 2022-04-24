@@ -2,7 +2,7 @@ import React from 'react';
 import { PageTransition } from '../../../models/routers/PageTransition';
 import { Center } from '../../bases/center/Center';
 import { IAuthenticationPageProps } from './IAuthenticationPageProps';
-import { SignupCard } from '../../components/signup-card/SignupCard';
+import { SignupCard } from '../../components/authentication/signup-card/SignupCard';
 import { Spacer } from '../../bases/spacer/Spacer';
 import { FlexLayout } from '../../bases/layout/FlexLayout';
 import { Cookie } from '../../../models/storage/Cookie';

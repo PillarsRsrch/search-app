@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexLayout } from '../../bases/layout/FlexLayout';
+import { FlexLayout } from '../../../bases/layout/FlexLayout';
 import { IProjectDisplayLayoutProps } from './IProjectDisplayLayoutProps';
 
 export const ProjectDisplayLayout = ({
