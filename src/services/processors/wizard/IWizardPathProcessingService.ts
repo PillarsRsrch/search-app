@@ -1,7 +1,7 @@
 import { ITransitionInput } from '../../../models/wizards/ITransitionInput';
 import { IWizardStep } from '../../../models/wizards/IWizardStep';
 
-export interface IWizardPathService {
+export interface IWizardPathProcessingService {
     getCurrentStep(): IWizardStep;
     getPreviousStep(): IWizardStep;
     getNextStep(input: ITransitionInput): IWizardStep;

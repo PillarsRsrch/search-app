@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
 import { IForm } from '../../../models/form/IForm';
 import { ITransitionInput } from '../../../models/wizards/ITransitionInput';
-import { IWizardPathService } from '../../../services/processors/wizard/IWizardPathService';
+import { IWizardPathProcessingService } from '../../../services/processors/wizard/IWizardPathProcessingService';
 import { IWizardStepFormProps } from './IWizardStepFormProps';
 
 export interface IWizardStepProps {
-    pathService: IWizardPathService;
+    pathService: IWizardPathProcessingService;
     transition: ITransitionInput;
     form: IForm;
     children: ReactElement<IWizardStepFormProps>;

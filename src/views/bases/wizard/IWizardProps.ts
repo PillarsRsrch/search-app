@@ -1,7 +1,7 @@
-import { IWizardPathService } from '../../../services/processors/wizard/IWizardPathService';
+import { IWizardPathProcessingService } from '../../../services/processors/wizard/IWizardPathProcessingService';
 
 export interface IWizardProps {
-    service: IWizardPathService;
+    service: IWizardPathProcessingService;
     title: string;
     onCancel: () => void;
     onSubmit: () => void;

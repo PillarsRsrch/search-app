@@ -4,13 +4,13 @@ import { TransitionInput } from '../../../../src/models/wizards/TransitionInput'
 import { ITransitionInput } from '../../../../src/models/wizards/ITransitionInput';
 import { IForm } from '../../../../src/models/form/IForm';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
-import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardPathProcessingService } from '../../../../src/services/processors/wizard/IWizardPathProcessingService';
 import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 interface FakeWizardStepProps {
     i: number;
     step: IWizardStep;
-    pathService: IWizardPathService;
+    pathService: IWizardPathProcessingService;
     formService: IWizardFormService;
     onNext: (transition: ITransitionInput, form: IForm) => void;
     onPrevious: () => void;

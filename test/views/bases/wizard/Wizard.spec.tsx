@@ -6,11 +6,11 @@ import { Wizard } from '../../../../src/views/bases/wizard/Wizard';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
 import { WizardStepType } from '../../../../src/views/bases/wizard/WizardStepType';
 import { FakeWizardStep } from './FakeWizardStep';
-import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardPathProcessingService } from '../../../../src/services/processors/wizard/IWizardPathProcessingService';
 import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 describe('Wizard Base Component Test Suite', () => {
-    const mockedWizardPathService = mock<IWizardPathService>();
+    const mockedWizardPathService = mock<IWizardPathProcessingService>();
     const mockedWizardFormService = mock<IWizardFormService>();
     const mockedWizardStep = mock<IWizardStep>();
     const wizardPathService = instance(mockedWizardPathService);

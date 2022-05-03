@@ -4,11 +4,11 @@ import { instance, mock, reset, when } from 'ts-mockito';
 import React from 'react';
 import { FakeWizardStep } from './FakeWizardStep';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
-import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardPathProcessingService } from '../../../../src/services/processors/wizard/IWizardPathProcessingService';
 import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 describe('Wizard Step Test Suite', () => {
-    const mockedPathService = mock<IWizardPathService>();
+    const mockedPathService = mock<IWizardPathProcessingService>();
     const mockedFormService = mock<IWizardFormService>();
     const mockedStep = mock<IWizardStep>();
     const pathService = instance(mockedPathService);
