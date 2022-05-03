@@ -3,7 +3,7 @@ import { Button } from '../button/Button';
 import { IWizardStepProps } from './IWizardStepProps';
 
 export const WizardStep = ({
-    service,
+    pathService: service,
     onNext,
     onPrevious,
     children,

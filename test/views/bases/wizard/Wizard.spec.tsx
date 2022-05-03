@@ -2,46 +2,51 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
-import { IWizardService } from '../../../../src/services/foundations/wizard/IWizardService';
 import { Wizard } from '../../../../src/views/bases/wizard/Wizard';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
 import { WizardStepType } from '../../../../src/views/bases/wizard/WizardStepType';
 import { FakeWizardStep } from './FakeWizardStep';
+import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 describe('Wizard Base Component Test Suite', () => {
-    const mockedWizardService = mock<IWizardService>();
+    const mockedWizardPathService = mock<IWizardPathService>();
+    const mockedWizardFormService = mock<IWizardFormService>();
     const mockedWizardStep = mock<IWizardStep>();
-    const wizardService = instance(mockedWizardService);
+    const wizardPathService = instance(mockedWizardPathService);
+    const wizardFormService = instance(mockedWizardFormService);
     const wizardStep = instance(mockedWizardStep);
     const onCancel = jest.fn();
     const onSubmit = jest.fn();
 
     beforeEach(() => {
-        reset(mockedWizardService);
+        reset(mockedWizardFormService);
+        reset(mockedWizardPathService);
         reset(mockedWizardStep);
         onCancel.mockReset();
         onSubmit.mockReset();
     });
 
     test('Should render the starting state of the wizard', () => {
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    formService={wizardFormService}
+                    pathService={wizardPathService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
         when(mockedWizardStep.type()).thenReturn(WizardStepType.Form);
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -51,7 +56,7 @@ describe('Wizard Base Component Test Suite', () => {
         const cancel = screen.getByText('Cancel');
         const submit = screen.getByText<HTMLButtonElement>('Submit');
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
         expect(title).toBeInTheDocument();
         expect(step).toBeInTheDocument();
         expect(cancel).toBeInTheDocument();
@@ -60,24 +65,25 @@ describe('Wizard Base Component Test Suite', () => {
     });
 
     test('Should call the cancel function', () => {
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    pathService={wizardPathService}
+                    formService={wizardFormService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
         when(mockedWizardStep.type()).thenReturn(WizardStepType.Form);
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -85,30 +91,31 @@ describe('Wizard Base Component Test Suite', () => {
         const cancel = screen.getByText('Cancel');
         fireEvent.click(cancel);
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
         expect(cancel).toBeInTheDocument();
         expect(onCancel).toHaveBeenCalled();
     });
 
     test('Should call the submit function', () => {
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
-        when(mockedWizardStep.type()).thenReturn(WizardStepType.Submit);
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardPathService.isInSubmitableState()).thenReturn(true);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    pathService={wizardPathService}
+                    formService={wizardFormService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -116,31 +123,32 @@ describe('Wizard Base Component Test Suite', () => {
         const submit = screen.getByText<HTMLButtonElement>('Submit');
         fireEvent.click(submit);
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
         expect(submit).toBeInTheDocument();
         expect(submit.disabled).toBeFalsy();
         expect(onSubmit).toHaveBeenCalled();
     });
 
     test('Should call the submit function', () => {
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    formService={wizardFormService}
+                    pathService={wizardPathService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
         when(mockedWizardStep.type()).thenReturn(WizardStepType.Form);
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -148,7 +156,7 @@ describe('Wizard Base Component Test Suite', () => {
         const cancel = screen.getByText('Cancel');
         fireEvent.click(cancel);
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
         expect(cancel).toBeInTheDocument();
         expect(onCancel).toHaveBeenCalled();
     });
@@ -156,36 +164,40 @@ describe('Wizard Base Component Test Suite', () => {
     test('Should render the next state of the wizard', () => {
         const mockedNextStep = mock<IWizardStep>();
         const nextStep = instance(mockedNextStep);
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
-        when(
-            mockedNextStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={nextStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={2}
-            />
-        ));
-        when(mockedWizardService.getNextStep(anything())).thenReturn(nextStep);
-        when(mockedWizardService.hasNextStep()).thenReturn(true);
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    pathService={wizardPathService}
+                    formService={wizardFormService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
+        when(mockedNextStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={nextStep}
+                    formService={wizardFormService}
+                    pathService={wizardPathService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={2}
+                />
+            )
+        );
+        when(mockedWizardPathService.getNextStep(anything())).thenReturn(
+            nextStep
+        );
+        when(mockedWizardPathService.hasNextStep()).thenReturn(true);
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -194,45 +206,48 @@ describe('Wizard Base Component Test Suite', () => {
         fireEvent.click(next);
         const step = screen.getByText('Step 2');
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
-        verify(mockedWizardService.getNextStep(anything())).once();
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getNextStep(anything())).once();
         expect(step).toBeInTheDocument();
     });
 
     test('Should return to the previous state of the wizard', () => {
         const mockedPreviousStep = mock<IWizardStep>();
         const previousStep = instance(mockedPreviousStep);
-        when(mockedWizardService.getCurrentStep()).thenReturn(wizardStep);
-        when(
-            mockedWizardStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={wizardStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={1}
-            />
-        ));
-        when(
-            mockedPreviousStep.component(anything(), anything(), anything())
-        ).thenCall((service, onNext, onPrevious) => (
-            <FakeWizardStep
-                step={previousStep}
-                service={service}
-                onNext={onNext}
-                onPrevious={onPrevious}
-                i={0}
-            />
-        ));
-        when(mockedWizardService.getPreviousStep()).thenReturn(previousStep);
-        when(mockedWizardService.hasNextStep()).thenReturn(false);
-        when(mockedWizardService.hasPreviousStep()).thenReturn(true);
+        when(mockedWizardPathService.getCurrentStep()).thenReturn(wizardStep);
+        when(mockedWizardStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={wizardStep}
+                    pathService={wizardPathService}
+                    formService={wizardFormService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={1}
+                />
+            )
+        );
+        when(mockedPreviousStep.component(anything(), anything())).thenCall(
+            (onNext, onPrevious) => (
+                <FakeWizardStep
+                    step={previousStep}
+                    pathService={wizardPathService}
+                    formService={wizardFormService}
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    i={0}
+                />
+            )
+        );
+        when(mockedWizardPathService.getPreviousStep()).thenReturn(
+            previousStep
+        );
+        when(mockedWizardPathService.hasPreviousStep()).thenReturn(true);
         render(
             <Wizard
                 onCancel={onCancel}
                 onSubmit={onSubmit}
-                service={wizardService}
+                service={wizardPathService}
                 title={'Wizard'}
             />
         );
@@ -241,8 +256,8 @@ describe('Wizard Base Component Test Suite', () => {
         fireEvent.click(previous);
         const step = screen.getByText('Step 0');
 
-        verify(mockedWizardService.getCurrentStep()).atLeast(1);
-        verify(mockedWizardService.getPreviousStep()).once();
+        verify(mockedWizardPathService.getCurrentStep()).atLeast(1);
+        verify(mockedWizardPathService.getPreviousStep()).once();
         expect(step).toBeInTheDocument();
     });
 });

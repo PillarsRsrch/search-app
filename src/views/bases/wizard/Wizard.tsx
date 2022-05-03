@@ -22,19 +22,15 @@ export const Wizard = ({
         setStep(service.getPreviousStep());
     }
 
-    function isCurrentStepASubmitableStep() {
-        return step.type() === WizardStepType.Submit;
-    }
-
     return (
         <>
             <Heading level={2}>{title}</Heading>
-            {step.component(service, onNext, onPrevious)}
+            {step.component(onNext, onPrevious)}
             <Button disabled={false} onClick={onCancel}>
                 Cancel
             </Button>
             <Button
-                disabled={!isCurrentStepASubmitableStep()}
+                disabled={!service.isInSubmitableState()}
                 onClick={onSubmit}
             >
                 Submit

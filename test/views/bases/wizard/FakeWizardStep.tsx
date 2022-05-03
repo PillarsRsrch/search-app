@@ -4,29 +4,31 @@ import { TransitionInput } from '../../../../src/models/wizards/TransitionInput'
 import { ITransitionInput } from '../../../../src/models/wizards/ITransitionInput';
 import { IForm } from '../../../../src/models/form/IForm';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
-import { IWizardService } from '../../../../src/services/foundations/wizard/IWizardService';
+import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 interface FakeWizardStepProps {
     i: number;
     step: IWizardStep;
+    pathService: IWizardPathService;
+    formService: IWizardFormService;
     onNext: (transition: ITransitionInput, form: IForm) => void;
     onPrevious: () => void;
-    service: IWizardService;
 }
 
 export const FakeWizardStep = ({
     step,
-    service,
+    pathService,
+    formService,
     onNext,
     onPrevious,
     i,
 }: FakeWizardStepProps) => {
     return (
         <WizardStep
-            step={step}
             transition={TransitionInput.Default}
-            form={service.getFormForStep(step)}
-            service={service}
+            form={formService.getFormForStep(step)}
+            pathService={pathService}
             onNext={onNext}
             onPrevious={onPrevious}
         >

@@ -1,21 +1,24 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { instance, mock, reset, when } from 'ts-mockito';
-import { IWizardService } from '../../../../src/services/foundations/wizard/IWizardService';
 import React from 'react';
 import { FakeWizardStep } from './FakeWizardStep';
 import { IWizardStep } from '../../../../src/models/wizards/IWizardStep';
+import { IWizardPathService } from '../../../../src/services/processors/wizard/IWizardPathService';
+import { IWizardFormService } from '../../../../src/services/processors/wizard/IWizardFormService';
 
 describe('Wizard Step Test Suite', () => {
-    const mockedService = mock<IWizardService>();
+    const mockedPathService = mock<IWizardPathService>();
+    const mockedFormService = mock<IWizardFormService>();
     const mockedStep = mock<IWizardStep>();
-    const service = instance(mockedService);
+    const pathService = instance(mockedPathService);
+    const formService = instance(mockedFormService);
     const step = instance(mockedStep);
     const onNext = jest.fn();
     const onPrevious = jest.fn();
 
     beforeEach(() => {
-        reset(mockedService);
+        reset(mockedPathService);
         onNext.mockReset();
         onPrevious.mockReset();
     });
@@ -24,7 +27,8 @@ describe('Wizard Step Test Suite', () => {
         render(
             <FakeWizardStep
                 i={0}
-                service={service}
+                pathService={pathService}
+                formService={formService}
                 step={step}
                 onNext={onNext}
                 onPrevious={onPrevious}
@@ -43,11 +47,12 @@ describe('Wizard Step Test Suite', () => {
     });
 
     test('Should click the next button', () => {
-        when(mockedService.hasNextStep()).thenReturn(true);
+        when(mockedPathService.hasNextStep()).thenReturn(true);
         render(
             <FakeWizardStep
                 i={0}
-                service={service}
+                formService={formService}
+                pathService={pathService}
                 step={step}
                 onNext={onNext}
                 onPrevious={onPrevious}
@@ -63,11 +68,12 @@ describe('Wizard Step Test Suite', () => {
     });
 
     test('Should click the previous button', () => {
-        when(mockedService.hasPreviousStep()).thenReturn(true);
+        when(mockedPathService.hasPreviousStep()).thenReturn(true);
         render(
             <FakeWizardStep
                 i={0}
-                service={service}
+                formService={formService}
+                pathService={pathService}
                 step={step}
                 onNext={onNext}
                 onPrevious={onPrevious}

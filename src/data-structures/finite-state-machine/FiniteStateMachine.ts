@@ -3,16 +3,12 @@ import { IState } from './IState';
 import { StateType } from './StateType';
 
 export class FiniteStateMachine implements IFiniteStateMachine {
-    private state: IState;
+    private state: IState | null;
     private readonly states: Map<string, IState> = new Map();
 
-    constructor(
-        startingState: IState,
-        states: Map<string, IState> = new Map()
-    ) {
-        this.state = startingState;
+    constructor(states: Map<string, IState> = new Map()) {
+        this.state = null;
         this.states = states;
-        this.states.set(startingState.id(), startingState);
     }
 
     addTransition(from: IState, to: IState, input: string): boolean {
@@ -25,21 +21,46 @@ export class FiniteStateMachine implements IFiniteStateMachine {
     private verifyStateExists(state: IState) {
         if (!this.states.has(state.id())) {
             throw new Error(
-                `Can not add transition because state '${state.id()}' does not exist in the state machine.`
+                `State '${state.id()}' does not exist in the state machine.`
             );
         }
         return this.states.get(state.id()) as IState;
     }
 
     currentState(): IState {
-        return this.state;
+        this.assertStartingStateIsSet();
+        return this.state!;
+    }
+
+    private assertStartingStateIsSet() {
+        if (this.state === null) {
+            throw new Error('Starting state must be set');
+        }
     }
 
     isInAcceptingState(): boolean {
-        return this.state.type() === StateType.Accepting;
+        return this.currentState().type() === StateType.Accepting;
+    }
+
+    setStartingState(state: IState): void {
+        this.assertMachineHasNotBeenRan();
+        this.states.set(state.id(), state);
+        this.state = state;
+    }
+
+    private assertMachineHasNotBeenRan() {
+        if (this.state !== null) {
+            throw new Error(
+                'Can not set starting state after stepping the fsm'
+            );
+        }
+    }
+
+    setState(state: IState): void {
+        this.state = this.verifyStateExists(state);
     }
 
     step(input: string): void {
-        this.state = this.state.transition(input);
+        this.state = this.currentState().transition(input);
     }
 }
