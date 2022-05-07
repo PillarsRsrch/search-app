@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { instance, mock, reset, when } from 'ts-mockito';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
-import { Icon } from '../../../../src/views/components/icon/Icon';
-import { IconSize } from '../../../../src/views/components/icon/IconSize';
+import { Icon } from '../../../../src/views/bases/icon/Icon';
+import { IconSize } from '../../../../src/views/bases/icon/IconSize';
 
 describe('Icon Test Suite', () => {
     const mockedService: IIconService = mock<IIconService>();
