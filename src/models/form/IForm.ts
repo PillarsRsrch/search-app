@@ -1,5 +1,4 @@
 export interface IForm {
-    getData(key: string): any;
-    id(): string;
+    getData<T>(key: string): T;
     serialize(): Record<string, any>;
 }
