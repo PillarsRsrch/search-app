@@ -6,7 +6,7 @@ import { Card } from '../../../../src/views/bases/card/Card';
 describe('Card', () => {
     test('Should render a card', () => {
         render(
-            <Card>
+            <Card width="100" height="100">
                 <p>Text</p>
             </Card>
         );
