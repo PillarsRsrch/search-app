@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { IProject } from '../../../../models/projects/IProject';
-import { IProjectsService } from '../../../../services/foundations/projects/IProjectsService';
+import { IProjectService } from '../../../../services/foundations/projects/IProjectService';
 import { ProjectDisplayState } from './ProjectDisplayState';
 
 export function useProjects(
-    projectsService: IProjectsService
+    projectsService: IProjectService
 ): [IProject[], ProjectDisplayState] {
     const [projects, setProjects] = useState<IProject[]>([]);
     const [displayState, setDisplayState] = useState(
@@ -20,7 +20,7 @@ export function useProjects(
     useEffect(() => {
         const fetchProjects = async () => {
             setDisplayState(ProjectDisplayState.Loading);
-            const projects = await projectsService.getAllServicesAsync();
+            const projects = await projectsService.getAllProjectsAsync();
             setProjects(projects);
             setDisplayState(getStateFromProjects(projects));
         };

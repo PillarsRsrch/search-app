@@ -3,8 +3,12 @@ import { CenteredLayout } from '../../../components/layouts/CenteredLayout';
 import { CreateProjectForm } from '../../../components/projects/create-project-form/CreateProjectForm';
 import { ICreateProjectPageProps } from './ICreateProjectPageProps';
 
-export const CreateProjectPage = ({}: ICreateProjectPageProps) => (
+export const CreateProjectPage = ({
+    projectService: projectsService,
+}: ICreateProjectPageProps) => (
     <CenteredLayout>
-        <CreateProjectForm onSubmit={(form) => console.log(form)} />
+        <CreateProjectForm
+            onSubmit={(form) => projectsService.createProjectAsync(form)}
+        />
     </CenteredLayout>
 );

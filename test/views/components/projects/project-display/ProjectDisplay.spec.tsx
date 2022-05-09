@@ -7,11 +7,11 @@ import {
 } from '@testing-library/react';
 import React from 'react';
 import { verify, instance, mock, reset, when } from 'ts-mockito';
-import { IProjectsService } from '../../../../../src/services/foundations/projects/IProjectsService';
+import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
 import { ProjectDisplay } from '../../../../../src/views/components/projects/projects-display/ProjectDisplay';
 
 describe('Project Display Test Suite', () => {
-    const mockProjectService = mock<IProjectsService>();
+    const mockProjectService = mock<IProjectService>();
     const projectService = instance(mockProjectService);
 
     beforeEach(() => {
@@ -19,7 +19,7 @@ describe('Project Display Test Suite', () => {
     });
 
     test('Should render a loading message while fetching projects', async () => {
-        when(mockProjectService.getAllServicesAsync()).thenResolve([]);
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         render(
             <ProjectDisplay
@@ -36,7 +36,7 @@ describe('Project Display Test Suite', () => {
     });
 
     test('Should render an empty project display', async () => {
-        when(mockProjectService.getAllServicesAsync()).thenResolve([]);
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         const { container } = render(
             <ProjectDisplay
@@ -58,7 +58,7 @@ describe('Project Display Test Suite', () => {
     });
 
     test('Should call the create project prop', async () => {
-        when(mockProjectService.getAllServicesAsync()).thenResolve([]);
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         const { container } = render(
             <ProjectDisplay
@@ -76,7 +76,7 @@ describe('Project Display Test Suite', () => {
     });
 
     test('Should render an empty project display', async () => {
-        when(mockProjectService.getAllServicesAsync()).thenResolve([0, 1]);
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([0, 1]);
         const onCreateProject = jest.fn();
         const { container } = render(
             <ProjectDisplay
@@ -92,7 +92,7 @@ describe('Project Display Test Suite', () => {
 
         expect(onCreateProject).not.toBeCalled();
         expect(createButton).toBeInTheDocument();
-        verify(mockProjectService.getAllServicesAsync()).once();
+        verify(mockProjectService.getAllProjectsAsync()).once();
         expect(projects.length).toEqual(2);
         expect(projects[0]).toBeInTheDocument();
         expect(projects[1]).toBeInTheDocument();

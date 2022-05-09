@@ -8,12 +8,12 @@ import {
 import React from 'react';
 import { anyOfClass, instance, mock, reset, verify, when } from 'ts-mockito';
 import { PageTransition } from '../../../../src/models/routers/PageTransition';
-import { IProjectsService } from '../../../../src/services/foundations/projects/IProjectsService';
+import { IProjectService } from '../../../../src/services/foundations/projects/IProjectService';
 import { IRouterService } from '../../../../src/services/foundations/router/IRouterService';
 import { ProjectPage } from '../../../../src/views/pages/projects/ProjectPage';
 
 describe('Project Page Test Stuite', () => {
-    const mockedProjectService = mock<IProjectsService>();
+    const mockedProjectService = mock<IProjectService>();
     const mockedRouterService = mock<IRouterService>();
     const projectService = instance(mockedProjectService);
     const routerService = instance(mockedRouterService);
@@ -24,7 +24,7 @@ describe('Project Page Test Stuite', () => {
     });
 
     test('Should render project page when empty with no projects', async () => {
-        when(mockedProjectService.getAllServicesAsync()).thenResolve([]);
+        when(mockedProjectService.getAllProjectsAsync()).thenResolve([]);
         const { container } = render(
             <ProjectPage
                 routerService={routerService}
@@ -41,7 +41,7 @@ describe('Project Page Test Stuite', () => {
     });
 
     test('Should navigate to new project page when create project is clicked', async () => {
-        when(mockedProjectService.getAllServicesAsync()).thenResolve([]);
+        when(mockedProjectService.getAllProjectsAsync()).thenResolve([]);
         when(
             mockedRouterService.navigate(anyOfClass(PageTransition))
         ).thenReturn();
