@@ -5,7 +5,9 @@ import { Text } from '../text/Text';
 
 export const Label = ({ value, children }: ILabelProps) => (
     <StyledLabel>
-        <Text>{value}</Text>
+        <b>
+            <Text>{value}</Text>
+        </b>
         {children}
     </StyledLabel>
 );

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { InMemoryIconRepository } from '../src/repositories/icons/InMemoryIconRepository';
 import { GoogleAuthenticatorService } from '../src/services/foundations/authenticators/GoogleAuthenticatorService';
 import { IconService } from '../src/services/foundations/icons/IconService';
-import { GoogleAuthenticationComponent } from '../src/views/components/authentication/authenticators/GoogleAuthenticatorComponent';
+import { GoogleAuthenticationComponent } from '../src/views/components/authentications/authenticators/GoogleAuthenticatorComponent';
 import { AuthenticationPage } from '../src/views/pages/authentication/AuthenticationPage';
 import { InMemoryIconStore } from '../src/store/icons/InMemoryIconStore';
 import { NextRouterService } from '../src/services/foundations/router/NextRouterService';

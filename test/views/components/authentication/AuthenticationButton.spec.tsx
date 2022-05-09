@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { screen, fireEvent, render } from '@testing-library/react';
-import { AuthenticationButton } from '../../../../src/views/components/authentication/AuthenticationButton';
+import { AuthenticationButton } from '../../../../src/views/components/authentications/AuthenticationButton';
 import { FakeAuthenticatorService } from './fakes/FakeAuthenticatorService';
 import { SuccessAuthenticator } from './fakes/SuccessAuthenticator';
 import { FailureAuthenticator } from './fakes/FailureAuthenticator';

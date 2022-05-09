@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import { Form as FormModel } from '../../../../models/form/Form';
+import { Center } from '../../../bases/center/Center';
 import { Form } from '../../../bases/form/Form';
-import { FormInput } from '../../form/FormInput';
-import { FormSelect } from '../../form/FormSelect';
+import { Heading } from '../../../bases/header/Heading';
+import { FormInput } from '../../form-inputs/FormInput';
+import { FormSelect } from '../../form-inputs/FormSelect';
 import { ICreateProjectFormProps } from './ICreateProjectFormProps';
 
 export const CreateProjectForm = ({ onSubmit }: ICreateProjectFormProps) => {
@@ -13,6 +15,9 @@ export const CreateProjectForm = ({ onSubmit }: ICreateProjectFormProps) => {
 
     return (
         <Form form={formRef.current} onSubmit={onSubmit}>
+            <Center>
+                <Heading level={3}>Create Project</Heading>
+            </Center>
             <FormInput
                 form={formRef.current}
                 type="text"

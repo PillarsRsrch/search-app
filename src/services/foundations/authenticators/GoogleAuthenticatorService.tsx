@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { AccessToken } from '../../../models/authenticators/AccessToken';
-import { GoogleAuthenticationComponent } from '../../../views/components/authentication/authenticators/GoogleAuthenticatorComponent';
-import { IAuthenticatorComponentProps } from '../../../views/components/authentication/authenticators/IAuthenticatorComponentProps';
+import { GoogleAuthenticationComponent } from '../../../views/components/authentications/authenticators/GoogleAuthenticatorComponent';
+import { IAuthenticatorComponentProps } from '../../../views/components/authentications/authenticators/IAuthenticatorComponentProps';
 import { IAuthenticatorService } from './IAuthenticatorService';
 
 export class GoogleAuthenticatorService implements IAuthenticatorService {

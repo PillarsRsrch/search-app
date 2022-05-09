@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { GoogleAuthenticationComponent } from '../../../../../src/views/components/authentication/authenticators/GoogleAuthenticatorComponent';
+import { GoogleAuthenticationComponent } from '../../../../../src/views/components/authentications/authenticators/GoogleAuthenticatorComponent';
 
 describe('Google Authentication Component Test Suite', () => {
     test('Should render the text', () => {

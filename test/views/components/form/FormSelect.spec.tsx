@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { instance, mock, reset, verify } from 'ts-mockito';
 import { IForm } from '../../../../src/models/form/IForm';
-import { FormSelect } from '../../../../src/views/components/form/FormSelect';
+import { FormSelect } from '../../../../src/views/components/form-inputs/FormSelect';
 
 describe('Form Select Test Suite', () => {
     const mockedForm = mock<IForm>();

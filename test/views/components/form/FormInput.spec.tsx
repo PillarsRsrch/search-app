@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { anyString, instance, mock, reset, verify } from 'ts-mockito';
 import { IForm } from '../../../../src/models/form/IForm';
-import { FormInput } from '../../../../src/views/components/form/FormInput';
+import { FormInput } from '../../../../src/views/components/form-inputs/FormInput';
 
 describe('Form Input Test Suite', () => {
     const mockedFormService = mock<IForm>();

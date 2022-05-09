@@ -1,16 +1,17 @@
 import styled from '@emotion/styled';
 
 export const StyledSelect = styled.div`
-    padding: 10px 25px;
+    padding: 5px 10px;
     position: relative;
     width: 100%;
+    outline: none;
 `;
 
 export const StyledSelectValue = styled.div`
     transition-property: border-color;
     transition-duration: 200ms;
     border: 1px solid #e2e8f0;
-    color: #718096;
+    color: #171923;
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -32,11 +33,12 @@ export const StyledSelectDropdownContainer = styled.div`
     font-size: 1rem;
     display: flex;
     position: absolute;
-    left: 25px;
-    right: 25px;
+    left: 10px;
+    right: 10px;
     background-color: white;
     flex-direction: column;
     height: auto;
+    z-index: 1;
     border-radius: 0.375rem;
     &:hover {
         border: 1px solid #a0aec0;

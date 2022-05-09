@@ -15,7 +15,7 @@ import { Cookie } from '../../../../src/models/storage/Cookie';
 import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { ICookieService } from '../../../../src/services/foundations/cookies/ICookieService';
 import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
-import { SignupCard } from '../../../../src/views/components/authentication/signup-card/SignupCard';
+import { SignupCard } from '../../../../src/views/components/authentications/signup-card/SignupCard';
 import { FailureAuthenticator } from '../authentication/fakes/FailureAuthenticator';
 import { SuccessAuthenticator } from '../authentication/fakes/SuccessAuthenticator';
 

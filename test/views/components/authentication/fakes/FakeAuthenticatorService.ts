@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { AccessToken } from '../../../../../src/models/authenticators/AccessToken';
 import { IAuthenticatorService } from '../../../../../src/services/foundations/authenticators/IAuthenticatorService';
-import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IAuthenticatorComponentProps';
+import { IAuthenticatorComponentProps } from '../../../../../src/views/components/authentications/authenticators/IAuthenticatorComponentProps';
 
 export abstract class FakeAuthenticatorService
     implements IAuthenticatorService

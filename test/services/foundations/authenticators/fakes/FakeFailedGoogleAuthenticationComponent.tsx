@@ -1,5 +1,5 @@
 import React from 'react';
-import { IGoogleAuthenticatorComponentProps } from '../../../../../src/views/components/authentication/authenticators/IGoogleAuthenticatorComponentProps';
+import { IGoogleAuthenticatorComponentProps } from '../../../../../src/views/components/authentications/authenticators/IGoogleAuthenticatorComponentProps';
 
 export const FakeFailedGoogleAuthenticationComponent = ({
     onFailure,
