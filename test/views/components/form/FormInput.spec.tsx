@@ -1,11 +1,11 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { anyString, instance, mock, reset, verify } from 'ts-mockito';
-import { IFormService } from '../../../../src/services/foundations/form/IFormService';
+import { IForm } from '../../../../src/models/form/IForm';
 import { FormInput } from '../../../../src/views/components/form/FormInput';
 
 describe('Form Input Test Suite', () => {
-    const mockedFormService = mock<IFormService>();
+    const mockedFormService = mock<IForm>();
     const formService = instance(mockedFormService);
 
     beforeEach(() => {
@@ -20,7 +20,7 @@ describe('Form Input Test Suite', () => {
                 description="Field description"
                 type="text"
                 name="field"
-                formService={formService}
+                form={formService}
             />
         );
 
@@ -36,7 +36,7 @@ describe('Form Input Test Suite', () => {
                 description="Field description"
                 type="text"
                 name="field"
-                formService={formService}
+                form={formService}
             />
         );
 

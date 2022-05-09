@@ -1,11 +1,11 @@
-import { FormService } from '../../../../src/services/foundations/form/FormService';
+import { Form } from '../../../src/models/form/Form';
 
-describe('Form Service Test Suite', () => {
+describe('Form Test Suite', () => {
     describe('addField', () => {
         test('Should throw an error when the field already exists', () => {
             const field = 'field';
             const value = 'value';
-            const service = new FormService(new Map([[field, value]]));
+            const service = new Form(new Map([[field, value]]));
 
             expect(() => service.addField(field, value)).toThrowError(
                 new Error(`Can not add existing field "${field}".`)
@@ -13,7 +13,7 @@ describe('Form Service Test Suite', () => {
         });
 
         test('Should add a field to the form', () => {
-            const service = new FormService();
+            const service = new Form();
             const field = 'field';
             const expectedValue = 'value';
             const inputValue = expectedValue;
@@ -29,7 +29,7 @@ describe('Form Service Test Suite', () => {
             const field = 'field';
             const expectedValue = 'value';
             const inputValue = expectedValue;
-            const service = new FormService(new Map([[field, inputValue]]));
+            const service = new Form(new Map([[field, inputValue]]));
 
             const actualValue = service.getField(field);
 
@@ -38,7 +38,7 @@ describe('Form Service Test Suite', () => {
 
         test('Should throw an error when there is no key', () => {
             const field = 'field';
-            const service = new FormService();
+            const service = new Form();
 
             expect(() => service.getField(field)).toThrowError(
                 new Error(
@@ -53,7 +53,7 @@ describe('Form Service Test Suite', () => {
             const field = 'field';
             const expectedValue = 'value';
             const inputValue = expectedValue;
-            const service = new FormService(new Map([[field, inputValue]]));
+            const service = new Form(new Map([[field, inputValue]]));
 
             const result = service.hasField(field);
 
@@ -62,7 +62,7 @@ describe('Form Service Test Suite', () => {
 
         test('Should return false when the form has a given field', () => {
             const field = 'field';
-            const service = new FormService();
+            const service = new Form();
 
             const result = service.hasField(field);
 
@@ -75,7 +75,7 @@ describe('Form Service Test Suite', () => {
             const field = 'field';
             const expectedValue = 'value';
             const inputValue = expectedValue;
-            const service = new FormService(new Map([[field, '']]));
+            const service = new Form(new Map([[field, '']]));
 
             service.setField(field, inputValue);
 
@@ -85,7 +85,7 @@ describe('Form Service Test Suite', () => {
         test('Should throw an error when setting a field that does not exists', () => {
             const field = 'field';
             const inputValue = 'value';
-            const service = new FormService();
+            const service = new Form();
 
             expect(() => service.setField(field, inputValue)).toThrowError(
                 new Error(`Can not set a non existant field "${field}".`)
@@ -96,7 +96,7 @@ describe('Form Service Test Suite', () => {
     describe('removeField', () => {
         test('Should throw an error when removing a nonexistent field', () => {
             const field = 'field';
-            const service = new FormService();
+            const service = new Form();
 
             expect(() => service.removeField(field)).toThrowError(
                 new Error(`Can not remove a non existant field "${field}".`)
@@ -105,7 +105,7 @@ describe('Form Service Test Suite', () => {
 
         test('Should remove the field from the form', () => {
             const field = 'field';
-            const formService = new FormService(new Map([[field, '']]));
+            const formService = new Form(new Map([[field, '']]));
 
             const result = formService.removeField(field);
 

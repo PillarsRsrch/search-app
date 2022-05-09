@@ -9,17 +9,17 @@ export const FormInput = ({
     type,
     name,
     label,
-    formService,
+    form,
     placeholder,
 }: IFormInputProps) => {
     const [value, setValue] = useState('');
     useEffect(() => {
-        formService.addField(name, '');
+        form.addField(name, '');
     }, []);
 
     function onChange(value: string) {
         setValue(value);
-        formService.setField(name, value);
+        form.setField(name, value);
     }
 
     return (

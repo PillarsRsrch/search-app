@@ -1,4 +1,7 @@
 export interface IForm {
-    getData<T>(key: string): T;
-    serialize(): Record<string, any>;
+    getField<T>(field: string): T;
+    hasField(field: string): boolean;
+    addField<T>(field: string, data: T): void;
+    setField<T>(field: string, data: T): void;
+    removeField(field: string): boolean;
 }

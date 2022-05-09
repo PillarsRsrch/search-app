@@ -1,17 +1,40 @@
 import { IForm } from './IForm';
 
 export class Form implements IForm {
-    constructor(private readonly formData: Map<string, unknown>) {}
+    constructor(private readonly formData: Map<string, unknown> = new Map()) {}
 
-    getData<T>(key: string): T {
-        return this.formData.get(key) as T;
+    getField<T>(field: string): T {
+        if (!this.hasField(field)) {
+            throw new Error(
+                `The field "${field}" does not exist in the current form.`
+            );
+        }
+        return this.formData.get(field) as T;
     }
 
-    serialize(): Record<string, any> {
-        const response: Record<string, any> = {};
-        for (const key in this.formData.keys()) {
-            response[key] = this.formData.get(key);
+    hasField(field: string): boolean {
+        return this.formData.has(field);
+    }
+
+    addField<T>(field: string, data: T): void {
+        if (this.hasField(field)) {
+            throw new Error(`Can not add existing field "${field}".`);
         }
-        return response;
+        this.formData.set(field, data);
+    }
+
+    setField<T>(field: string, data: T): void {
+        if (!this.hasField(field)) {
+            throw new Error(`Can not set a non existant field "${field}".`);
+        }
+        this.formData.set(field, data);
+    }
+
+    removeField(field: string): boolean {
+        if (!this.hasField(field)) {
+            throw new Error(`Can not remove a non existant field "${field}".`);
+        }
+        this.formData.delete(field);
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-import { IFormService } from '../../../services/foundations/form/IFormService';
+import { IForm } from '../../../models/form/IForm';
 
 export interface IFormInputProps {
     name: string;
@@ -6,5 +6,5 @@ export interface IFormInputProps {
     description: string;
     placeholder: string;
     type: string;
-    formService: IFormService;
+    form: IForm;
 }
