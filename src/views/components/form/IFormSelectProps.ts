@@ -1,10 +1,10 @@
 import { IForm } from '../../../models/form/IForm';
 
-export interface IFormInputProps {
+export interface IFormSelectProps {
     name: string;
     label: string;
     children: string;
-    placeholder: string;
-    type: string;
+    defaultValue: string;
+    options: string[];
     form: IForm;
 }

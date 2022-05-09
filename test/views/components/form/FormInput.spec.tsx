@@ -17,11 +17,12 @@ describe('Form Input Test Suite', () => {
             <FormInput
                 placeholder="placeholder"
                 label="Field"
-                description="Field description"
                 type="text"
                 name="field"
                 form={formService}
-            />
+            >
+                Field description
+            </FormInput>
         );
 
         verify(mockedFormService.addField('field', '')).once();
@@ -33,11 +34,12 @@ describe('Form Input Test Suite', () => {
             <FormInput
                 label="Field"
                 placeholder="placeholder"
-                description="Field description"
                 type="text"
                 name="field"
                 form={formService}
-            />
+            >
+                Field description
+            </FormInput>
         );
 
         const input = container.getElementsByClassName('input-component')[0];

@@ -5,12 +5,12 @@ import { Text } from '../../bases/text/Text';
 import { IFormInputProps } from './IFormInputProps';
 
 export const FormInput = ({
-    description,
     type,
     name,
     label,
     form,
     placeholder,
+    children,
 }: IFormInputProps) => {
     const [value, setValue] = useState('');
     useEffect(() => {
@@ -25,7 +25,7 @@ export const FormInput = ({
     return (
         <>
             <Label value={label}>
-                <Text>{description}</Text>
+                <Text>{children}</Text>
                 <Input
                     placeholder={placeholder}
                     value={value}

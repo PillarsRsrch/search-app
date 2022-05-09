@@ -1,10 +1,12 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
-import { IconRepository } from '../../../src/repositories/icons/IconRepository';
+import { InMemoryIconRepository } from '../../../src/repositories/icons/InMemoryIconRepository';
 
-describe('Icon Repository Test Suite', () => {
-    const repository = new IconRepository(new Map([['times', <span></span>]]));
+describe('In Memory Icon Repository Test Suite', () => {
+    const repository = new InMemoryIconRepository(
+        new Map([['times', <span></span>]])
+    );
 
     test('Should get element by id', () => {
         const { container } = render(repository.getById('times'));

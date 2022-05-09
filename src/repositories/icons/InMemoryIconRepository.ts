@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { IRepository } from '../IRepository';
 import { InMemoryIconStore } from './types/InMemoryIconStore';
 
-export class IconRepository implements IRepository<ReactElement> {
+export class InMemoryIconRepository implements IRepository<ReactElement> {
     constructor(private readonly icons: InMemoryIconStore) {}
 
     create(model: ReactElement): ReactElement {

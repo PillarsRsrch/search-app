@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { IconRepository } from '../src/repositories/icons/IconRepository';
+import { InMemoryIconRepository } from '../src/repositories/icons/InMemoryIconRepository';
 import { GoogleAuthenticatorService } from '../src/services/foundations/authenticators/GoogleAuthenticatorService';
 import { IconService } from '../src/services/foundations/icons/IconService';
 import { GoogleAuthenticationComponent } from '../src/views/components/authentication/authenticators/GoogleAuthenticatorComponent';
@@ -20,7 +20,9 @@ const Home: NextPage = () => {
         GoogleAuthenticationComponent
     );
     const cookieServce = new CookieService(new CookieRepository());
-    const iconService = new IconService(new IconRepository(InMemoryIconStore));
+    const iconService = new IconService(
+        new InMemoryIconRepository(InMemoryIconStore)
+    );
     const routerService = new NextRouterService(router);
 
     return (

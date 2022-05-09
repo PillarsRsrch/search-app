@@ -10,7 +10,11 @@ export function Select({ value, options, onSelect }: ISelectProps) {
             return null;
         }
         return options.map((option) => (
-            <Option value={option} onSelect={() => onSelect(option)} />
+            <Option
+                key={option}
+                value={option}
+                onSelect={() => onSelect(option)}
+            />
         ));
     }
 
