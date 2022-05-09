@@ -4,11 +4,13 @@ import { CreateProjectForm } from '../../../components/projects/create-project-f
 import { ICreateProjectPageProps } from './ICreateProjectPageProps';
 
 export const CreateProjectPage = ({
-    projectService: projectsService,
+    projectService,
+    projectMapper,
 }: ICreateProjectPageProps) => (
     <CenteredLayout>
         <CreateProjectForm
-            onSubmit={(form) => projectsService.createProjectAsync(form)}
+            projectMapper={projectMapper}
+            onSubmit={(form) => projectService.createProjectAsync(form)}
         />
     </CenteredLayout>
 );

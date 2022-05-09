@@ -1,15 +1,12 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { IProjectService } from '../../src/services/foundations/projects/IProjectService';
+import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../src/services/foundations/router/NextRouterService';
 import { ProjectPage } from '../../src/views/pages/projects/ProjectPage';
 
 const Projects: NextPage = () => {
     const router = useRouter();
-    const project: IProjectService = {
-        getAllProjectsAsync: () => Promise.resolve([]),
-        createProjectAsync: () => Promise.resolve({}),
-    };
+    const project = new LocalStorageProjectService();
     const routerService = new NextRouterService(router);
 
     return (

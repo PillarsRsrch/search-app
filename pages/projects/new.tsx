@@ -1,14 +1,18 @@
 import { NextPage } from 'next';
-import { IProjectService } from '../../src/services/foundations/projects/IProjectService';
+import { ProjectMapper } from '../../src/mappers/project/ProjectMapper';
+import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { CreateProjectPage } from '../../src/views/pages/projects/create-project/CreateProjectPage';
 
 const NewProject: NextPage = () => {
-    const projectService: IProjectService = {
-        getAllProjectsAsync: () => Promise.resolve([]),
-        createProjectAsync: () => Promise.resolve({}),
-    };
+    const projectService = new LocalStorageProjectService();
+    const projectMapper = new ProjectMapper();
 
-    return <CreateProjectPage projectService={projectService} />;
+    return (
+        <CreateProjectPage
+            projectMapper={projectMapper}
+            projectService={projectService}
+        />
+    );
 };
 
 export default NewProject;
