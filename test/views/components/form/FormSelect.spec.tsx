@@ -51,7 +51,7 @@ describe('Form Select Test Suite', () => {
         expect(screen.queryByText('a')).toBeNull();
 
         const defaultValue = screen.getByText('value');
-        fireEvent.click(defaultValue);
+        fireEvent.focus(defaultValue);
         const a = screen.getByText('a');
         fireEvent.click(a);
 

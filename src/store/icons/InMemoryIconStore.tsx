@@ -1,7 +1,7 @@
 import React from 'react';
-import { Check, Close } from '@material-ui/icons';
+import { MdCheck, MdClose } from 'react-icons/md';
 
 export const InMemoryIconStore = new Map([
-    ['checkmark', <Check />],
-    ['times', <Close />],
+    ['checkmark', <MdCheck />],
+    ['times', <MdClose />],
 ]);

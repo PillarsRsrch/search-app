@@ -1,6 +1,7 @@
 import { IInputProps } from './IInputProps';
-import { Input as ChakraInput } from '@chakra-ui/react';
 import React from 'react';
+import { StyledInputContainer } from './StyledInputContainer';
+import { Input as ChakraInput } from '@chakra-ui/react';
 
 export const Input = ({
     onChange,
@@ -10,13 +11,15 @@ export const Input = ({
     placeholder,
 }: IInputProps) => {
     return (
-        <ChakraInput
-            value={value}
-            type={type}
-            placeholder={placeholder}
-            name={name}
-            onChange={(e) => onChange(e.target.value)}
-            className="input-component"
-        />
+        <StyledInputContainer>
+            <ChakraInput
+                value={value}
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                onChange={(e) => onChange(e.target.value)}
+                className="input-component"
+            />
+        </StyledInputContainer>
     );
 };
