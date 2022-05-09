@@ -11,8 +11,10 @@ export const ProjectDisplayAllProjectsFragment = ({
             <Button onClick={createProject} disabled={false}>
                 Create Project
             </Button>
-            {projects.map((project) => (
-                <div className="project-component">{project}</div>
+            {projects.map((project, i) => (
+                <div key={i} className="project-component">
+                    {project}
+                </div>
             ))}
         </>
     );

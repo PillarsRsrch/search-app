@@ -23,7 +23,7 @@ describe('Project Page Test Stuite', () => {
         reset(mockedRouterService);
     });
 
-    test('Should render project page when empty with no projects', () => {
+    test('Should render project page when empty with no projects', async () => {
         when(mockedProjectService.getAllServicesAsync()).thenResolve([]);
         const { container } = render(
             <ProjectPage
@@ -37,6 +37,7 @@ describe('Project Page Test Stuite', () => {
         )[0];
 
         expect(projectComponent).toBeInTheDocument();
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     });
 
     test('Should navigate to new project page when create project is clicked', async () => {

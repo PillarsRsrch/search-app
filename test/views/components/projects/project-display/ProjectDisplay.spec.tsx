@@ -32,6 +32,7 @@ describe('Project Display Test Suite', () => {
 
         expect(onCreateProject).not.toBeCalled();
         expect(loadingText).toBeInTheDocument();
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     });
 
     test('Should render an empty project display', async () => {
