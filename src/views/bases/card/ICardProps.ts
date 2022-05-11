@@ -4,4 +4,5 @@ export interface ICardProps {
     width: string;
     height: string;
     children: ReactNode;
+    onClick?: () => void;
 }

@@ -6,6 +6,7 @@ import { ProjectListElement } from './ProjectListElement';
 export const ProjectListFragment = ({
     projects,
     createProject,
+    viewProject,
 }: IProjectListFragmentProps) => {
     return (
         <>
@@ -13,7 +14,11 @@ export const ProjectListFragment = ({
                 Create Project
             </Button>
             {projects.map((project) => (
-                <ProjectListElement key={project.id()} project={project} />
+                <ProjectListElement
+                    viewProject={viewProject}
+                    key={project.id()}
+                    project={project}
+                />
             ))}
         </>
     );

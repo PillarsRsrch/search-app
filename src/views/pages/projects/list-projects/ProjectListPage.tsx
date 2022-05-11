@@ -3,6 +3,7 @@ import React from 'react';
 import { ProjectList } from '../../../components/projects/projects-list/ProjectList';
 import { PageTransition } from '../../../../models/routers/PageTransition';
 import { CenteredLayout } from '../../../components/layouts/CenteredLayout';
+import { IProject } from '../../../../models/projects/IProject';
 
 export const ProjectListPage = ({
     projectService,
@@ -12,9 +13,14 @@ export const ProjectListPage = ({
         routerService.navigate(new PageTransition('/projects/new'));
     }
 
+    function onViewProject(project: IProject) {
+        routerService.navigate(new PageTransition(`/projects/${project.id()}`));
+    }
+
     return (
         <CenteredLayout>
             <ProjectList
+                onViewProject={onViewProject}
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />

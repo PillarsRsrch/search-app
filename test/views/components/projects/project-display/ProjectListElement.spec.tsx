@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { instance, mock, reset, when } from 'ts-mockito';
 import { IProject } from '../../../../../src/models/projects/IProject';
 import { ProjectListElement } from '../../../../../src/views/components/projects/projects-list/ProjectListElement';
@@ -16,6 +16,7 @@ describe('Project List Element Test Suite', () => {
     });
 
     test('Should render a project list element', () => {
+        const viewProject = jest.fn();
         when(mockedProject.name()).thenReturn('Project Name');
         when(mockedProject.fundingInstitute()).thenReturn(
             FundingInstituteTypes.NationalScienceFoundation
@@ -24,7 +25,9 @@ describe('Project List Element Test Suite', () => {
             ScientificFieldTypes.Engineering
         );
 
-        render(<ProjectListElement project={project} />);
+        render(
+            <ProjectListElement viewProject={viewProject} project={project} />
+        );
 
         const name = screen.getByText('Project Name');
         const field = screen.getByText('Engineering');
@@ -34,5 +37,25 @@ describe('Project List Element Test Suite', () => {
         expect(name).toBeInTheDocument();
         expect(field).toBeInTheDocument();
         expect(fundingInstitute).toBeInTheDocument();
+    });
+
+    test('Should click on a project list element', () => {
+        const viewProject = jest.fn();
+        when(mockedProject.name()).thenReturn('Project Name');
+        when(mockedProject.fundingInstitute()).thenReturn(
+            FundingInstituteTypes.NationalScienceFoundation
+        );
+        when(mockedProject.field()).thenReturn(
+            ScientificFieldTypes.Engineering
+        );
+
+        render(
+            <ProjectListElement viewProject={viewProject} project={project} />
+        );
+        const name = screen.getByText('Project Name');
+        fireEvent.click(name);
+
+        expect(name).toBeInTheDocument();
+        expect(viewProject).toHaveBeenCalled();
     });
 });

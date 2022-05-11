@@ -6,8 +6,10 @@ export const FlexLayout = ({
     styles,
     children,
     className,
+    onClick,
 }: IFlexLayoutProps) => (
     <Flex
+        onClick={onClick}
         className={className}
         sx={{ ...styles, gap: '25px', boxSizing: 'border-box' }}
     >

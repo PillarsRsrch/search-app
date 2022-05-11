@@ -5,4 +5,5 @@ export interface IFlexLayoutProps {
     className: string;
     styles: Partial<IFlexLayoutStyles>;
     children: ReactNode;
+    onClick?: () => void;
 }

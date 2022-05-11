@@ -22,27 +22,32 @@ describe('Project List Test Suite', () => {
     });
 
     test('Should render a loading message while fetching projects', async () => {
-        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
+        const onViewProject = jest.fn();
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         render(
             <ProjectList
                 onCreateProject={onCreateProject}
+                onViewProject={onViewProject}
                 projectsService={projectService}
             />
         );
 
         const loadingText = screen.getByText('Loading...');
 
+        expect(onViewProject).not.toBeCalled();
         expect(onCreateProject).not.toBeCalled();
         expect(loadingText).toBeInTheDocument();
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     });
 
     test('Should render an empty project list', async () => {
-        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
+        const onViewProject = jest.fn();
         const onCreateProject = jest.fn();
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const { container } = render(
             <ProjectList
+                onViewProject={onViewProject}
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -55,16 +60,19 @@ describe('Project List Test Suite', () => {
         const createButton =
             container.getElementsByClassName('button-component')[0];
 
+        expect(onViewProject).not.toBeCalled();
         expect(onCreateProject).not.toBeCalled();
         expect(emptyText).toBeInTheDocument();
         expect(createButton).toBeInTheDocument();
     });
 
     test('Should call the create project prop', async () => {
-        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
+        const onViewProject = jest.fn();
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const { container } = render(
             <ProjectList
+                onViewProject={onViewProject}
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -75,15 +83,18 @@ describe('Project List Test Suite', () => {
             container.getElementsByClassName('button-component')[0];
         fireEvent.click(createButton);
 
+        expect(onViewProject).not.toBeCalled();
         expect(onCreateProject).toBeCalled();
     });
 
     test('Should render a project list', async () => {
+        const onCreateProject = jest.fn();
+        const onViewProject = jest.fn();
         when(mockedProject.name()).thenReturn('Project Name');
         when(mockProjectService.getAllProjectsAsync()).thenResolve([project]);
-        const onCreateProject = jest.fn();
         const { container } = render(
             <ProjectList
+                onViewProject={onViewProject}
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -95,9 +106,33 @@ describe('Project List Test Suite', () => {
             container.getElementsByClassName('button-component')[0];
 
         expect(onCreateProject).not.toBeCalled();
+        expect(onViewProject).not.toBeCalled();
         expect(createButton).toBeInTheDocument();
         expect(name).toBeInTheDocument();
         verify(mockProjectService.getAllProjectsAsync()).once();
         verify(mockedProject.id()).once();
+    });
+
+    test('Should call the onViewProject handler when a project is clicked', async () => {
+        const onCreateProject = jest.fn();
+        const onViewProject = jest.fn();
+        when(mockedProject.name()).thenReturn('Project Name');
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([project]);
+        render(
+            <ProjectList
+                onViewProject={onViewProject}
+                onCreateProject={onCreateProject}
+                projectsService={projectService}
+            />
+        );
+
+        await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+        const name = screen.getByText('Project Name');
+        fireEvent.click(name);
+
+        expect(onCreateProject).not.toBeCalled();
+        expect(onViewProject).toBeCalled();
+        expect(name).toBeInTheDocument();
+        verify(mockProjectService.getAllProjectsAsync()).once();
     });
 });

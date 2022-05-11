@@ -10,6 +10,7 @@ import { useProjects } from './useProjects';
 export const ProjectList = ({
     projectsService,
     onCreateProject,
+    onViewProject,
 }: IProjectListProps) => {
     const [projects, displayState] = useProjects(projectsService);
     const projectDisplayFragmentLookup = new Map([
@@ -21,6 +22,7 @@ export const ProjectList = ({
         [
             ProjectListState.FoundProjects,
             <ProjectListFragment
+                viewProject={onViewProject}
                 projects={projects}
                 createProject={onCreateProject}
             />,
