@@ -9,7 +9,7 @@ import React from 'react';
 import { verify, instance, mock, reset, when } from 'ts-mockito';
 import { IProject } from '../../../../../src/models/projects/IProject';
 import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
-import { ProjectDisplay } from '../../../../../src/views/components/projects/projects-display/ProjectDisplay';
+import { ProjectList } from '../../../../../src/views/components/projects/projects-list/ProjectList';
 
 describe('Project Display Test Suite', () => {
     const mockProjectService = mock<IProjectService>();
@@ -25,7 +25,7 @@ describe('Project Display Test Suite', () => {
         when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         render(
-            <ProjectDisplay
+            <ProjectList
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -42,7 +42,7 @@ describe('Project Display Test Suite', () => {
         when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         const { container } = render(
-            <ProjectDisplay
+            <ProjectList
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -64,7 +64,7 @@ describe('Project Display Test Suite', () => {
         when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         const { container } = render(
-            <ProjectDisplay
+            <ProjectList
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
@@ -83,7 +83,7 @@ describe('Project Display Test Suite', () => {
         when(mockProjectService.getAllProjectsAsync()).thenResolve([project]);
         const onCreateProject = jest.fn();
         const { container } = render(
-            <ProjectDisplay
+            <ProjectList
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />

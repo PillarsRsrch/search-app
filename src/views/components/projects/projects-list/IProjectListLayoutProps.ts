@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface IProjectDisplayLayoutProps {
+export interface IProjectListLayoutProps {
     children: ReactNode;
 }

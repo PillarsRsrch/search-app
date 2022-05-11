@@ -1,10 +1,8 @@
 import React from 'react';
 import { FlexLayout } from '../../../bases/layout/FlexLayout';
-import { IProjectDisplayLayoutProps } from './IProjectDisplayLayoutProps';
+import { IProjectListLayoutProps } from './IProjectListLayoutProps';
 
-export const ProjectDisplayLayout = ({
-    children,
-}: IProjectDisplayLayoutProps) => (
+export const ProjectListLayout = ({ children }: IProjectListLayoutProps) => (
     <FlexLayout
         className="project-display-component"
         styles={{

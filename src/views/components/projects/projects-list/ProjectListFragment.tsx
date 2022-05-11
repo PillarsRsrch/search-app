@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '../../../bases/button/Button';
-import { IProjectDisplayAllProjectsFragment } from './IProjectDisplayAllProjectsFragment';
+import { IProjectListFragmentProps } from './IProjectListFragmentProps';
 
-export const ProjectDisplayAllProjectsFragment = ({
+export const ProjectListFragment = ({
     projects,
     createProject,
-}: IProjectDisplayAllProjectsFragment) => {
+}: IProjectListFragmentProps) => {
     return (
         <>
             <Button onClick={createProject} disabled={false}>

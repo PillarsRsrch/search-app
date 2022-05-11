@@ -1,6 +1,6 @@
 import { IProjectPageProps } from './IProjectPageProps';
 import React from 'react';
-import { ProjectDisplay } from '../../components/projects/projects-display/ProjectDisplay';
+import { ProjectList } from '../../components/projects/projects-list/ProjectList';
 import { PageTransition } from '../../../models/routers/PageTransition';
 import { CenteredLayout } from '../../components/layouts/CenteredLayout';
 
@@ -14,7 +14,7 @@ export const ProjectPage = ({
 
     return (
         <CenteredLayout>
-            <ProjectDisplay
+            <ProjectList
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />

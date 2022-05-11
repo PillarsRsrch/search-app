@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '../../../bases/button/Button';
 import { Text } from '../../../bases/text/Text';
-import { IProjectDisplayEmptyFragmentProps } from './IProjectDisplayEmptyFragmentProps';
+import { IProjectEmptyListFragmentProps } from './IProjectEmptyListFragmentProps';
 
-export const ProjectDisplayEmptyFragment = ({
+export const ProjectEmptyListFragment = ({
     onClick,
-}: IProjectDisplayEmptyFragmentProps) => (
+}: IProjectEmptyListFragmentProps) => (
     <>
         <Text>You have no projects. Create a new project to get started</Text>
         <Button onClick={onClick} disabled={false}>
