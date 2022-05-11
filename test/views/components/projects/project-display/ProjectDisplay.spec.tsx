@@ -7,12 +7,15 @@ import {
 } from '@testing-library/react';
 import React from 'react';
 import { verify, instance, mock, reset, when } from 'ts-mockito';
+import { IProject } from '../../../../../src/models/projects/IProject';
 import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
 import { ProjectDisplay } from '../../../../../src/views/components/projects/projects-display/ProjectDisplay';
 
 describe('Project Display Test Suite', () => {
     const mockProjectService = mock<IProjectService>();
+    const mockedProject = mock<IProject>();
     const projectService = instance(mockProjectService);
+    const project = instance(mockedProject);
 
     beforeEach(() => {
         reset(mockProjectService);
@@ -76,7 +79,8 @@ describe('Project Display Test Suite', () => {
     });
 
     test('Should render an empty project display', async () => {
-        when(mockProjectService.getAllProjectsAsync()).thenResolve([0, 1]);
+        when(mockedProject.name()).thenReturn('1');
+        when(mockProjectService.getAllProjectsAsync()).thenResolve([project]);
         const onCreateProject = jest.fn();
         const { container } = render(
             <ProjectDisplay
@@ -93,8 +97,7 @@ describe('Project Display Test Suite', () => {
         expect(onCreateProject).not.toBeCalled();
         expect(createButton).toBeInTheDocument();
         verify(mockProjectService.getAllProjectsAsync()).once();
-        expect(projects.length).toEqual(2);
+        expect(projects.length).toEqual(1);
         expect(projects[0]).toBeInTheDocument();
-        expect(projects[1]).toBeInTheDocument();
     });
 });

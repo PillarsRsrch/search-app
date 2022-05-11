@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { Form as FormModel } from '../../../../models/form/Form';
 import { IForm } from '../../../../models/form/IForm';
+import { DataSourceTypes } from '../../../../models/projects/DataSourceTypes';
+import { FundingInstituteTypes } from '../../../../models/projects/FundingInstituteTypes';
+import { ScientificFieldTypes } from '../../../../models/projects/ScientificFieldTypes';
 import { Center } from '../../../bases/center/Center';
 import { Form } from '../../../bases/form/Form';
 import { Heading } from '../../../bases/header/Heading';
@@ -13,12 +16,12 @@ export const CreateProjectForm = ({
     projectMapper,
 }: ICreateProjectFormProps) => {
     const formRef = useRef(new FormModel());
-    const fundingInstitutes = ['National Science Foundation (NSF)'];
-    const scientificFields = ['Engineering'];
-    const dataSources = ['None', 'Google Drive'];
+    const fundingInstitutes = [FundingInstituteTypes.NationalScienceFoundation];
+    const scientificFields = [ScientificFieldTypes.Engineering];
+    const dataSources = [DataSourceTypes.None, DataSourceTypes.GoogleDrive];
 
     function handleSubmit(form: IForm) {
-        onSubmit(projectMapper.fromForm(form));
+        onSubmit(projectMapper.map(form));
     }
 
     return (

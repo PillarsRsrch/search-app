@@ -13,7 +13,7 @@ export const ProjectDisplayAllProjectsFragment = ({
             </Button>
             {projects.map((project, i) => (
                 <div key={i} className="project-component">
-                    {project}
+                    {project.name()}
                 </div>
             ))}
         </>

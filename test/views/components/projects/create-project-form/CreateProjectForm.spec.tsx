@@ -4,9 +4,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { CreateProjectForm } from '../../../../../src/views/components/projects/create-project-form/CreateProjectForm';
 import { anything, instance, mock, reset, verify } from 'ts-mockito';
 import { IProjectMapper } from '../../../../../src/mappers/project/IProjectMapper';
+import { IForm } from '../../../../../src/models/form/IForm';
 
 describe('Create Project Form Test Suite', () => {
-    const mockedProjectMapper = mock<IProjectMapper>();
+    const mockedProjectMapper = mock<IProjectMapper<IForm>>();
     const projectMapper = instance(mockedProjectMapper);
 
     beforeEach(() => {
@@ -43,7 +44,7 @@ describe('Create Project Form Test Suite', () => {
         const submit = screen.getByText('Submit');
         fireEvent.click(submit);
 
-        verify(mockedProjectMapper.fromForm(anything())).once();
+        verify(mockedProjectMapper.map(anything())).once();
         expect(onSubmit).toHaveBeenCalled();
     });
 });
