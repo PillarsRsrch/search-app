@@ -16,10 +16,9 @@ describe('Create Project Test Suite', () => {
     const projects = domainLangaugeFactory.buildDomainLanguage();
 
     it('When user authenticates and creates a project it should fill the form and display the project in the list', async () => {
-        const file = {};
         await projects.navigateToProjects();
 
-        await projects.createProjectWithImportedData(file);
+        await projects.createProjectWithImportedData();
 
         projects.assertProjectCreated();
     });

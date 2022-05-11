@@ -17,7 +17,7 @@ export class GoogleDriveProjectDriver implements IProjectDriver {
         await this.authenticator.authenticate();
     }
 
-    async createProjectWithImportedData(file: IFile): Promise<void> {
+    async createProjectWithImportedData(): Promise<void> {
         this.web.click(new ClassSelector('button-component'));
         this.web.type(new NameSelector('projectName'), 'Project Name');
         this.web.click(new ClassSelector('button-component'));

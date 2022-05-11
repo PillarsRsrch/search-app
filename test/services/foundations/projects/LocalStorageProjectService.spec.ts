@@ -45,13 +45,13 @@ describe('Local Storage Project Service Test Suite', () => {
             const expectedProject = inputProject;
             when(mockedMapper.unmap(anything())).thenReturn({});
             when(mockedMapper.map(anything())).thenReturn(inputProject);
-            when(mockedRepository.save(anything())).thenCall((x) => x);
+            when(mockedRepository.create(anything())).thenCall((x) => x);
 
             const actualProject = await projectService.createProjectAsync(
                 inputProject
             );
 
-            verify(mockedRepository.save(anything())).once();
+            verify(mockedRepository.create(anything())).once();
             verify(mockedMapper.unmap(inputProject)).once();
             verify(mockedMapper.map(anything())).once();
             expect(actualProject).toEqual(expectedProject);

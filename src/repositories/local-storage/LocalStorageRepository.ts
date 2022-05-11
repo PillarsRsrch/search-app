@@ -1,17 +1,16 @@
-import { ILocalStorageRepository } from './ILocalStorageRepository';
+import { IRepository } from '../IRepository';
 import { LocalStorageRecord } from './LocalStorageRecord';
 
-export class LocalStorageRepository implements ILocalStorageRepository {
+export class LocalStorageRepository implements IRepository<LocalStorageRecord> {
     constructor(private readonly key: string) {}
 
-    getAll(): LocalStorageRecord[] {
+    create(entity: Record<string, string>): LocalStorageRecord {
         this.assertTableExists();
         const table = this.getTable();
-        const entities = [];
-        for (const id in table) {
-            entities.push(table[id]);
-        }
-        return entities;
+        const id = entity['id'];
+        table[id] = entity;
+        this.setTable(table);
+        return entity;
     }
 
     private assertTableExists() {
@@ -24,16 +23,23 @@ export class LocalStorageRepository implements ILocalStorageRepository {
         return JSON.parse(window.localStorage.getItem(this.key) as string);
     }
 
-    save(entity: Record<string, string>): LocalStorageRecord {
-        this.assertTableExists();
-        const table = this.getTable();
-        const id = entity['id'];
-        table[id] = entity;
-        this.setTable(table);
-        return entity;
-    }
-
     private setTable(table: LocalStorageRecord) {
         window.localStorage.setItem(this.key, JSON.stringify(table));
+    }
+
+    getAll(): LocalStorageRecord[] {
+        this.assertTableExists();
+        const table = this.getTable();
+        const entities = [];
+        for (const id in table) {
+            entities.push(table[id]);
+        }
+        return entities;
+    }
+
+    getById(id: string): LocalStorageRecord {
+        this.assertTableExists();
+        const table = this.getTable();
+        return JSON.parse(table[id]);
     }
 }

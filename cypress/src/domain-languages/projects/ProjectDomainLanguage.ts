@@ -1,4 +1,3 @@
-import { IFile } from '../../drivers/file-picker/IFile';
 import { IProjectDriver } from '../../drivers/projects/IProjectDriver';
 import { IProjectDomainLanguage } from './IProjectDomainLanguage';
 
@@ -9,8 +8,8 @@ export class ProjectDomainLanguage implements IProjectDomainLanguage {
         await this.driver.navigateToProjects();
     }
 
-    async createProjectWithImportedData(file: IFile): Promise<void> {
-        await this.driver.createProjectWithImportedData(file);
+    async createProjectWithImportedData(): Promise<void> {
+        await this.driver.createProjectWithImportedData();
     }
 
     assertProjectCreated(): void {
