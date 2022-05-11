@@ -1,13 +1,13 @@
-import { IProjectPageProps } from './IProjectPageProps';
+import { IProjectListPageProps } from './IProjectListPageProps';
 import React from 'react';
-import { ProjectList } from '../../components/projects/projects-list/ProjectList';
-import { PageTransition } from '../../../models/routers/PageTransition';
-import { CenteredLayout } from '../../components/layouts/CenteredLayout';
+import { ProjectList } from '../../../components/projects/projects-list/ProjectList';
+import { PageTransition } from '../../../../models/routers/PageTransition';
+import { CenteredLayout } from '../../../components/layouts/CenteredLayout';
 
-export const ProjectPage = ({
+export const ProjectListPage = ({
     projectService,
     routerService,
-}: IProjectPageProps) => {
+}: IProjectListPageProps) => {
     function onCreateProject() {
         routerService.navigate(new PageTransition('/projects/new'));
     }

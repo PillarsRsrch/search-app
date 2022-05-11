@@ -7,7 +7,10 @@ export const FlexLayout = ({
     children,
     className,
 }: IFlexLayoutProps) => (
-    <Flex className={className} sx={{ ...styles, boxSizing: 'border-box' }}>
+    <Flex
+        className={className}
+        sx={{ ...styles, gap: '25px', boxSizing: 'border-box' }}
+    >
         {children}
     </Flex>
 );

@@ -10,14 +10,14 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { AccessToken } from '../../../../src/models/authenticators/AccessToken';
-import { Cookie } from '../../../../src/models/storage/Cookie';
-import { IAuthenticatorService } from '../../../../src/services/foundations/authenticators/IAuthenticatorService';
-import { ICookieService } from '../../../../src/services/foundations/cookies/ICookieService';
-import { IIconService } from '../../../../src/services/foundations/icons/IIconService';
-import { SignupCard } from '../../../../src/views/components/authentications/signup-card/SignupCard';
-import { FailureAuthenticator } from '../authentication/fakes/FailureAuthenticator';
-import { SuccessAuthenticator } from '../authentication/fakes/SuccessAuthenticator';
+import { AccessToken } from '../../../../../src/models/authenticators/AccessToken';
+import { Cookie } from '../../../../../src/models/storage/Cookie';
+import { IAuthenticatorService } from '../../../../../src/services/foundations/authenticators/IAuthenticatorService';
+import { ICookieService } from '../../../../../src/services/foundations/cookies/ICookieService';
+import { IIconService } from '../../../../../src/services/foundations/icons/IIconService';
+import { SignupCard } from '../../../../../src/views/components/authentications/signup-card/SignupCard';
+import { FailureAuthenticator } from '../fakes/FailureAuthenticator';
+import { SuccessAuthenticator } from '../fakes/SuccessAuthenticator';
 
 describe('Sign Up Card Test Suite', () => {
     const mockedAuthenticatorService = mock<IAuthenticatorService>();

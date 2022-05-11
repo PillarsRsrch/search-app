@@ -11,7 +11,7 @@ import { IProject } from '../../../../../src/models/projects/IProject';
 import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
 import { ProjectList } from '../../../../../src/views/components/projects/projects-list/ProjectList';
 
-describe('Project Display Test Suite', () => {
+describe('Project List Test Suite', () => {
     const mockProjectService = mock<IProjectService>();
     const mockedProject = mock<IProject>();
     const projectService = instance(mockProjectService);
@@ -38,7 +38,7 @@ describe('Project Display Test Suite', () => {
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     });
 
-    test('Should render an empty project display', async () => {
+    test('Should render an empty project list', async () => {
         when(mockProjectService.getAllProjectsAsync()).thenResolve([]);
         const onCreateProject = jest.fn();
         const { container } = render(
@@ -78,8 +78,8 @@ describe('Project Display Test Suite', () => {
         expect(onCreateProject).toBeCalled();
     });
 
-    test('Should render an empty project display', async () => {
-        when(mockedProject.name()).thenReturn('1');
+    test('Should render a project list', async () => {
+        when(mockedProject.name()).thenReturn('Project Name');
         when(mockProjectService.getAllProjectsAsync()).thenResolve([project]);
         const onCreateProject = jest.fn();
         const { container } = render(
@@ -90,14 +90,14 @@ describe('Project Display Test Suite', () => {
         );
 
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
-        const projects = container.getElementsByClassName('project-component');
+        const name = screen.getByText('Project Name');
         const createButton =
             container.getElementsByClassName('button-component')[0];
 
         expect(onCreateProject).not.toBeCalled();
         expect(createButton).toBeInTheDocument();
+        expect(name).toBeInTheDocument();
         verify(mockProjectService.getAllProjectsAsync()).once();
-        expect(projects.length).toEqual(1);
-        expect(projects[0]).toBeInTheDocument();
+        verify(mockedProject.id()).once();
     });
 });

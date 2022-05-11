@@ -4,7 +4,7 @@ import { LocalStorageRecordProjectMapper } from '../../src/mappers/project/Local
 import { LocalStorageRepository } from '../../src/repositories/local-storage/LocalStorageRepository';
 import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../src/services/foundations/router/NextRouterService';
-import { ProjectPage } from '../../src/views/pages/projects/ProjectPage';
+import { ProjectListPage } from '../../src/views/pages/projects/list-projects/ProjectListPage';
 
 const Projects: NextPage = () => {
     const router = useRouter();
@@ -15,7 +15,10 @@ const Projects: NextPage = () => {
     const routerService = new NextRouterService(router);
 
     return (
-        <ProjectPage routerService={routerService} projectService={project} />
+        <ProjectListPage
+            routerService={routerService}
+            projectService={project}
+        />
     );
 };
 

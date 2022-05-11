@@ -7,10 +7,10 @@ import {
 } from '@testing-library/react';
 import React from 'react';
 import { anyOfClass, instance, mock, reset, verify, when } from 'ts-mockito';
-import { PageTransition } from '../../../../src/models/routers/PageTransition';
-import { IProjectService } from '../../../../src/services/foundations/projects/IProjectService';
-import { IRouterService } from '../../../../src/services/foundations/router/IRouterService';
-import { ProjectPage } from '../../../../src/views/pages/projects/ProjectPage';
+import { PageTransition } from '../../../../../src/models/routers/PageTransition';
+import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
+import { IRouterService } from '../../../../../src/services/foundations/router/IRouterService';
+import { ProjectListPage } from '../../../../../src/views/pages/projects/list-projects/ProjectListPage';
 
 describe('Project Page Test Stuite', () => {
     const mockedProjectService = mock<IProjectService>();
@@ -26,7 +26,7 @@ describe('Project Page Test Stuite', () => {
     test('Should render project page when empty with no projects', async () => {
         when(mockedProjectService.getAllProjectsAsync()).thenResolve([]);
         const { container } = render(
-            <ProjectPage
+            <ProjectListPage
                 routerService={routerService}
                 projectService={projectService}
             />
@@ -46,7 +46,7 @@ describe('Project Page Test Stuite', () => {
             mockedRouterService.navigate(anyOfClass(PageTransition))
         ).thenReturn();
         const { container } = render(
-            <ProjectPage
+            <ProjectListPage
                 routerService={routerService}
                 projectService={projectService}
             />
