@@ -9,8 +9,8 @@ export class ProjectDomainLanguage implements IProjectDomainLanguage {
         await this.driver.navigateToProjects();
     }
 
-    createProjectWithImportedData(file: IFile): void {
-        this.driver.createProjectWithImportedData(file);
+    async createProjectWithImportedData(file: IFile): Promise<void> {
+        await this.driver.createProjectWithImportedData(file);
     }
 
     assertProjectCreated(): void {

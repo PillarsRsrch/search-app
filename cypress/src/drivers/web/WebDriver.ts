@@ -49,4 +49,8 @@ export class WebDriver implements IWebDriver {
     click(selector: ISelector): void {
         cy.get(selector.toString()).click();
     }
+
+    type(selector: ISelector, text: string): void {
+        cy.get(selector.toString()).type(text);
+    }
 }

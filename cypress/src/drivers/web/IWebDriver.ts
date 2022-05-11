@@ -12,4 +12,5 @@ export interface IWebDriver {
     makeRequest<T = {}>(request: IRequest): Promise<IResponse<T>>;
     navigateToPage(path: IPath): void;
     click(selector: ISelector): void;
+    type(selector: ISelector, name: string): void;
 }

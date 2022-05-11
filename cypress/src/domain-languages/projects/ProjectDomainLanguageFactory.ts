@@ -21,11 +21,9 @@ export class ProjectDomainLanguageFactory
             webDriver,
             this.credentials
         );
-        const filePicker = new GoogleDriveFilePickerDriver();
         const projectDriver = new GoogleDriveProjectDriver(
             webDriver,
-            googleAuthenticatorDriver,
-            filePicker
+            googleAuthenticatorDriver
         );
         return new ProjectDomainLanguage(projectDriver);
     }
