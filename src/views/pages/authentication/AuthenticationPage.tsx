@@ -4,7 +4,7 @@ import { IAuthenticationPageProps } from './IAuthenticationPageProps';
 import { SignupCard } from '../../components/authentications/signup-card/SignupCard';
 import { Spacer } from '../../bases/spacer/Spacer';
 import { Cookie } from '../../../models/storage/Cookie';
-import { CenteredLayout } from '../../components/layouts/CenteredLayout';
+import { CenteredLayout } from '../../components/layouts/centered/CenteredLayout';
 
 export const AuthenticationPage = ({
     authenticatorService,

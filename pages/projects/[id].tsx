@@ -12,6 +12,7 @@ const ViewProject: NextPage = () => {
         new LocalStorageRepository('projects'),
         new LocalStorageRecordProjectMapper()
     );
+
     return <ViewProjectPage projectId={id} projectService={projectService} />;
 };
 

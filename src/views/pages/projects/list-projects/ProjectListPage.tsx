@@ -2,8 +2,8 @@ import { IProjectListPageProps } from './IProjectListPageProps';
 import React from 'react';
 import { ProjectList } from '../../../components/projects/projects-list/ProjectList';
 import { PageTransition } from '../../../../models/routers/PageTransition';
-import { CenteredLayout } from '../../../components/layouts/CenteredLayout';
 import { IProject } from '../../../../models/projects/IProject';
+import { HorizontallyCenteredLayout } from '../../../components/layouts/centered/HorizontallyCenteredLayout';
 
 export const ProjectListPage = ({
     projectService,
@@ -18,12 +18,12 @@ export const ProjectListPage = ({
     }
 
     return (
-        <CenteredLayout>
+        <HorizontallyCenteredLayout>
             <ProjectList
                 onViewProject={onViewProject}
                 onCreateProject={onCreateProject}
                 projectsService={projectService}
             />
-        </CenteredLayout>
+        </HorizontallyCenteredLayout>
     );
 };

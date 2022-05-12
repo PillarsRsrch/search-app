@@ -29,19 +29,19 @@ describe('Project Page Test Stuite', () => {
 
     test('Should render project page when empty with no projects', async () => {
         when(mockedProjectService.getAllProjectsAsync()).thenResolve([]);
-        const { container } = render(
+        render(
             <ProjectListPage
                 routerService={routerService}
                 projectService={projectService}
             />
         );
 
-        const projectComponent = container.getElementsByClassName(
-            'project-display-component'
-        )[0];
-
-        expect(projectComponent).toBeInTheDocument();
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+
+        const emptyText = screen.getByText(
+            'You have no projects. Create a new project to get started'
+        );
+        expect(emptyText).toBeInTheDocument();
     });
 
     test('Should navigate to new project page when create project is clicked', async () => {
@@ -49,7 +49,7 @@ describe('Project Page Test Stuite', () => {
         when(
             mockedRouterService.navigate(anyOfClass(PageTransition))
         ).thenReturn();
-        const { container } = render(
+        render(
             <ProjectListPage
                 routerService={routerService}
                 projectService={projectService}
@@ -57,15 +57,11 @@ describe('Project Page Test Stuite', () => {
         );
 
         await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
-        const projectComponent = container.getElementsByClassName(
-            'project-display-component'
-        )[0];
-        const createButton =
-            projectComponent.getElementsByClassName('button-component')[0];
+        const createButton = screen.getByText('Create Project');
         fireEvent.click(createButton);
 
         verify(mockedRouterService.navigate(anyOfClass(PageTransition))).once();
-        expect(projectComponent).toBeInTheDocument();
+        expect(createButton).toBeInTheDocument();
     });
 
     test('Should view an individual project when clicking on a project', async () => {

@@ -27,9 +27,6 @@ describe('View Project Page Test Suite', () => {
         const projectId = 'project-name';
         when(mockedProject.name()).thenReturn('Project Name');
         when(mockedProject.dataSource()).thenReturn(DataSourceTypes.None);
-        when(mockedProjectService.getProjectByIdAsync(anyString())).thenResolve(
-            project
-        );
         when(mockedProjectService.getAllProjectsAsync()).thenResolve([]);
         render(
             <ViewProjectPage
@@ -41,7 +38,6 @@ describe('View Project Page Test Suite', () => {
         const loading = await screen.getByText('Loading...');
 
         expect(loading).toBeInTheDocument();
-        await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     });
 
     test('Should view project with no data source', async () => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { IProjectListProps } from './IProjectListProps';
 import { ProjectListState } from './ProjectListState';
-import { ProjectListLayout } from './ProjectListLayout';
 import { ProjectListLoadingFragment } from './ProjectListLoadingFragment';
 import { ProjectEmptyListFragment } from './ProjectEmptyListFragment';
 import { ProjectListFragment } from './ProjectListFragment';
@@ -12,7 +11,7 @@ export const ProjectList = ({
     onCreateProject,
     onViewProject,
 }: IProjectListProps) => {
-    const [projects, displayState] = useProjects(projectsService);
+    const [projects, state] = useProjects(projectsService);
     const projectDisplayFragmentLookup = new Map([
         [ProjectListState.Loading, <ProjectListLoadingFragment />],
         [
@@ -29,9 +28,5 @@ export const ProjectList = ({
         ],
     ]);
 
-    return (
-        <ProjectListLayout>
-            {projectDisplayFragmentLookup.get(displayState)}
-        </ProjectListLayout>
-    );
+    return <>{projectDisplayFragmentLookup.get(state)}</>;
 };

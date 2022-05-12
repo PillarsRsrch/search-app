@@ -1,6 +1,6 @@
 import React from 'react';
-import { Center } from '../../bases/center/Center';
-import { FlexLayout } from '../../bases/layout/FlexLayout';
+import { Center } from '../../../bases/center/Center';
+import { FlexLayout } from '../../../bases/layout/FlexLayout';
 import { ICenteredLayoutProps } from './ICenteredLayoutProps';
 
 export const CenteredLayout = ({ children }: ICenteredLayoutProps) => (

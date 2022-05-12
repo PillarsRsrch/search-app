@@ -1,7 +1,7 @@
 import React from 'react';
 import { IProject } from '../../../../models/projects/IProject';
 import { PageTransition } from '../../../../models/routers/PageTransition';
-import { CenteredLayout } from '../../../components/layouts/CenteredLayout';
+import { CenteredLayout } from '../../../components/layouts/centered/CenteredLayout';
 import { CreateProjectForm } from '../../../components/projects/create-project-form/CreateProjectForm';
 import { ICreateProjectPageProps } from './ICreateProjectPageProps';
 

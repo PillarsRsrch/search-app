@@ -3,6 +3,7 @@ import { DataSourceTypes } from '../../../../models/projects/DataSourceTypes';
 import { IProject } from '../../../../models/projects/IProject';
 import { Heading } from '../../../bases/header/Heading';
 import { Text } from '../../../bases/text/Text';
+import { HorizontallyCenteredLayout } from '../../../components/layouts/centered/HorizontallyCenteredLayout';
 import { IViewProjectPageProps } from './IViewProjectPageProps';
 
 export const ViewProjectPage = ({
@@ -34,9 +35,9 @@ export const ViewProjectPage = ({
         return <Text>Loading...</Text>;
     }
     return (
-        <>
+        <HorizontallyCenteredLayout>
             <Heading level={4}>{project.name()}</Heading>
             {shouldRenderDataSetupWizard() ? renderDataSetupWizard() : null}
-        </>
+        </HorizontallyCenteredLayout>
     );
 };

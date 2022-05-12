@@ -7,7 +7,7 @@ export function useProjects(
     projectsService: IProjectService
 ): [IProject[], ProjectListState] {
     const [projects, setProjects] = useState<IProject[]>([]);
-    const [displayState, setDisplayState] = useState(ProjectListState.Loading);
+    const [state, setState] = useState(ProjectListState.Loading);
 
     function getStateFromProjects(projects: IProject[]) {
         return projects.length === 0
@@ -17,14 +17,14 @@ export function useProjects(
 
     useEffect(() => {
         const fetchProjects = async () => {
-            setDisplayState(ProjectListState.Loading);
+            setState(ProjectListState.Loading);
             const projects = await projectsService.getAllProjectsAsync();
             setProjects(projects);
-            setDisplayState(getStateFromProjects(projects));
+            setState(getStateFromProjects(projects));
         };
 
         fetchProjects();
     }, []);
 
-    return [projects, displayState];
+    return [projects, state];
 }
