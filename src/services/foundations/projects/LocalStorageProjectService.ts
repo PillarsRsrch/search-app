@@ -11,17 +11,20 @@ export class LocalStorageProjectService implements IProjectService {
     ) {}
 
     async createProjectAsync(project: IProject): Promise<IProject> {
-        const record = this.mapper.unmap(project);
-        this.repository.create(record);
-        return this.mapper.map(record);
+        const projectRecord = this.mapper.unmap(project);
+        this.repository.create(projectRecord);
+        return this.mapper.map(projectRecord);
     }
 
     async getAllProjectsAsync(): Promise<IProject[]> {
-        const projects = await this.repository.getAll();
-        return projects.map((project) => this.mapper.map(project));
+        const projectRecords = this.repository.getAll();
+        return projectRecords.map((projectRecord) =>
+            this.mapper.map(projectRecord)
+        );
     }
 
     async getProjectByIdAsync(projectId: string): Promise<IProject> {
-        throw new Error();
+        const projectRecord = this.repository.getById(projectId);
+        return this.mapper.map(projectRecord);
     }
 }

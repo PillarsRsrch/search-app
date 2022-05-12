@@ -17,7 +17,9 @@ export const ViewProjectPage = ({
             setProject(project);
         }
 
-        getProject();
+        if (projectId) {
+            getProject();
+        }
     }, [projectId]);
 
     function shouldRenderDataSetupWizard() {

@@ -40,6 +40,6 @@ export class LocalStorageRepository implements IRepository<LocalStorageRecord> {
     getById(id: string): LocalStorageRecord {
         this.assertTableExists();
         const table = this.getTable();
-        return JSON.parse(table[id]);
+        return table[id];
     }
 }

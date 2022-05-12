@@ -1,29 +1,22 @@
-import {
-    anyOfClass,
-    anything,
-    instance,
-    mock,
-    reset,
-    verify,
-    when,
-} from 'ts-mockito';
+import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { IProjectMapper } from '../../../../src/mappers/project/IProjectMapper';
 import { DataSourceTypes } from '../../../../src/models/projects/DataSourceTypes';
 import { FundingInstituteTypes } from '../../../../src/models/projects/FundingInstituteTypes';
 import { IProject } from '../../../../src/models/projects/IProject';
 import { Project } from '../../../../src/models/projects/Project';
 import { ScientificFieldTypes } from '../../../../src/models/projects/ScientificFieldTypes';
-import { ILocalStorageRepository } from '../../../../src/repositories/local-storage/ILocalStorageRepository';
+import { IRepository } from '../../../../src/repositories/IRepository';
 import { LocalStorageRecord } from '../../../../src/repositories/local-storage/LocalStorageRecord';
 import { LocalStorageProjectService } from '../../../../src/services/foundations/projects/LocalStorageProjectService';
+import { resolvableInstance } from '../../../extensions/resolvableInstance';
 
 describe('Local Storage Project Service Test Suite', () => {
-    const mockedRepository = mock<ILocalStorageRepository>();
+    const mockedRepository = mock<IRepository<LocalStorageRecord>>();
     const mockedMapper = mock<IProjectMapper<LocalStorageRecord>>();
     const mockedProject = mock<IProject>();
     const repository = instance(mockedRepository);
     const mapper = instance(mockedMapper);
-    const project = instance(mockedProject);
+    const project = resolvableInstance(mockedProject);
     const projectService = new LocalStorageProjectService(repository, mapper);
 
     beforeEach(() => {
@@ -70,6 +63,23 @@ describe('Local Storage Project Service Test Suite', () => {
             verify(mockedRepository.getAll()).once();
             expect(actualProjects).toHaveLength(1);
             expect(actualProjects[0].id()).toEqual('id');
+        });
+    });
+
+    describe('getProjectByIdAsync', () => {
+        test('Should get project by id', async () => {
+            const projectId = 'project-id';
+            when(mockedRepository.getById(projectId)).thenReturn({});
+            when(mockedMapper.map(anything())).thenReturn(project);
+            when(mockedProject.id()).thenReturn(projectId);
+
+            const actualProject = await projectService.getProjectByIdAsync(
+                projectId
+            );
+
+            expect(actualProject.id()).toEqual(projectId);
+            verify(mockedMapper.map(anything())).once();
+            verify(mockedRepository.getById(projectId)).once();
         });
     });
 });
