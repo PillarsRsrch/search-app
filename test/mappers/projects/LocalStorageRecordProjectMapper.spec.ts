@@ -1,5 +1,4 @@
 import { LocalStorageRecordProjectMapper } from '../../../src/mappers/project/LocalStorageRecordProjectMapper';
-import { DataSourceTypes } from '../../../src/models/projects/DataSourceTypes';
 import { FundingInstituteTypes } from '../../../src/models/projects/FundingInstituteTypes';
 import { Project } from '../../../src/models/projects/Project';
 import { ScientificFieldTypes } from '../../../src/models/projects/ScientificFieldTypes';
@@ -13,7 +12,6 @@ describe('Local Storage Record Project Mapper', () => {
                 id: 'project',
                 name: 'Project',
                 field: ScientificFieldTypes.Engineering,
-                dataSource: DataSourceTypes.GoogleDrive,
                 fundingInstitute:
                     FundingInstituteTypes.NationalScienceFoundation,
             });
@@ -21,7 +19,6 @@ describe('Local Storage Record Project Mapper', () => {
                 id: 'project',
                 name: 'Project',
                 field: 'Engineering',
-                dataSource: 'Google Drive',
                 fundingInstitute: 'National Science Foundation',
             };
 
@@ -37,14 +34,12 @@ describe('Local Storage Record Project Mapper', () => {
                 id: 'project',
                 name: 'Project',
                 field: 'Engineering',
-                dataSource: 'Google Drive',
                 fundingInstitute: 'National Science Foundation',
             };
             const project = new Project({
                 id: 'project',
                 name: 'Project',
                 field: ScientificFieldTypes.Engineering,
-                dataSource: DataSourceTypes.GoogleDrive,
                 fundingInstitute:
                     FundingInstituteTypes.NationalScienceFoundation,
             });

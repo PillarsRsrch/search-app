@@ -1,5 +1,4 @@
 import { IForm } from '../../models/form/IForm';
-import { DataSourceTypes } from '../../models/projects/DataSourceTypes';
 import { FundingInstituteTypes } from '../../models/projects/FundingInstituteTypes';
 import { IProject } from '../../models/projects/IProject';
 import { Project } from '../../models/projects/Project';
@@ -15,7 +14,6 @@ export class FormProjectMapper implements IProjectMapper<IForm> {
                 .toLowerCase()
                 .split(' ')
                 .join('-'),
-            dataSource: form.getField<DataSourceTypes>('dataSource'),
             field: form.getField<ScientificFieldTypes>('projectField'),
             fundingInstitute:
                 form.getField<FundingInstituteTypes>('fundingInstitute'),

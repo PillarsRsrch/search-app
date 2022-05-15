@@ -58,17 +58,6 @@ export const CreateProjectForm = ({
                 Select the funding institute that you are filing a grant
                 application for.
             </FormSelect>
-            <FormSelect
-                form={formRef.current}
-                options={dataSources}
-                defaultValue={dataSources[0]}
-                name="dataSource"
-                label="Data Source"
-            >
-                Select "None" if you are creating an application from scratch.
-                If you have already gathered some data, choose the service that
-                currently hosts your data
-            </FormSelect>
         </Form>
     );
 };

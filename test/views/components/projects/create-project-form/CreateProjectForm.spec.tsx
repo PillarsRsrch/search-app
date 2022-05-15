@@ -25,11 +25,9 @@ describe('Create Project Form Test Suite', () => {
         const projectNameLabel = screen.getByText('Project Name');
         const fundingInstituteLabel = screen.getByText('Funding Institute');
         const projectFieldLabel = screen.getByText('Project Field');
-        const dataSourceLabel = screen.getByText('Data Source');
         expect(projectNameLabel).toBeInTheDocument();
         expect(fundingInstituteLabel).toBeInTheDocument();
         expect(projectFieldLabel).toBeInTheDocument();
-        expect(dataSourceLabel).toBeInTheDocument();
     });
 
     test('Should call the onSubmit function', () => {

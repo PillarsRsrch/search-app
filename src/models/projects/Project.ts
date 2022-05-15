@@ -1,4 +1,3 @@
-import { DataSourceTypes } from './DataSourceTypes';
 import { FundingInstituteTypes } from './FundingInstituteTypes';
 import { IProject } from './IProject';
 import { IProjectDTO } from './IProjectDTO';
@@ -17,10 +16,6 @@ export class Project implements IProject {
 
     fundingInstitute(): FundingInstituteTypes {
         return this.dto.fundingInstitute;
-    }
-
-    dataSource(): DataSourceTypes {
-        return this.dto.dataSource;
     }
 
     field(): ScientificFieldTypes {

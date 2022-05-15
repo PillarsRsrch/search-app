@@ -15,7 +15,6 @@ describe('Form Project Mapper Test Suite', () => {
                     ['projectName', 'Project'],
                     ['fundingInstitute', 'National Science Foundation'],
                     ['projectField', 'Engineering'],
-                    ['dataSource', 'Google Drive'],
                 ])
             );
             const expectedProject = new Project({
@@ -24,7 +23,6 @@ describe('Form Project Mapper Test Suite', () => {
                 fundingInstitute:
                     FundingInstituteTypes.NationalScienceFoundation,
                 field: ScientificFieldTypes.Engineering,
-                dataSource: DataSourceTypes.GoogleDrive,
             });
 
             const actualProject = mapper.map(form);

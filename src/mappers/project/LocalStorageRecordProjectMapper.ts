@@ -1,4 +1,3 @@
-import { DataSourceTypes } from '../../models/projects/DataSourceTypes';
 import { FundingInstituteTypes } from '../../models/projects/FundingInstituteTypes';
 import { IProject } from '../../models/projects/IProject';
 import { Project } from '../../models/projects/Project';
@@ -14,7 +13,6 @@ export class LocalStorageRecordProjectMapper
             id: obj['id'],
             name: obj['name'],
             fundingInstitute: obj['fundingInstitute'] as FundingInstituteTypes,
-            dataSource: obj['dataSource'] as DataSourceTypes,
             field: obj['field'] as ScientificFieldTypes,
         });
     }
@@ -24,7 +22,6 @@ export class LocalStorageRecordProjectMapper
             id: project.id(),
             name: project.name(),
             fundingInstitute: project.fundingInstitute(),
-            dataSource: project.dataSource(),
             field: project.field(),
         };
     }
