@@ -60,7 +60,7 @@ export const ViewDataPage = ({
 
     function onCreateDataSource() {
         routerService.navigate(
-            new PageTransition(`projects/${project!.id()}/data/sources/create`)
+            new PageTransition(`/projects/${project!.id()}/data/sources/create`)
         );
     }
 
