@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Form as FormModel } from '../../../../models/form/Form';
 import { IForm } from '../../../../models/form/IForm';
-import { DataSourceTypes } from '../../../../models/projects/DataSourceTypes';
+import { DataSourceTypes } from '../../../../models/data/DataSourceTypes';
 import { FundingInstituteTypes } from '../../../../models/projects/FundingInstituteTypes';
 import { ScientificFieldTypes } from '../../../../models/projects/ScientificFieldTypes';
 import { Center } from '../../../bases/center/Center';

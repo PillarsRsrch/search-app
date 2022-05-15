@@ -1,4 +1,4 @@
 export interface IHeadingProps {
-    children: string;
+    children: string | string[];
     level: number;
 }

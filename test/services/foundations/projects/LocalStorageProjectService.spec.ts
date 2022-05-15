@@ -1,6 +1,6 @@
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { IProjectMapper } from '../../../../src/mappers/project/IProjectMapper';
-import { DataSourceTypes } from '../../../../src/models/projects/DataSourceTypes';
+import { DataSourceTypes } from '../../../../src/models/data/DataSourceTypes';
 import { FundingInstituteTypes } from '../../../../src/models/projects/FundingInstituteTypes';
 import { IProject } from '../../../../src/models/projects/IProject';
 import { Project } from '../../../../src/models/projects/Project';

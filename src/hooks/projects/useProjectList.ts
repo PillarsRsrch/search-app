@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import { IProject } from '../../../../models/projects/IProject';
-import { IProjectService } from '../../../../services/foundations/projects/IProjectService';
-import { ProjectListState } from './ProjectListState';
+import { IProject } from '../../models/projects/IProject';
+import { IProjectService } from '../../services/foundations/projects/IProjectService';
+import { ProjectListHookState } from './ProjectListHookState';
 
-export function useProjects(
+export function useProjectList(
     projectsService: IProjectService
-): [IProject[], ProjectListState] {
+): [IProject[], ProjectListHookState] {
     const [projects, setProjects] = useState<IProject[]>([]);
-    const [state, setState] = useState(ProjectListState.Loading);
+    const [state, setState] = useState(ProjectListHookState.Loading);
 
     function getStateFromProjects(projects: IProject[]) {
         return projects.length === 0
-            ? ProjectListState.FoundNoProjects
-            : ProjectListState.FoundProjects;
+            ? ProjectListHookState.FoundNoProjects
+            : ProjectListHookState.FoundProjects;
     }
 
     useEffect(() => {
         const fetchProjects = async () => {
-            setState(ProjectListState.Loading);
+            setState(ProjectListHookState.Loading);
             const projects = await projectsService.getAllProjectsAsync();
             setProjects(projects);
             setState(getStateFromProjects(projects));
