@@ -1,6 +1,5 @@
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
-import { IProjectMapper } from '../../../../src/mappers/project/IProjectMapper';
-import { DataSourceTypes } from '../../../../src/models/data/DataSourceTypes';
+import { IMapper } from '../../../../src/mappers/IMapper';
 import { FundingInstituteTypes } from '../../../../src/models/projects/FundingInstituteTypes';
 import { IProject } from '../../../../src/models/projects/IProject';
 import { Project } from '../../../../src/models/projects/Project';
@@ -12,7 +11,7 @@ import { resolvableInstance } from '../../../extensions/resolvableInstance';
 
 describe('Local Storage Project Service Test Suite', () => {
     const mockedRepository = mock<IRepository<LocalStorageRecord>>();
-    const mockedMapper = mock<IProjectMapper<LocalStorageRecord>>();
+    const mockedMapper = mock<IMapper<LocalStorageRecord, IProject>>();
     const mockedProject = mock<IProject>();
     const repository = instance(mockedRepository);
     const mapper = instance(mockedMapper);
@@ -35,7 +34,7 @@ describe('Local Storage Project Service Test Suite', () => {
                 field: ScientificFieldTypes.Engineering,
             });
             const expectedProject = inputProject;
-            when(mockedMapper.unmap(anything())).thenReturn({});
+            when(mockedMapper.inverseMap(anything())).thenReturn({});
             when(mockedMapper.map(anything())).thenReturn(inputProject);
             when(mockedRepository.create(anything())).thenCall((x) => x);
 
@@ -44,7 +43,7 @@ describe('Local Storage Project Service Test Suite', () => {
             );
 
             verify(mockedRepository.create(anything())).once();
-            verify(mockedMapper.unmap(inputProject)).once();
+            verify(mockedMapper.inverseMap(inputProject)).once();
             verify(mockedMapper.map(anything())).once();
             expect(actualProject).toEqual(expectedProject);
         });

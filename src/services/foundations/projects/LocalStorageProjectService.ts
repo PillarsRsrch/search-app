@@ -1,4 +1,4 @@
-import { IProjectMapper } from '../../../mappers/project/IProjectMapper';
+import { IMapper } from '../../../mappers/IMapper';
 import { IProject } from '../../../models/projects/IProject';
 import { IRepository } from '../../../repositories/IRepository';
 import { LocalStorageRecord } from '../../../repositories/local-storage/LocalStorageRecord';
@@ -7,11 +7,11 @@ import { IProjectService } from './IProjectService';
 export class LocalStorageProjectService implements IProjectService {
     constructor(
         private readonly repository: IRepository<LocalStorageRecord>,
-        private readonly mapper: IProjectMapper<LocalStorageRecord>
+        private readonly mapper: IMapper<LocalStorageRecord, IProject>
     ) {}
 
     async createProjectAsync(project: IProject): Promise<IProject> {
-        const projectRecord = this.mapper.unmap(project);
+        const projectRecord = this.mapper.inverseMap(project);
         this.repository.create(projectRecord);
         return this.mapper.map(projectRecord);
     }

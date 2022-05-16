@@ -3,10 +3,10 @@ import { IProject } from '../../models/projects/IProject';
 import { Project } from '../../models/projects/Project';
 import { ScientificFieldTypes } from '../../models/projects/ScientificFieldTypes';
 import { LocalStorageRecord } from '../../repositories/local-storage/LocalStorageRecord';
-import { IProjectMapper } from './IProjectMapper';
+import { IMapper } from '../IMapper';
 
 export class LocalStorageRecordProjectMapper
-    implements IProjectMapper<LocalStorageRecord>
+    implements IMapper<LocalStorageRecord, IProject>
 {
     map(obj: LocalStorageRecord): IProject {
         return new Project({
@@ -17,7 +17,7 @@ export class LocalStorageRecordProjectMapper
         });
     }
 
-    unmap(project: IProject): LocalStorageRecord {
+    inverseMap(project: IProject): LocalStorageRecord {
         return {
             id: project.id(),
             name: project.name(),

@@ -1,4 +1,4 @@
-import { FormProjectMapper } from '../../../src/mappers/project/FormProjectMapper';
+import { FormProjectMapper } from '../../../src/mappers/projects/FormProjectMapper';
 import { Form } from '../../../src/models/form/Form';
 import { DataSourceTypes } from '../../../src/models/data/DataSourceTypes';
 import { FundingInstituteTypes } from '../../../src/models/projects/FundingInstituteTypes';

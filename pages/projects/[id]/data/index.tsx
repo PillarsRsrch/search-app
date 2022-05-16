@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { LocalStorageRecordProjectMapper } from '../../../../src/mappers/project/LocalStorageRecordProjectMapper';
+import { LocalStorageRecordDataSourceMapper } from '../../../../src/mappers/data-sources/LocalStorageRecordDataSourceMapper';
+import { LocalStorageRecordProjectMapper } from '../../../../src/mappers/projects/LocalStorageRecordProjectMapper';
 import { LocalStorageRepository } from '../../../../src/repositories/local-storage/LocalStorageRepository';
 import { LocalStorageDataSourceService } from '../../../../src/services/foundations/data-sources/LocalStorageDataSourceService';
 import { LocalStorageProjectService } from '../../../../src/services/foundations/projects/LocalStorageProjectService';
@@ -14,7 +15,10 @@ const ViewData: NextPage = () => {
         new LocalStorageRepository('projects'),
         new LocalStorageRecordProjectMapper()
     );
-    const dataSourceService = new LocalStorageDataSourceService();
+    const dataSourceService = new LocalStorageDataSourceService(
+        new LocalStorageRepository('DataSources'),
+        new LocalStorageRecordDataSourceMapper()
+    );
     const routerService = new NextRouterService(router);
 
     return (

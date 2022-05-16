@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProjectState } from '../../../../hooks/projects/ProjectState';
 import { useProject } from '../../../../hooks/projects/useProject';
-import { Text } from '../../../bases/text/Text';
+import { Heading } from '../../../bases/header/Heading';
 import { IProjectNameProps } from './IProjectNameProps';
 
 export const ProjectName = ({
@@ -9,15 +9,17 @@ export const ProjectName = ({
     projectService,
 }: IProjectNameProps) => {
     const [project, projectState] = useProject(projectService, projectId);
-    console.log(project, projectState);
 
     const componentMap = new Map([
-        [ProjectState.Loading, <Text>Loading...</Text>],
+        [ProjectState.Loading, <Heading level={1}>Loading...</Heading>],
         [
             ProjectState.LoadedProject,
-            <Text>{project ? project.name() : ''} Data</Text>,
+            <Heading level={1}>{project ? project.name() : ''} Data</Heading>,
         ],
-        [ProjectState.ProjectNotFound, <Text>Project Not Found</Text>],
+        [
+            ProjectState.ProjectNotFound,
+            <Heading level={1}>Project Not Found</Heading>,
+        ],
     ]);
 
     return <>{componentMap.get(projectState)}</>;

@@ -4,14 +4,14 @@ import { fireEvent, render } from '@testing-library/react';
 import { CreateProjectPage } from '../../../../../src/views/pages/projects/create-project/CreateProjectPage';
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
-import { IProjectMapper } from '../../../../../src/mappers/project/IProjectMapper';
+import { IMapper } from '../../../../../src/mappers/IMapper';
 import { IForm } from '../../../../../src/models/form/IForm';
 import { IRouterService } from '../../../../../src/services/foundations/router/IRouterService';
 
 describe('Create Project Page Test Suite', () => {
     const mockedProjectService = mock<IProjectService>();
     const mockedRouterService = mock<IRouterService>();
-    const mockedProjectMapper = mock<IProjectMapper<IForm>>();
+    const mockedProjectMapper = mock<IMapper<IForm>>();
     const projectService = instance(mockedProjectService);
     const projectMapper = instance(mockedProjectMapper);
     const routerService = instance(mockedRouterService);

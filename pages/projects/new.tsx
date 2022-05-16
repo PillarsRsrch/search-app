@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { FormProjectMapper } from '../../src/mappers/project/FormProjectMapper';
-import { LocalStorageRecordProjectMapper } from '../../src/mappers/project/LocalStorageRecordProjectMapper';
+import { FormProjectMapper } from '../../src/mappers/projects/FormProjectMapper';
+import { LocalStorageRecordProjectMapper } from '../../src/mappers/projects/LocalStorageRecordProjectMapper';
 import { LocalStorageRepository } from '../../src/repositories/local-storage/LocalStorageRepository';
 import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../src/services/foundations/router/NextRouterService';

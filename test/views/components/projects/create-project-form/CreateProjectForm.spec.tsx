@@ -3,11 +3,11 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { CreateProjectForm } from '../../../../../src/views/components/projects/create-project-form/CreateProjectForm';
 import { anything, instance, mock, reset, verify } from 'ts-mockito';
-import { IProjectMapper } from '../../../../../src/mappers/project/IProjectMapper';
+import { IMapper } from '../../../../../src/mappers/IMapper';
 import { IForm } from '../../../../../src/models/form/IForm';
 
 describe('Create Project Form Test Suite', () => {
-    const mockedProjectMapper = mock<IProjectMapper<IForm>>();
+    const mockedProjectMapper = mock<IMapper<IForm>>();
     const projectMapper = instance(mockedProjectMapper);
 
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import { LocalStorageRecordProjectMapper } from '../../../src/mappers/project/LocalStorageRecordProjectMapper';
+import { LocalStorageRecordProjectMapper } from '../../../src/mappers/projects/LocalStorageRecordProjectMapper';
 import { FundingInstituteTypes } from '../../../src/models/projects/FundingInstituteTypes';
 import { Project } from '../../../src/models/projects/Project';
 import { ScientificFieldTypes } from '../../../src/models/projects/ScientificFieldTypes';
@@ -28,8 +28,8 @@ describe('Local Storage Record Project Mapper', () => {
         });
     });
 
-    describe('unmap', () => {
-        test('Should unmap a project to a local storage record', () => {
+    describe('inverseMap', () => {
+        test('Should inverseMap a project to a local storage record', () => {
             const expectedRecord = {
                 id: 'project',
                 name: 'Project',
@@ -44,7 +44,7 @@ describe('Local Storage Record Project Mapper', () => {
                     FundingInstituteTypes.NationalScienceFoundation,
             });
 
-            const actualRecord = mapper.unmap(project);
+            const actualRecord = mapper.inverseMap(project);
 
             expect(actualRecord).toEqual(expectedRecord);
         });
