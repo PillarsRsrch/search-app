@@ -18,7 +18,7 @@ export const CreateProjectForm = ({
     const formRef = useRef(new FormModel());
     const fundingInstitutes = [FundingInstituteTypes.NationalScienceFoundation];
     const scientificFields = [ScientificFieldTypes.Engineering];
-    const dataSources = [DataSourceTypes.None, DataSourceTypes.GoogleDrive];
+    const dataSources = [DataSourceTypes.Manual, DataSourceTypes.GoogleDrive];
 
     function handleSubmit(form: IForm) {
         onSubmit(projectMapper.map(form));

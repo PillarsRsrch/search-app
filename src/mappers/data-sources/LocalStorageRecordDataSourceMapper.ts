@@ -16,6 +16,7 @@ export class LocalStorageRecordDataSourceMapper
 
     inverseMap(project: IDataSource): LocalStorageRecord {
         return {
+            id: project.id(),
             name: project.name(),
             type: project.type(),
         };

@@ -18,6 +18,7 @@ describe('Local Storage Record Data Source Mapper', () => {
         const expectedType = DataSourceTypes.GoogleDrive;
         when(mockedDataSource.name()).thenReturn(expectedName);
         when(mockedDataSource.type()).thenReturn(expectedType);
+        when(mockedDataSource.id()).thenReturn(expectedName);
 
         const actualDataSource = mapper.map({
             name: expectedName,
@@ -25,17 +26,20 @@ describe('Local Storage Record Data Source Mapper', () => {
         });
 
         expect(actualDataSource.name()).toEqual(expectedDataSource.name());
+        expect(actualDataSource.id()).toEqual(expectedDataSource.id());
         expect(actualDataSource.type()).toEqual(expectedDataSource.type());
     });
 
-    test('unmap', () => {
+    test('inverseMap', () => {
         const expectedName = 'Data Source';
         const expectedType = DataSourceTypes.GoogleDrive;
         const expectedRecord = {
             name: expectedName,
             type: expectedType,
+            id: expectedName,
         };
         when(mockedDataSource.name()).thenReturn(expectedName);
+        when(mockedDataSource.id()).thenReturn(expectedName);
         when(mockedDataSource.type()).thenReturn(expectedType);
 
         const actualRecord = mapper.inverseMap(dataSource);

@@ -25,14 +25,14 @@ export class Form implements IForm {
 
     setField<T>(field: string, data: T): void {
         if (!this.hasField(field)) {
-            throw new Error(`Can not set a non existant field "${field}".`);
+            throw new Error(`Can not set a non existent field "${field}".`);
         }
         this.formData.set(field, data);
     }
 
     removeField(field: string): boolean {
         if (!this.hasField(field)) {
-            throw new Error(`Can not remove a non existant field "${field}".`);
+            throw new Error(`Can not remove a non existent field "${field}".`);
         }
         this.formData.delete(field);
         return true;

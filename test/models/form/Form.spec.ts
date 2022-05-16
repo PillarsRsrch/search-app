@@ -88,7 +88,7 @@ describe('Form Test Suite', () => {
             const service = new Form();
 
             expect(() => service.setField(field, inputValue)).toThrowError(
-                new Error(`Can not set a non existant field "${field}".`)
+                new Error(`Can not set a non existent field "${field}".`)
             );
         });
     });
@@ -99,7 +99,7 @@ describe('Form Test Suite', () => {
             const service = new Form();
 
             expect(() => service.removeField(field)).toThrowError(
-                new Error(`Can not remove a non existant field "${field}".`)
+                new Error(`Can not remove a non existent field "${field}".`)
             );
         });
 

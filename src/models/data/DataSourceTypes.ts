@@ -1,5 +1,5 @@
 enum DataSourceTypes {
-    None = 'None',
+    Manual = 'Manual',
     GoogleDrive = 'Google Drive',
 }
 
