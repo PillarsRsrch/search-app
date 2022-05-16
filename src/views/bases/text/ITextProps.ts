@@ -1,3 +1,3 @@
 export interface ITextProps {
-    children: string;
+    children: string | string[];
 }

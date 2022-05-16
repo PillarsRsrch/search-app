@@ -3,7 +3,7 @@ import { HorizontallyCenteredLayout } from '../../layouts/centered/HorizontallyC
 import { IProjectViewProps } from './IProjectViewProps';
 import { ProjectViewFragment } from './ProjectViewFragment';
 import { ProjectViewLoadingFragment } from './ProjectViewLoadingFragment';
-import { ProjectHookState } from '../../../../hooks/projects/ProjectHookState';
+import { ProjectState } from '../../../../hooks/projects/ProjectState';
 import { useProject } from '../../../../hooks/projects/useProject';
 
 export const ProjectView = ({
@@ -13,9 +13,9 @@ export const ProjectView = ({
 }: IProjectViewProps) => {
     const [project, state] = useProject(projectService, projectId);
     const fragmentMap = new Map([
-        [ProjectHookState.Loading, <ProjectViewLoadingFragment />],
+        [ProjectState.Loading, <ProjectViewLoadingFragment />],
         [
-            ProjectHookState.LoadedProject,
+            ProjectState.LoadedProject,
             <ProjectViewFragment onViewData={onViewData} project={project!} />,
         ],
     ]);

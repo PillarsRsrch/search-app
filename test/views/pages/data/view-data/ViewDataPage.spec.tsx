@@ -14,12 +14,13 @@ import { IDataSource } from '../../../../../src/models/data/IDataSource';
 import { IProjectService } from '../../../../../src/services/foundations/projects/IProjectService';
 import { IProject } from '../../../../../src/models/projects/IProject';
 import { IRouterService } from '../../../../../src/services/foundations/router/IRouterService';
+import { Project } from '../../../../../src/models/projects/Project';
 
 describe('View Data Page Test Suite', () => {
     const mockedDataSourceService = mock<IDataSourceService>();
     const mockedDataSource = mock<IDataSource>();
     const mockedProjectService = mock<IProjectService>();
-    const mockedProject = mock<IProject>();
+    const mockedProject = mock(Project);
     const mockedRouterService = mock<IRouterService>();
     const dataSourceService = instance(mockedDataSourceService);
     const dataSource = resolvableInstance(mockedDataSource);
@@ -30,19 +31,19 @@ describe('View Data Page Test Suite', () => {
     beforeEach(() => {
         reset(mockedDataSourceService);
         reset(mockedDataSource);
+        reset(mockedProjectService);
         reset(mockedProject);
         reset(mockedRouterService);
-        reset(mockedProjectService);
     });
 
     test('Should render the view data page with no data sources', async () => {
         const projectName = 'Project Name';
-        const projectId = 'project-id';
+        const projectId = 'project-name';
+        when(mockedProject.name()).thenReturn(projectName);
         when(mockedDataSourceService.getAllDataSources()).thenResolve([]);
         when(mockedProjectService.getProjectByIdAsync(projectId)).thenResolve(
             project
         );
-        when(mockedProject.name()).thenReturn(projectName);
 
         render(
             <ViewDataPage
@@ -95,14 +96,14 @@ describe('View Data Page Test Suite', () => {
         const projectName = 'Cool Project';
         const projectId = 'cool-project';
         const dataSourceName = 'Data Source Name';
+        when(mockedProject.name()).thenReturn(projectName);
+        when(mockedDataSource.name()).thenReturn(dataSourceName);
         when(mockedDataSourceService.getAllDataSources()).thenResolve([
             dataSource,
         ]);
         when(mockedProjectService.getProjectByIdAsync(projectId)).thenResolve(
             project
         );
-        when(mockedProject.name()).thenReturn(projectName);
-        when(mockedDataSource.name()).thenReturn(dataSourceName);
 
         render(
             <ViewDataPage

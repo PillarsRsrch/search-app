@@ -33,7 +33,6 @@ describe('Local Storage Project Service Test Suite', () => {
                 fundingInstitute:
                     FundingInstituteTypes.NationalScienceFoundation,
                 field: ScientificFieldTypes.Engineering,
-                dataSource: DataSourceTypes.GoogleDrive,
             });
             const expectedProject = inputProject;
             when(mockedMapper.unmap(anything())).thenReturn({});
