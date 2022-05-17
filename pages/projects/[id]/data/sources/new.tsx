@@ -4,6 +4,7 @@ import { FormDataSourceMapper } from '../../../../../src/mappers/data-sources/Fo
 import { LocalStorageRecordDataSourceMapper } from '../../../../../src/mappers/data-sources/LocalStorageRecordDataSourceMapper';
 import { LocalStorageRepository } from '../../../../../src/repositories/local-storage/LocalStorageRepository';
 import { LocalStorageDataSourceService } from '../../../../../src/services/foundations/data-sources/LocalStorageDataSourceService';
+import { GoogleDriveService } from '../../../../../src/services/foundations/google-drive/GoogleDriveService';
 import { NextRouterService } from '../../../../../src/services/foundations/router/NextRouterService';
 import { CreateDataSourcePage } from '../../../../../src/views/pages/data-sources/create-data-source/CreateDataSourcePage';
 
@@ -16,9 +17,12 @@ const NewSource: NextPage = () => {
         new LocalStorageRepository('DataSources'),
         new LocalStorageRecordDataSourceMapper()
     );
+    const googleDriveService = new GoogleDriveService();
+
     return (
         <CreateDataSourcePage
             projectId={id}
+            googleDriveService={googleDriveService}
             routerService={routerService}
             formMapper={mapper}
             dataSourceService={dataSourceService}

@@ -10,6 +10,7 @@ export const FormSelect = ({
     options,
     form,
     label,
+    onChange,
     children,
 }: IFormSelectProps) => {
     const [value, setValue] = useState(defaultValue);
@@ -22,14 +23,17 @@ export const FormSelect = ({
         form.setField(name, value);
     }, [value]);
 
+    function handleSelect(value: string) {
+        setValue(value);
+        if (onChange) {
+            onChange(value);
+        }
+    }
+
     return (
         <Label value={label}>
             <Text>{children}</Text>
-            <Select
-                options={options}
-                value={value}
-                onSelect={(selectedValue) => setValue(selectedValue)}
-            />
+            <Select options={options} value={value} onSelect={handleSelect} />
         </Label>
     );
 };

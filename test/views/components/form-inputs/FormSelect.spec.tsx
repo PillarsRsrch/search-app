@@ -58,4 +58,30 @@ describe('Form Select Test Suite', () => {
         verify(mockedForm.addField('name', 'value')).once();
         verify(mockedForm.setField('name', 'a')).once();
     });
+
+    test('Should call the change listener after selecting an option', () => {
+        const onChange = jest.fn();
+        render(
+            <FormSelect
+                name="name"
+                defaultValue="value"
+                options={['a']}
+                label="label"
+                form={form}
+                onChange={onChange}
+            >
+                description
+            </FormSelect>
+        );
+        expect(screen.queryByText('a')).toBeNull();
+
+        const defaultValue = screen.getByText('value');
+        fireEvent.focus(defaultValue);
+        const a = screen.getByText('a');
+        fireEvent.click(a);
+
+        verify(mockedForm.addField('name', 'value')).once();
+        verify(mockedForm.setField('name', 'a')).once();
+        expect(onChange).toHaveBeenCalled();
+    });
 });

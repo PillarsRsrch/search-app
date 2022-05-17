@@ -7,4 +7,5 @@ export interface IFormSelectProps {
     defaultValue: string;
     options: string[];
     form: IForm;
+    onChange?: (value: string) => void;
 }

@@ -1,5 +1,6 @@
 import { DataSourceTypes } from './DataSourceTypes';
 import { IDataSource } from './IDataSource';
+import { IDataSourceConfiguration } from './IDataSourceConfiguration';
 import { IDataSourceDTO } from './IDataSourceDTO';
 
 export class DataSource implements IDataSource {
@@ -15,5 +16,9 @@ export class DataSource implements IDataSource {
 
     name(): string {
         return this.props.name;
+    }
+
+    configuration(): IDataSourceConfiguration {
+        throw new Error('Method not implemented');
     }
 }
