@@ -10,9 +10,13 @@ import { useRouter } from 'next/router';
 import { CookieService } from '../src/services/foundations/cookies/CookieService';
 import { CookieRepository } from '../src/repositories/cookies/CookieRepository';
 import { Head } from '../src/views/bases/head/Head';
-import { Scripts } from '../src/views/bases/scripts/Scripts';
+import { GoogleAPIScripts } from '../src/views/bases/google-api-scripts/GoogleAPIScripts';
+import { IHomePageProps } from '../src/page-props/IHomePageProps';
 
-const Home: NextPage = () => {
+const Home: NextPage<IHomePageProps> = ({
+    clientId,
+    apiKey,
+}: IHomePageProps) => {
     const router = useRouter();
     const authenticatorService = new GoogleAuthenticatorService(
         '687779576352-9r79e7127rqfsb6tvf6k9887bbst7g1n.apps.googleusercontent.com',
@@ -35,9 +39,22 @@ const Home: NextPage = () => {
                 iconService={iconService}
                 routerService={routerService}
             />
-            <Scripts />
+            <GoogleAPIScripts
+                clientId={clientId}
+                apiKey={apiKey}
+                discoveryDocs={[]}
+            />
         </>
     );
 };
+
+export async function getStaticProps() {
+    return {
+        props: {
+            apiKey: process.env.GOOGLE_API_KEY,
+            clientId: process.env.GOOGLE_CLIENT_ID,
+        },
+    };
+}
 
 export default Home;

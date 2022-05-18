@@ -1,6 +1,6 @@
 export interface IBackgroundImageFileResource {
-    id: string;
-    xCoordinate: number;
-    yCoordinate: number;
-    width: number;
+    id?: string;
+    xCoordinate?: number;
+    yCoordinate?: number;
+    width?: number;
 }

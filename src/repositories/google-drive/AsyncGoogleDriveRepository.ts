@@ -8,8 +8,10 @@ export class AsyncGoogleDriveRepository
         throw new Error('Method not implemented.');
     }
 
-    getAll(): Promise<IGoogleDriveResource[]> {
-        throw new Error('Method not implemented.');
+    async getAll(): Promise<IGoogleDriveResource[]> {
+        console.log(await gapi.client.drive.files.list());
+        const response = await gapi.client.drive.drives.list();
+        return response.result.drives ?? [];
     }
 
     getById(id: string): Promise<IGoogleDriveResource> {

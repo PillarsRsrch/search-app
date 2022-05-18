@@ -7,7 +7,6 @@ import { LocalStorageDataSourceService } from '../../../../src/services/foundati
 import { LocalStorageProjectService } from '../../../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../../../src/services/foundations/router/NextRouterService';
 import { Head } from '../../../../src/views/bases/head/Head';
-import { Scripts } from '../../../../src/views/bases/scripts/Scripts';
 import { ViewDataPage } from '../../../../src/views/pages/data/view-data/ViewDataPage';
 
 const ViewData: NextPage = () => {
@@ -32,7 +31,6 @@ const ViewData: NextPage = () => {
                 projectService={projectService}
                 routerService={routerService}
             />
-            <Scripts />
         </>
     );
 };

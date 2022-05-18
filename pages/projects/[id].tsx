@@ -5,7 +5,6 @@ import { LocalStorageRepository } from '../../src/repositories/local-storage/Loc
 import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../src/services/foundations/router/NextRouterService';
 import { Head } from '../../src/views/bases/head/Head';
-import { Scripts } from '../../src/views/bases/scripts/Scripts';
 import { ViewProjectPage } from '../../src/views/pages/projects/view-project/ViewProjectPage';
 
 const ViewProject: NextPage = () => {
@@ -25,7 +24,6 @@ const ViewProject: NextPage = () => {
                 projectId={id}
                 projectService={projectService}
             />
-            <Scripts />
         </>
     );
 };

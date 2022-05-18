@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetStaticPaths, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { FormDataSourceMapper } from '../../../../../src/mappers/data-sources/FormDataSourceMapper';
 import { LocalStorageRecordDataSourceMapper } from '../../../../../src/mappers/data-sources/LocalStorageRecordDataSourceMapper';
@@ -9,11 +9,18 @@ import { LocalStorageDataSourceService } from '../../../../../src/services/found
 import { GoogleDriveService } from '../../../../../src/services/foundations/google-drive/GoogleDriveService';
 import { NextRouterService } from '../../../../../src/services/foundations/router/NextRouterService';
 import { Head } from '../../../../../src/views/bases/head/Head';
-import { Scripts } from '../../../../../src/views/bases/scripts/Scripts';
+import { GoogleAPIScripts } from '../../../../../src/views/bases/google-api-scripts/GoogleAPIScripts';
 import { CreateDataSourcePage } from '../../../../../src/views/pages/data-sources/create-data-source/CreateDataSourcePage';
+import { IDataSourceNewPageProps } from '../../../../../src/page-props/IDataSourceNewPageProps';
 
-const NewSource: NextPage = () => {
+const NewSource: NextPage<IDataSourceNewPageProps> = ({
+    apiKey,
+    clientId,
+}: IDataSourceNewPageProps) => {
     const router = useRouter();
+    const discoveryDocs = [
+        'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+    ];
     const id = router.query.id as string;
     const routerService = new NextRouterService(router);
     const mapper = new FormDataSourceMapper();
@@ -36,9 +43,29 @@ const NewSource: NextPage = () => {
                 formMapper={mapper}
                 dataSourceService={dataSourceService}
             />
-            <Scripts />
+            <GoogleAPIScripts
+                apiKey={apiKey}
+                clientId={clientId}
+                discoveryDocs={discoveryDocs}
+            />
         </>
     );
+};
+
+export async function getStaticProps() {
+    return {
+        props: {
+            apiKey: process.env.GOOGLE_API_KEY,
+            clientId: process.env.GOOGLE_CLIENT_ID,
+        },
+    };
+}
+
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking', //indicates the type of fallback
+    };
 };
 
 export default NewSource;
