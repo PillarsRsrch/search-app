@@ -6,6 +6,8 @@ import { LocalStorageRepository } from '../../../../src/repositories/local-stora
 import { LocalStorageDataSourceService } from '../../../../src/services/foundations/data-sources/LocalStorageDataSourceService';
 import { LocalStorageProjectService } from '../../../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../../../src/services/foundations/router/NextRouterService';
+import { Head } from '../../../../src/views/bases/head/Head';
+import { Scripts } from '../../../../src/views/bases/scripts/Scripts';
 import { ViewDataPage } from '../../../../src/views/pages/data/view-data/ViewDataPage';
 
 const ViewData: NextPage = () => {
@@ -22,12 +24,16 @@ const ViewData: NextPage = () => {
     const routerService = new NextRouterService(router);
 
     return (
-        <ViewDataPage
-            dataSourceService={dataSourceService}
-            projectId={id}
-            projectService={projectService}
-            routerService={routerService}
-        />
+        <>
+            <Head title="Pillars Research Service" />
+            <ViewDataPage
+                dataSourceService={dataSourceService}
+                projectId={id}
+                projectService={projectService}
+                routerService={routerService}
+            />
+            <Scripts />
+        </>
     );
 };
 

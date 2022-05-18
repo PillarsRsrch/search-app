@@ -1,5 +1,5 @@
 import { IIconService } from '../../../../services/foundations/icons/IIconService';
 
-export interface ISignupFailureFragmentProps {
+export interface ISignUpFailureFragmentProps {
     iconService: IIconService;
 }

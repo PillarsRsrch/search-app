@@ -3,11 +3,11 @@ import { Spacer } from '../../../bases/spacer/Spacer';
 import { Text } from '../../../bases/text/Text';
 import { Icon } from '../../../bases/icon/Icon';
 import { IconSize } from '../../../bases/icon/IconSize';
-import { ISignupSuccesFragmentProps } from './ISignupSuccessFragmentProps';
+import { ISignUpSuccessFragmentProps } from './ISignUpSuccessFragmentProps';
 
-export const SignupSuccessFragment = ({
+export const SignUpSuccessFragment = ({
     iconService,
-}: ISignupSuccesFragmentProps) => (
+}: ISignUpSuccessFragmentProps) => (
     <>
         <Spacer />
         <Text>Successfully authenticated</Text>

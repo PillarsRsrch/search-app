@@ -42,7 +42,7 @@ describe('Create Data Source Page', () => {
     });
 
     test('Should render the create data source page and form', () => {
-        when(mockedGoogleDriveService.listDrivesAsync()).thenResolve([]);
+        when(mockedGoogleDriveService.getAllDrivesAsync()).thenResolve([]);
 
         render(
             <CreateDataSourcePage
@@ -62,7 +62,7 @@ describe('Create Data Source Page', () => {
     });
 
     test('Should create a data source and redirect when submitting a valid form', async () => {
-        when(mockedGoogleDriveService.listDrivesAsync()).thenResolve([]);
+        when(mockedGoogleDriveService.getAllDrivesAsync()).thenResolve([]);
         when(mockedDataSourceService.createDataSource(anything())).thenResolve(
             dataSource
         );
@@ -99,7 +99,7 @@ describe('Create Data Source Page', () => {
     test('Should render the google drive setup when Google Drive type is selected', async () => {
         when(mockedGoogleDrive.name()).thenReturn('Drive A');
         when(mockedGoogleDrive.id()).thenReturn('driveId');
-        when(mockedGoogleDriveService.listDrivesAsync()).thenResolve([
+        when(mockedGoogleDriveService.getAllDrivesAsync()).thenResolve([
             googleDrive,
         ]);
         when(mockedDataSourceService.createDataSource(anything())).thenResolve(
@@ -124,6 +124,6 @@ describe('Create Data Source Page', () => {
 
         await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
         expect(screen.getByText('Drive A')).toBeInTheDocument();
-        verify(mockedGoogleDriveService.listDrivesAsync()).once();
+        verify(mockedGoogleDriveService.getAllDrivesAsync()).once();
     });
 });

@@ -13,7 +13,7 @@ export function useDriveList(
 
     useEffect(() => {
         async function getDriveList() {
-            const driveList = await googleDriveService.listDrivesAsync();
+            const driveList = await googleDriveService.getAllDrivesAsync();
             if (driveList.length === 0) {
                 setDriveListState(DriveListState.NoDrives);
             } else {

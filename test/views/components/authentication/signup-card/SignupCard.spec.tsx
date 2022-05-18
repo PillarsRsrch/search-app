@@ -15,7 +15,7 @@ import { Cookie } from '../../../../../src/models/storage/Cookie';
 import { IAuthenticatorService } from '../../../../../src/services/foundations/authenticators/IAuthenticatorService';
 import { ICookieService } from '../../../../../src/services/foundations/cookies/ICookieService';
 import { IIconService } from '../../../../../src/services/foundations/icons/IIconService';
-import { SignupCard } from '../../../../../src/views/components/authentications/signup-card/SignupCard';
+import { SignUpCard } from '../../../../../src/views/components/authentications/signup-card/SignUpCard';
 import { FailureAuthenticator } from '../fakes/FailureAuthenticator';
 import { SuccessAuthenticator } from '../fakes/SuccessAuthenticator';
 
@@ -37,8 +37,8 @@ describe('Sign Up Card Test Suite', () => {
 
     test('Should render the signup card', () => {
         const { container: page } = render(
-            <SignupCard
-                onSignup={signupListener}
+            <SignUpCard
+                onSignUp={signupListener}
                 cookieService={cookieService}
                 iconService={iconService}
                 authenticatorService={authenticatorService}
@@ -76,8 +76,8 @@ describe('Sign Up Card Test Suite', () => {
             new Cookie('access-token', ''),
         ]);
         render(
-            <SignupCard
-                onSignup={signupListener}
+            <SignUpCard
+                onSignUp={signupListener}
                 cookieService={cookieService}
                 iconService={iconService}
                 authenticatorService={authenticatorService}
@@ -109,8 +109,8 @@ describe('Sign Up Card Test Suite', () => {
             <SuccessAuthenticator onSuccess={onSuccess} onFailure={onFailure} />
         ));
         const { container } = render(
-            <SignupCard
-                onSignup={signupListener}
+            <SignUpCard
+                onSignUp={signupListener}
                 authenticatorService={authenticatorService}
                 cookieService={cookieService}
                 iconService={iconService}
@@ -147,9 +147,9 @@ describe('Sign Up Card Test Suite', () => {
             <FailureAuthenticator onSuccess={onSuccess} onFailure={onFailure} />
         ));
         const { container } = render(
-            <SignupCard
+            <SignUpCard
                 cookieService={cookieService}
-                onSignup={signupListener}
+                onSignUp={signupListener}
                 authenticatorService={authenticatorService}
                 iconService={iconService}
             />

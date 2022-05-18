@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { InMemoryIconRepository } from '../src/repositories/icons/InMemoryIconRepository';
 import { GoogleAuthenticatorService } from '../src/services/foundations/authenticators/GoogleAuthenticatorService';
 import { IconService } from '../src/services/foundations/icons/IconService';
@@ -10,6 +9,8 @@ import { NextRouterService } from '../src/services/foundations/router/NextRouter
 import { useRouter } from 'next/router';
 import { CookieService } from '../src/services/foundations/cookies/CookieService';
 import { CookieRepository } from '../src/repositories/cookies/CookieRepository';
+import { Head } from '../src/views/bases/head/Head';
+import { Scripts } from '../src/views/bases/scripts/Scripts';
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -19,26 +20,23 @@ const Home: NextPage = () => {
         'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.readonly',
         GoogleAuthenticationComponent
     );
-    const cookieServce = new CookieService(new CookieRepository());
+    const cookieService = new CookieService(new CookieRepository());
     const iconService = new IconService(
         new InMemoryIconRepository(InMemoryIconStore)
     );
     const routerService = new NextRouterService(router);
 
     return (
-        <div>
-            <Head>
-                <title>Pillars Research Services</title>
-                <meta name="description" content="Pillars Research Services" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <>
+            <Head title="Pillars Research Service" />
             <AuthenticationPage
                 authenticatorService={authenticatorService}
-                cookieService={cookieServce}
+                cookieService={cookieService}
                 iconService={iconService}
                 routerService={routerService}
             />
-        </div>
+            <Scripts />
+        </>
     );
 };
 

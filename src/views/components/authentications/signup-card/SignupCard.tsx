@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import { Card } from '../../../bases/card/Card';
 import { AuthenticationState } from './AuthenticationState';
-import { ISignupCardProps } from './ISignupCardProps';
-import { SignupSuccessFragment } from './SignupSuccessFragment';
-import { SignupFailureFragment } from './SignupFailureFragment';
-import { SignupFragment } from './SignupFragment';
+import { ISignUpCardProps } from './ISignUpCardProps';
+import { SignUpSuccessFragment } from './SignUpSuccessFragment';
+import { SignUpFailureFragment } from './SignUpFailureFragment';
+import { SignUpFragment } from './SignUpFragment';
 import { AccessToken } from '../../../../models/authenticators/AccessToken';
 
-export const SignupCard = ({
+export const SignUpCard = ({
     authenticatorService,
     iconService,
     cookieService,
-    onSignup,
-}: ISignupCardProps) => {
+    onSignUp: onSignup,
+}: ISignUpCardProps) => {
     const authenticationFragmentMap = new Map([
         [
             AuthenticationState.Successful,
-            <SignupSuccessFragment iconService={iconService} />,
+            <SignUpSuccessFragment iconService={iconService} />,
         ],
         [
             AuthenticationState.Failed,
-            <SignupFailureFragment iconService={iconService} />,
+            <SignUpFailureFragment iconService={iconService} />,
         ],
         [
             AuthenticationState.Waiting,
-            <SignupFragment
+            <SignUpFragment
                 authenticatorService={authenticatorService}
                 onClick={onClick}
                 onFailure={onFailure}

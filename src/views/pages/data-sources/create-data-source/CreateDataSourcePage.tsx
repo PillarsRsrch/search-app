@@ -34,24 +34,13 @@ export const CreateDataSourcePage = ({
         );
     }
 
-    function onTypeChange(type: DataSourceTypes) {
-        setSourceType(type);
-    }
-
-    function getSetupComponent() {
-        if (!dataSourceSetupLookup.has(sourceType)) {
-            return <></>;
-        }
-        return dataSourceSetupLookup.get(sourceType)!;
-    }
-
     return (
         <HorizontallyCenteredLayout>
             <Heading level={1}>Create Data Source</Heading>
             <DataSourceForm
-                onTypeChange={onTypeChange}
+                onTypeChange={(type) => setSourceType(type)}
                 onSubmit={onSubmit}
-                dataSourceSetupComponent={getSetupComponent()}
+                dataSourceSetupComponent={dataSourceSetupLookup.get(sourceType)}
             />
         </HorizontallyCenteredLayout>
     );

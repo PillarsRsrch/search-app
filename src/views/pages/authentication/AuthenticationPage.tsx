@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageTransition } from '../../../models/routers/PageTransition';
 import { IAuthenticationPageProps } from './IAuthenticationPageProps';
-import { SignupCard } from '../../components/authentications/signup-card/SignupCard';
+import { SignUpCard } from '../../components/authentications/signup-card/SignUpCard';
 import { Spacer } from '../../bases/spacer/Spacer';
 import { Cookie } from '../../../models/storage/Cookie';
 import { CenteredLayout } from '../../components/layouts/centered/CenteredLayout';
@@ -15,11 +15,11 @@ export const AuthenticationPage = ({
     return (
         <CenteredLayout>
             <Spacer />
-            <SignupCard
+            <SignUpCard
                 authenticatorService={authenticatorService}
                 cookieService={cookieService}
                 iconService={iconService}
-                onSignup={(token) => {
+                onSignUp={(token) => {
                     cookieService.createCookie(
                         new Cookie('access-token', token.value)
                     );

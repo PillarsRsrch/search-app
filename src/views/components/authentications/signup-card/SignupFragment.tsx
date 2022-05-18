@@ -3,14 +3,14 @@ import { Heading } from '../../../bases/header/Heading';
 import { Spacer } from '../../../bases/spacer/Spacer';
 import { Text } from '../../../bases/text/Text';
 import { AuthenticationButton } from '../AuthenticationButton';
-import { ISignupFragmentProps } from './ISignupFragmentProps';
+import { ISignUpFragmentProps } from './ISignUpFragmentProps';
 
-export const SignupFragment = ({
+export const SignUpFragment = ({
     authenticatorService,
     onClick,
     onSuccess,
     onFailure,
-}: ISignupFragmentProps) => (
+}: ISignUpFragmentProps) => (
     <>
         <Spacer />
         <Heading level={1}>Get Started</Heading>

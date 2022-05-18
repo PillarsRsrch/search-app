@@ -4,6 +4,8 @@ import { LocalStorageRecordProjectMapper } from '../../src/mappers/projects/Loca
 import { LocalStorageRepository } from '../../src/repositories/local-storage/LocalStorageRepository';
 import { LocalStorageProjectService } from '../../src/services/foundations/projects/LocalStorageProjectService';
 import { NextRouterService } from '../../src/services/foundations/router/NextRouterService';
+import { Head } from '../../src/views/bases/head/Head';
+import { Scripts } from '../../src/views/bases/scripts/Scripts';
 import { ViewProjectPage } from '../../src/views/pages/projects/view-project/ViewProjectPage';
 
 const ViewProject: NextPage = () => {
@@ -16,11 +18,15 @@ const ViewProject: NextPage = () => {
     const routerService = new NextRouterService(router);
 
     return (
-        <ViewProjectPage
-            routerService={routerService}
-            projectId={id}
-            projectService={projectService}
-        />
+        <>
+            <Head title="Pillars Research Service" />
+            <ViewProjectPage
+                routerService={routerService}
+                projectId={id}
+                projectService={projectService}
+            />
+            <Scripts />
+        </>
     );
 };
 
